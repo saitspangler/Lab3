@@ -9,6 +9,7 @@ namespace ProductMaintenanceGUI
         private const int MODIFY_INDEX = 4;
         private const int DELETE_INDEX = 5;
         private Product currentProduct;
+
         public frmProductsMaintenace()
         {
             InitializeComponent();
