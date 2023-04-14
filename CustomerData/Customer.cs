@@ -4,14 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace CustomerData
+namespace TechSupportData
 {
     public partial class Customer
     {
-        public Customer()
-        {
-            Invoices = new HashSet<Invoice>();
-        }
 
         [Key]
         [Column("CustomerID")]
@@ -25,17 +21,20 @@ namespace CustomerData
         [StringLength(20)]
         [Unicode(false)]
         public string City { get; set; } = null!;
-        [StringLength(2)]
+        [StringLength(20)]
         [Unicode(false)]
         public string State { get; set; } = null!;
         [StringLength(15)]
         [Unicode(false)]
         public string ZipCode { get; set; } = null!;
 
-        [ForeignKey("State")]
-        [InverseProperty("Customers")]
-        public virtual State StateNavigation { get; set; } = null!;
-        [InverseProperty("Customer")]
-        public virtual ICollection<Invoice> Invoices { get; set; }
+        [StringLength(20)]
+        [Unicode(false)]
+        public string Phone { get; set; } = null!;
+
+        [StringLength(50)]
+        [Unicode(false)]
+        public string Email { get; set; } = null!;
+
     }
 }

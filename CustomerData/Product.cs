@@ -4,14 +4,10 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.EntityFrameworkCore;
 
-namespace CustomerData
+namespace TechSupportData
 {
     public partial class Product
     {
-        public Product()
-        {
-            InvoiceLineItems = new HashSet<InvoiceLineItem>();
-        }
 
         [Key]
         [StringLength(10)]
@@ -19,12 +15,11 @@ namespace CustomerData
         public string ProductCode { get; set; } = null!;
         [StringLength(50)]
         [Unicode(false)]
-        public string Description { get; set; } = null!;
-        [Column(TypeName = "money")]
-        public decimal UnitPrice { get; set; }
-        public int OnHandQuantity { get; set; }
+        public string Name { get; set; } = null!;
 
-        [InverseProperty("ProductCodeNavigation")]
-        public virtual ICollection<InvoiceLineItem> InvoiceLineItems { get; set; }
+        [Range(0, 18)]
+        public decimal Version { get; set; }
+        public DateTime ReleaseDate { get; set; } 
+
     }
 }

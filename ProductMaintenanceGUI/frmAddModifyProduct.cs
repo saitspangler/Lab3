@@ -1,13 +1,4 @@
-﻿using CustomerData;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using TechSupportData;
 
 namespace ProductMaintenanceGUI
 {
@@ -39,27 +30,27 @@ namespace ProductMaintenanceGUI
         // display current product
         private void DisplayProduct()
         {
-            if(currentProduct != null)
+            if (currentProduct != null)
             {
                 txtProductCode.Text = currentProduct.ProductCode;
-                txtDescription.Text = currentProduct.Description;
-                txtUnitPrice.Text = currentProduct.UnitPrice.ToString();// no formatting!!
-                txtQuantity.Text = currentProduct.OnHandQuantity.ToString();
+                txtName.Text = currentProduct.Name;
+                txtVersion.Text = currentProduct.Version.ToString();// no formatting!!
+                txtReleaseDate.Text = currentProduct.ReleaseDate.ToString();
             }
         }
 
         // save changes
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool valid = true;         
-            if(isAdd) // validate code
+            bool valid = true;
+            if (isAdd) // validate code
             {
                 if (Validator.IsPresent(txtProductCode))
                 {
                     // check if unique
                     string code = txtProductCode.Text;
                     List<string> codes = ProductDB.GetProductCodes();
-                    foreach(string c in codes)
+                    foreach (string c in codes)
                     {
                         if (c.Trim() == code.Trim())
                         {
@@ -74,24 +65,23 @@ namespace ProductMaintenanceGUI
                 }
             }
             // for both Add and Modify
-            if( valid &&
-                Validator.IsPresent(txtDescription) &&
-                Validator.IsPresent(txtUnitPrice) &&
-                Validator.IsNonNegativeDecimal(txtUnitPrice) &&
-                Validator.IsPresent(txtQuantity) &&
-                Validator.IsNonNegativeInt(txtQuantity)
+            if (valid &&
+                Validator.IsPresent(txtName) &&
+                Validator.IsPresent(txtVersion) &&
+                Validator.IsPresent(txtReleaseDate)
               ) // valid data
             {
-                if(isAdd) // need to create the object
+                if (isAdd) // need to create the object
                 {
                     currentProduct = new Product();
                 }
                 // put data in
                 currentProduct.ProductCode = txtProductCode.Text;
-                currentProduct.Description = txtDescription.Text;
-                currentProduct.UnitPrice = Convert.ToDecimal(txtUnitPrice.Text);
-                currentProduct.OnHandQuantity = Convert.ToInt32(txtQuantity.Text);
-                
+                currentProduct.Name = txtName.Text;
+                currentProduct.Version = Convert.ToDecimal(txtVersion.Text);
+                //get releasedate date from the form
+                currentProduct.ReleaseDate = Convert.ToDateTime(txtReleaseDate.Text);
+
                 DialogResult = DialogResult.OK;
             }
         }

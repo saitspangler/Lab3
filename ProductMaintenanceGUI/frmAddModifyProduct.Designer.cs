@@ -33,9 +33,9 @@
             label3 = new Label();
             label4 = new Label();
             txtProductCode = new TextBox();
-            txtDescription = new TextBox();
-            txtUnitPrice = new TextBox();
-            txtQuantity = new TextBox();
+            txtName = new TextBox();
+            txtVersion = new TextBox();
+            txtReleaseDate = new TextBox();
             btnSave = new Button();
             btnCancel = new Button();
             SuspendLayout();
@@ -43,76 +43,76 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(51, 30);
+            label1.Location = new Point(51, 26);
             label1.Name = "label1";
-            label1.Size = new Size(164, 32);
+            label1.Size = new Size(126, 20);
             label1.TabIndex = 0;
             label1.Text = "Product Code:";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(51, 92);
+            label2.Location = new Point(51, 88);
             label2.Name = "label2";
-            label2.Size = new Size(140, 32);
+            label2.Size = new Size(54, 20);
             label2.TabIndex = 1;
-            label2.Text = "Description:";
+            label2.Text = "Name:";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(60, 162);
+            label3.Location = new Point(51, 155);
             label3.Name = "label3";
-            label3.Size = new Size(70, 32);
+            label3.Size = new Size(81, 20);
             label3.TabIndex = 2;
-            label3.Text = "Price:";
+            label3.Text = "Version:";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(51, 221);
+            label4.Location = new Point(51, 210);
             label4.Name = "label4";
-            label4.Size = new Size(111, 32);
+            label4.Size = new Size(126, 20);
             label4.TabIndex = 3;
-            label4.Text = "Quantity:";
+            label4.Text = "Release Date:";
             // 
             // txtProductCode
             // 
-            txtProductCode.Location = new Point(233, 27);
+            txtProductCode.Location = new Point(233, 26);
             txtProductCode.Name = "txtProductCode";
-            txtProductCode.Size = new Size(198, 39);
+            txtProductCode.Size = new Size(198, 25);
             txtProductCode.TabIndex = 4;
             txtProductCode.Tag = "Product code";
             // 
-            // txtDescription
+            // txtName
             // 
-            txtDescription.Location = new Point(233, 89);
-            txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(372, 39);
-            txtDescription.TabIndex = 5;
-            txtDescription.Tag = "Description";
+            txtName.Location = new Point(233, 85);
+            txtName.Name = "txtName";
+            txtName.Size = new Size(372, 25);
+            txtName.TabIndex = 5;
+            txtName.Tag = "Description";
             // 
-            // txtUnitPrice
+            // txtVersion
             // 
-            txtUnitPrice.Location = new Point(233, 159);
-            txtUnitPrice.Name = "txtUnitPrice";
-            txtUnitPrice.Size = new Size(150, 39);
-            txtUnitPrice.TabIndex = 6;
-            txtUnitPrice.Tag = "Price";
+            txtVersion.Location = new Point(233, 151);
+            txtVersion.Name = "txtVersion";
+            txtVersion.Size = new Size(150, 25);
+            txtVersion.TabIndex = 6;
+            txtVersion.Tag = "Price";
             // 
-            // txtQuantity
+            // txtReleaseDate
             // 
-            txtQuantity.Location = new Point(233, 218);
-            txtQuantity.Name = "txtQuantity";
-            txtQuantity.Size = new Size(150, 39);
-            txtQuantity.TabIndex = 7;
-            txtQuantity.Tag = "Quantity";
+            txtReleaseDate.Location = new Point(233, 208);
+            txtReleaseDate.Name = "txtReleaseDate";
+            txtReleaseDate.Size = new Size(150, 25);
+            txtReleaseDate.TabIndex = 7;
+            txtReleaseDate.Tag = "Quantity";
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(476, 148);
+            btnSave.Location = new Point(476, 141);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(129, 50);
+            btnSave.Size = new Size(129, 48);
             btnSave.TabIndex = 8;
             btnSave.Text = "&Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -120,9 +120,9 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(476, 207);
+            btnCancel.Location = new Point(476, 197);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(129, 50);
+            btnCancel.Size = new Size(129, 48);
             btnCancel.TabIndex = 9;
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -130,21 +130,21 @@
             // frmAddModifyProduct
             // 
             AcceptButton = btnSave;
-            AutoScaleDimensions = new SizeF(13F, 32F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
-            ClientSize = new Size(668, 319);
+            ClientSize = new Size(668, 304);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
-            Controls.Add(txtQuantity);
-            Controls.Add(txtUnitPrice);
-            Controls.Add(txtDescription);
+            Controls.Add(txtReleaseDate);
+            Controls.Add(txtVersion);
+            Controls.Add(txtName);
             Controls.Add(txtProductCode);
             Controls.Add(label4);
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Cascadia Mono", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmAddModifyProduct";
             StartPosition = FormStartPosition.CenterScreen;
@@ -161,9 +161,9 @@
         private Label label3;
         private Label label4;
         private TextBox txtProductCode;
-        private TextBox txtDescription;
-        private TextBox txtUnitPrice;
-        private TextBox txtQuantity;
+        private TextBox txtName;
+        private TextBox txtVersion;
+        private TextBox txtReleaseDate;
         private Button btnSave;
         private Button btnCancel;
     }

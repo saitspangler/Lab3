@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CustomerData\MMABooksData.csproj" />
+    <ProjectReference Include="..\CustomerData\TechSupportData.csproj" />
   </ItemGroup>
 
 </Project>

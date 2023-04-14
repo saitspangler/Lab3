@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomerData
+namespace TechSupportData
 {
     /// <summary>
     /// repository of methods for working with Customers table
@@ -18,7 +18,7 @@ namespace CustomerData
         public static List<int> GetCustomerIDs()
         {
             List<int> custIDs = new List<int>(); // empty list
-            using (MMABooksContext db = new MMABooksContext())
+            using (TechSupportDataContext db = new TechSupportDataContext())
             {
                 custIDs = db.Customers.
                     Select(c => c.CustomerId).ToList();  
@@ -34,7 +34,7 @@ namespace CustomerData
         public static Customer FindCustomer(int custID)
         {
             Customer customer = null;
-            using(MMABooksContext db = new MMABooksContext())
+            using(TechSupportDataContext db = new TechSupportDataContext())
             {
                 //customer = db.Customers.Where(c => c.CustomerId == custID).SingleOrDefault();// works for any property
                 customer = db.Customers.Find(custID); // method Find is good for searching by PK value
@@ -52,7 +52,7 @@ namespace CustomerData
             int custID = 0; // new customer id (will be generated)
             if(newCust != null) // if there is a customer to add
             {
-                using (MMABooksContext db = new MMABooksContext())
+                using (TechSupportDataContext db = new TechSupportDataContext())
                 {
                     db.Customers.Add(newCust); // add object to the collection in the app
                     db.SaveChanges(); // saves changes made to object in the app to the database
@@ -74,7 +74,7 @@ namespace CustomerData
             Customer cust = null;
             if(newCustomerData != null)
             {
-                using(MMABooksContext db = new MMABooksContext())
+                using(TechSupportDataContext db = new TechSupportDataContext())
                 {
                     cust = db.Customers.Find(custID); // find the customer in current context
                     if(cust != null)
@@ -85,6 +85,8 @@ namespace CustomerData
                         cust.City = newCustomerData.City;
                         cust.State = newCustomerData.State;
                         cust.ZipCode = newCustomerData.ZipCode;
+                        cust.Phone = newCustomerData.Phone;
+                        cust.Email = newCustomerData.Email;
                         // no need to call Update
                         db.SaveChanges();
                         didUpdate = true;// success
@@ -103,7 +105,7 @@ namespace CustomerData
         {
             bool didDelete = false;
             Customer cust = null; // customer to delete
-            using(MMABooksContext db = new MMABooksContext()) 
+            using(TechSupportDataContext db = new TechSupportDataContext()) 
             {
                 cust = db.Customers.Find(custID);
                 if(cust != null)

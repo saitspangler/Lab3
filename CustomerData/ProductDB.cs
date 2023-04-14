@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomerData
+namespace TechSupportData
 {
     /// <summary>
     /// repository of methods to work  with Products table
@@ -18,16 +18,16 @@ namespace CustomerData
         public static List<ProductDTO> GetProducts()
         {
             List<ProductDTO> products = new List<ProductDTO>();// empty list
-            using (MMABooksContext db = new MMABooksContext())
+            using (TechSupportDataContext db = new TechSupportDataContext())
             {
                 products = db.Products.
                     OrderBy(p => p.ProductCode).
                     Select( p => new ProductDTO() 
                     { 
                         ProductCode = p.ProductCode,
-                        Description = p.Description,
-                        UnitPrice = p.UnitPrice,
-                        OnHandQuantity = p.OnHandQuantity
+                        Name = p.Name,
+                        Version = p.Version,
+                        ReleaseDate = p.ReleaseDate
                      }).ToList();
             }
             return products;
@@ -41,7 +41,7 @@ namespace CustomerData
         public static Product FindProduct(string productCode)
         {
             Product product = null;
-            using(MMABooksContext db = new MMABooksContext())
+            using(TechSupportDataContext db = new TechSupportDataContext())
             {
                 product = db.Products.Find(productCode);
             }
@@ -55,7 +55,7 @@ namespace CustomerData
         public static List<string> GetProductCodes()
         {
             List<string> codes = new List<string>();
-            using(MMABooksContext db = new MMABooksContext())
+            using(TechSupportDataContext db = new TechSupportDataContext())
             {
                 codes = db.Products.Select(p => p.ProductCode).ToList();
             }
@@ -70,7 +70,7 @@ namespace CustomerData
         {
             if(newProd != null)
             {
-                using(MMABooksContext db = new MMABooksContext())
+                using(TechSupportDataContext db = new TechSupportDataContext())
                 {
                     db.Products.Add(newProd);
                     db.SaveChanges();
@@ -86,16 +86,16 @@ namespace CustomerData
         {
             if(newProdData != null)
             {
-                using(MMABooksContext db = new MMABooksContext())
+                using(TechSupportDataContext db = new TechSupportDataContext())
                 {
                     // find the product to update in this context
                     Product prod = db.Products.Find(newProdData.ProductCode);
                     if(prod != null) // it still exists
                     {
                         // code does not  change
-                        prod.Description = newProdData.Description;
-                        prod.UnitPrice = newProdData.UnitPrice;
-                        prod.OnHandQuantity = newProdData.OnHandQuantity;
+                        prod.Name = newProdData.Name;
+                        prod.Version = newProdData.Version;
+                        prod.ReleaseDate = newProdData.ReleaseDate;
                         db.SaveChanges() ;
                     }
                 }
@@ -108,7 +108,7 @@ namespace CustomerData
         /// <param name="productCode">code of the product to delete</param>
         public static void DeleteProduct(string productCode)
         {
-            using(MMABooksContext db = new MMABooksContext())
+            using(TechSupportDataContext db = new TechSupportDataContext())
             {
                 Product prod = db.Products.Find(productCode); 
                 if(prod != null)

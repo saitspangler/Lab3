@@ -8,14 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CustomerData
+namespace TechSupportData
 {
     // Product class without navigation property
     public class ProductDTO
     {
         public string ProductCode { get; set; }
-        public string Description { get; set; }       
-        public decimal UnitPrice { get; set; }
-        public int OnHandQuantity { get; set; }
+        public string Name { get; set; }       
+        public decimal Version { get; set; }
+        public DateTime ReleaseDate { get; set; }
     }
 }
