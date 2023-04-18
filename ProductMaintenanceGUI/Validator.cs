@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,6 +31,25 @@ namespace ProductMaintenanceGUI
         }
 
         /// <summary>
+        /// checks if text box has the accepted number of charactersin it
+        /// </summary>
+        /// <param name="textBox"></param>
+        /// <param name="maxLength"></param>
+        /// <returns>true if valid and false if not</returns>
+        public static bool IsValidLength(TextBox textBox, int maxLength)
+        {
+            bool isValid = true;
+            if (textBox.Text.Length > maxLength)
+            {
+                MessageBox.Show(textBox.Tag + $" must be {maxLength} characters or less");
+                textBox.Focus();
+                isValid = false;
+            }
+            return isValid;
+        }
+
+
+        /// <summary>
         /// checks if combo box has value selected
         /// </summary>
         /// <param name="comboBox">combo box to check (Tag property is set)</param>
@@ -41,6 +61,23 @@ namespace ProductMaintenanceGUI
             {
                 MessageBox.Show(comboBox.Tag + " must be selected");
                 comboBox.Focus();
+                isValid = false;
+            }
+            return isValid;
+        }
+
+        /// <summary>
+        /// Checks if a DataGridView has a row selected.
+        /// </summary>
+        /// <param name="dataGridView">DataGridView to check (Tag property is set)</param>
+        /// <returns>true if valid and false if not</returns>
+        public static bool IsRowSelected(DataGridView dataGridView)
+        {
+            bool isValid = true;
+            if (dataGridView.SelectedRows.Count == 0) // no row selected
+            {
+                MessageBox.Show("Please select a row by clicking the arrow in the far left column to modify or delete a product.");
+                dataGridView.Focus();
                 isValid = false;
             }
             return isValid;
@@ -179,6 +216,45 @@ namespace ProductMaintenanceGUI
                 textBox.SelectAll(); // select all text in the box for replacement
                 textBox.Focus();
                 isValid = false;
+            }
+            return isValid;
+        }
+
+        /// <summary>
+        /// checks if text box contains a valid date within a range of 20 years ago and 20 years in the future
+        /// </summary>
+        /// <param name="textBox">text box to check (Tag property is set)</param>
+        /// <returns>true if valid and false if not</returns>
+        public static bool IsValidDate(TextBox textBox)
+        {
+            bool isValid = true;
+            DateTime result;
+            if (!DateTime.TryParse(textBox.Text, out result))
+            {
+                MessageBox.Show(textBox.Tag + " has to be a valid date in the format mm/dd/yyyy");
+                textBox.SelectAll();
+                textBox.Focus();
+                isValid = false;
+            }
+            else if (result.ToString("MM/dd/yyyy") != textBox.Text)
+            {
+                MessageBox.Show(textBox.Tag + " has to be in the format mm/dd/yyyy");
+                textBox.SelectAll();
+                textBox.Focus();
+                isValid = false;
+            }
+            else
+            {
+                DateTime minDate = DateTime.Now.AddYears(-20);
+                DateTime maxDate = DateTime.Now.AddYears(20);
+                if (result < minDate || result > maxDate)
+                {
+                    MessageBox.Show(textBox.Tag + " has to be a date within the range of " +
+                                    minDate.ToString("MM/dd/yyyy") + " and " + maxDate.ToString("MM/dd/yyyy"));
+                    textBox.SelectAll(); // select all text in the box for replacement
+                    textBox.Focus();
+                    isValid = false;
+                }
             }
             return isValid;
         }

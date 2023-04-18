@@ -19,7 +19,6 @@ namespace TechSupportData
 
         [Range(0, 18)]
         public decimal Version { get; set; }
-        public DateTime ReleaseDate { get; set; } 
-
+        public DateTime ReleaseDate { get; set; }
     }
 }

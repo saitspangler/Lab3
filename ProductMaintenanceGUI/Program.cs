@@ -1,5 +1,13 @@
 namespace ProductMaintenanceGUI
 {
+    /*
+     * Product Maintenance Application
+     * 
+     * Author: Peter Spangler
+     * 
+     * 
+     * Date: April 2023
+     */
     internal static class Program
     {
         /// <summary>

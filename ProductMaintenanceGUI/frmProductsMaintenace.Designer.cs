@@ -39,21 +39,21 @@
             // dgvProducts
             // 
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Location = new Point(31, 28);
+            dgvProducts.Location = new Point(33, 24);
             dgvProducts.Margin = new Padding(3, 2, 3, 2);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowHeadersWidth = 62;
             dgvProducts.RowTemplate.Height = 33;
-            dgvProducts.Size = new Size(976, 249);
+            dgvProducts.Size = new Size(1450, 299);
             dgvProducts.TabIndex = 0;
             dgvProducts.CellClick += dgvProducts_CellClick;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(46, 295);
+            btnAdd.Location = new Point(33, 348);
             btnAdd.Margin = new Padding(3, 2, 3, 2);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(151, 33);
+            btnAdd.Size = new Size(180, 58);
             btnAdd.TabIndex = 1;
             btnAdd.Text = "&Add Product";
             btnAdd.UseVisualStyleBackColor = true;
@@ -61,10 +61,10 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(389, 295);
+            btnDelete.Location = new Point(518, 348);
             btnDelete.Margin = new Padding(3, 2, 3, 2);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(151, 33);
+            btnDelete.Size = new Size(237, 58);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "&Delete Product";
             btnDelete.UseVisualStyleBackColor = true;
@@ -72,10 +72,10 @@
             // 
             // btnModify
             // 
-            btnModify.Location = new Point(219, 295);
+            btnModify.Location = new Point(255, 348);
             btnModify.Margin = new Padding(3, 2, 3, 2);
             btnModify.Name = "btnModify";
-            btnModify.Size = new Size(151, 33);
+            btnModify.Size = new Size(235, 58);
             btnModify.TabIndex = 3;
             btnModify.Text = "&Modify Product";
             btnModify.UseVisualStyleBackColor = true;
@@ -83,10 +83,10 @@
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(856, 295);
+            btnExit.Location = new Point(885, 348);
             btnExit.Margin = new Padding(3, 2, 3, 2);
             btnExit.Name = "btnExit";
-            btnExit.Size = new Size(151, 33);
+            btnExit.Size = new Size(199, 58);
             btnExit.TabIndex = 4;
             btnExit.Text = "&Exit";
             btnExit.UseVisualStyleBackColor = true;
@@ -94,15 +94,15 @@
             // 
             // frmProductsMaintenace
             // 
-            AutoScaleDimensions = new SizeF(8F, 17F);
+            AutoScaleDimensions = new SizeF(14F, 26F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1060, 350);
+            ClientSize = new Size(1707, 545);
             Controls.Add(btnExit);
             Controls.Add(btnModify);
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
-            Font = new Font("Cascadia Mono", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Liberation Mono", 9.857143F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmProductsMaintenace";
             StartPosition = FormStartPosition.CenterScreen;

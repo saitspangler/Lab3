@@ -3,11 +3,17 @@ using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace ProductMaintenanceGUI
+/*
+* Product Maintenance Application
+* 
+* Author: Peter Spangler
+* 
+* 
+* Date: April 2023
+*/
 {
     public partial class frmProductsMaintenace : Form
     {
-        private const int MODIFY_INDEX = 4;
-        private const int DELETE_INDEX = 5;
 
         string productCode;
 
@@ -28,34 +34,15 @@ namespace ProductMaintenanceGUI
             dgvProducts.Columns.Clear();// reset columns
             List<ProductDTO> products = ProductDB.GetProducts();
             dgvProducts.DataSource = products;
-            //// add two button columns
-            //var modifyColumn = new DataGridViewButtonColumn()
-            //{
-            //    UseColumnTextForButtonValue = true,
-            //    Text = "Modify",
-            //    HeaderText = ""
-            //};
-            //dgvProducts.Columns.Add(modifyColumn);
-            //var deleteColumn = new DataGridViewButtonColumn()
-            //{
-            //    UseColumnTextForButtonValue = true,
-            //    Text = "Delete",
-            //    HeaderText = ""
-            //};
-            //dgvProducts.Columns.Add(deleteColumn);
-            // do some formatting
             dgvProducts.Columns[0].HeaderText = "Product Code";
-            dgvProducts.Columns[0].Width = 100;
+            dgvProducts.Columns[0].Width = 150;
             dgvProducts.Columns[1].HeaderText = "Name";
-            dgvProducts.Columns[1].Width = 250;
+            dgvProducts.Columns[1].Width = 450;
             dgvProducts.Columns[2].HeaderText = "Version";
-            dgvProducts.Columns[2].Width = 100;
+            dgvProducts.Columns[2].Width = 200;
             dgvProducts.Columns[3].HeaderText = "Release Date";
-            dgvProducts.Columns[3].DefaultCellStyle.Format= "d";
-            dgvProducts.Columns[3].Width = 200;
-            //dgvProducts.Columns[4].Width = 120;
-            //dgvProducts.Columns[5].Width = 120;
-            //dgvProducts.AutoResizeColumns();
+            dgvProducts.Columns[3].DefaultCellStyle.Format = "d";
+            dgvProducts.Columns[3].Width = 250;
         }
 
         // add a new product
@@ -105,7 +92,17 @@ namespace ProductMaintenanceGUI
         {
             // e.ColumnIndex is the column where the click happened
             // e.RowIndex is the row where the click happened
-                productCode = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString().Trim();
+            // return Product Code value
+            try
+            {
+                productCode = dgvProducts.Rows[e.RowIndex].Cells[0].Value.ToString();
+                currentProduct = ProductDB.FindProduct(productCode);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error while getting product: " +
+                    ex.Message, ex.GetType().ToString());
+            }
         }
 
         // modify current product
@@ -148,19 +145,20 @@ namespace ProductMaintenanceGUI
         }
 
         // delete current product
-        private void DeleteProduct(string productCode)
+        private void RemoveProduct(string productCode)
         {
             if (productCode != null)
             {
                 DialogResult result = MessageBox.Show(
-                    $"Do you want to delete {productCode}?",
+                $"Do you want to delete the following product?\n" +
+                $"Product Code: {productCode}\n" + $"This action cannot be undone.",
                     "Confirm delete", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Question);
                 if (result == DialogResult.Yes)// user confirmed
                 {
                     try
                     {
-                        DeleteProduct(productCode);
+                        ProductDB.DeleteProduct(productCode);
                         DisplayProducts(); // refresh grid
                     }
                     catch (DbUpdateException ex) // errors coming from SaveChanges
@@ -190,12 +188,18 @@ namespace ProductMaintenanceGUI
 
         private void btnModify_Click(object sender, EventArgs e)
         {
-            ModifyProduct(productCode);
+            if (Validator.IsRowSelected(dgvProducts))
+            {
+                ModifyProduct(productCode);
+            }
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            DeleteProduct(productCode);
+            if (Validator.IsRowSelected(dgvProducts))
+            {
+                RemoveProduct(productCode);
+            }
         }
 
         private void btnExit_Click(object sender, EventArgs e)
