@@ -241,6 +241,8 @@ public partial class TravelExpertsContext : DbContext
             entity.Property(e => e.CustLastName).HasMaxLength(25);
             entity.Property(e => e.CustPostal).HasMaxLength(7);
             entity.Property(e => e.CustProv).HasMaxLength(2);
+            entity.Property(e => e.Password).HasMaxLength(50);
+            entity.Property(e => e.Username).HasMaxLength(50);
 
             entity.HasOne(d => d.Agent).WithMany(p => p.Customers)
                 .HasForeignKey(d => d.AgentId)

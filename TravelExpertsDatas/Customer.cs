@@ -29,6 +29,10 @@ public partial class Customer
 
     public int? AgentId { get; set; }
 
+    public string? Username { get; set; }
+
+    public string? Password { get; set; }
+
     public virtual Agent? Agent { get; set; }
 
     public virtual ICollection<Booking> Bookings { get; set; } = new List<Booking>();
