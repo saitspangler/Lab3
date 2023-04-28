@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33516.290
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechSupportData", "TechSupportData\TechSupportData.csproj", "{ECA12F48-04BC-4F5D-B73F-57757A3837F2}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelExpertsDatas", "TravelExpertsDatas\TravelExpertsDatas.csproj", "{B7030FF6-738C-42AE-8D45-25FFD8E597E8}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelExpertsInternal", "TravelExpertsInternal\TravelExpertsInternal.csproj", "{433E53BF-8CC0-49F9-AB49-8D88CB0B6590}"
@@ -15,10 +13,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{ECA12F48-04BC-4F5D-B73F-57757A3837F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ECA12F48-04BC-4F5D-B73F-57757A3837F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ECA12F48-04BC-4F5D-B73F-57757A3837F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ECA12F48-04BC-4F5D-B73F-57757A3837F2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B7030FF6-738C-42AE-8D45-25FFD8E597E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7030FF6-738C-42AE-8D45-25FFD8E597E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7030FF6-738C-42AE-8D45-25FFD8E597E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
