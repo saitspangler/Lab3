@@ -26,7 +26,8 @@ namespace TravelExpertsInternal
 
         private void btnProductSuppliers_Click(object sender, EventArgs e)
         {
-
+            frmProductSuppliers fourthForm = new frmProductSuppliers();
+            fourthForm.Show();
         }
     }
 }
