@@ -58,7 +58,7 @@ namespace TravelExpertsInternal
                 dgvProductSuppliers.Rows.Add(ps.ProductSupplierId, ps.ProductId, ps.SupplierId);
             }
         }
-
+        // controls when user clicks on the data grid view (only modify cell is interactive)
         private void dgvProductSuppliers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if(e.ColumnIndex == MODIFY_INDEX)
