@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechSupportData", "TechSupp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExpertsDatas", "TravelExpertsDatas\TravelExpertsDatas.csproj", "{B7030FF6-738C-42AE-8D45-25FFD8E597E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelExpertsInternal", "TravelExpertsInternal\TravelExpertsInternal.csproj", "{433E53BF-8CC0-49F9-AB49-8D88CB0B6590}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B7030FF6-738C-42AE-8D45-25FFD8E597E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7030FF6-738C-42AE-8D45-25FFD8E597E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7030FF6-738C-42AE-8D45-25FFD8E597E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{433E53BF-8CC0-49F9-AB49-8D88CB0B6590}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{433E53BF-8CC0-49F9-AB49-8D88CB0B6590}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{433E53BF-8CC0-49F9-AB49-8D88CB0B6590}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{433E53BF-8CC0-49F9-AB49-8D88CB0B6590}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,15 @@
+﻿Commands to update the database according to the requirements:
+
+ALTER TABLE Customers
+ADD Username NVARCHAR(50),
+    Password NVARCHAR(50);
+
+Updates password field for all customers to be 'password':
+
+UPDATE Customers
+SET Password = 'password';
+
+Updates username to be the first letter of the first name and the last name in lowercase:
+
+UPDATE Customers
+SET Username = LOWER(LEFT(CustFirstName, 1) + CustLastName);
