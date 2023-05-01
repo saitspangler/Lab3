@@ -39,18 +39,18 @@
             // dgvProducts
             // 
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Location = new Point(33, 24);
+            dgvProducts.Location = new Point(64, 228);
             dgvProducts.Margin = new Padding(3, 2, 3, 2);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowHeadersWidth = 62;
             dgvProducts.RowTemplate.Height = 33;
-            dgvProducts.Size = new Size(1450, 299);
+            dgvProducts.Size = new Size(1012, 294);
             dgvProducts.TabIndex = 0;
             dgvProducts.CellClick += dgvProducts_CellClick;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(33, 348);
+            btnAdd.Location = new Point(64, 550);
             btnAdd.Margin = new Padding(3, 2, 3, 2);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(180, 58);
@@ -61,7 +61,7 @@
             // 
             // btnDelete
             // 
-            btnDelete.Location = new Point(518, 348);
+            btnDelete.Location = new Point(554, 550);
             btnDelete.Margin = new Padding(3, 2, 3, 2);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(237, 58);
@@ -72,7 +72,7 @@
             // 
             // btnModify
             // 
-            btnModify.Location = new Point(255, 348);
+            btnModify.Location = new Point(277, 550);
             btnModify.Margin = new Padding(3, 2, 3, 2);
             btnModify.Name = "btnModify";
             btnModify.Size = new Size(235, 58);
@@ -83,7 +83,7 @@
             // 
             // btnExit
             // 
-            btnExit.Location = new Point(885, 348);
+            btnExit.Location = new Point(843, 550);
             btnExit.Margin = new Padding(3, 2, 3, 2);
             btnExit.Name = "btnExit";
             btnExit.Size = new Size(199, 58);
@@ -94,15 +94,15 @@
             // 
             // frmProductsMaintenace
             // 
-            AutoScaleDimensions = new SizeF(14F, 26F);
+            AutoScaleDimensions = new SizeF(8F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1707, 545);
+            ClientSize = new Size(1444, 662);
             Controls.Add(btnExit);
             Controls.Add(btnModify);
             Controls.Add(btnDelete);
             Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
-            Font = new Font("Liberation Mono", 9.857143F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Microsoft Sans Serif", 9.857143F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4, 3, 4, 3);
             Name = "frmProductsMaintenace";
             StartPosition = FormStartPosition.CenterScreen;
