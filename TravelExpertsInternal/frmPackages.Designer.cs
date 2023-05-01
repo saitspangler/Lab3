@@ -29,23 +29,37 @@
         private void InitializeComponent()
         {
             dgvPackages = new DataGridView();
+            btnAddPackage = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvPackages).BeginInit();
             SuspendLayout();
             // 
             // dgvPackages
             // 
             dgvPackages.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPackages.Location = new Point(31, 23);
+            dgvPackages.Location = new Point(12, 158);
             dgvPackages.Name = "dgvPackages";
             dgvPackages.RowTemplate.Height = 25;
-            dgvPackages.Size = new Size(866, 380);
+            dgvPackages.Size = new Size(1065, 380);
             dgvPackages.TabIndex = 0;
+            dgvPackages.CellContentClick += dgvPackages_CellContentClick;
+            // 
+            // btnAddPackage
+            // 
+            btnAddPackage.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAddPackage.Location = new Point(12, 34);
+            btnAddPackage.Name = "btnAddPackage";
+            btnAddPackage.Size = new Size(189, 57);
+            btnAddPackage.TabIndex = 1;
+            btnAddPackage.Text = "Add Package";
+            btnAddPackage.UseVisualStyleBackColor = true;
+            btnAddPackage.Click += btnAddPackage_Click;
             // 
             // frmPackages
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(937, 450);
+            ClientSize = new Size(1151, 613);
+            Controls.Add(btnAddPackage);
             Controls.Add(dgvPackages);
             Name = "frmPackages";
             Text = "frmPackages";
@@ -57,5 +71,6 @@
         #endregion
 
         private DataGridView dgvPackages;
+        private Button btnAddPackage;
     }
 }
