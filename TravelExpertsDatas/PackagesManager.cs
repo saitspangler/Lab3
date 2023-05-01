@@ -5,47 +5,67 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TravelExpertsDatas
-{
+{        
+    ///summary
+    ///Repository of methods to work with the Packages table of the Travel Experts Database
+    ///summary
+    
     public class PackagesManager
     {
-        ///summary
-        ///Repository of methods to work with the Packages table of the Travel Experts Database
-        ///summary
-        ///
-
-        public static List<Package> GetAllPackages()
+        /// <summary>
+        /// Method to get all packages from the database
+        /// </summary>
+        /// <param>name="db"</param>
+        /// <returns>all packages from database</returns>
+        public static List<Package> GetAllPackages(TravelExpertsContext db)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            List<Package> packages = context.Packages.ToList();
+            List<Package> packages = db.Packages.ToList();
             return packages;
         }
 
-        public static Package GetPackage(int packageId)
+        /// <summary>
+        /// Returns the package with the given package id
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="packageId"></param>
+        /// <returns>the given package</returns>
+        public static Package GetPackage(TravelExpertsContext db, int packageId)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            Package package = context.Packages.Find(packageId);
+            Package package = db.Packages.Find(packageId);
             return package;
         }
-
-        public static void AddPackage(Package package)
+        /// <summary>
+        /// Adds a package to the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="package"></param>
+        /// <returns>updated database with package added</returns>
+        public static void AddPackage(TravelExpertsContext db, Package package)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Packages.Add(package);
-            context.SaveChanges();
+            db.Packages.Add(package);
+            db.SaveChanges();
+        }
+        /// <summary>
+        /// Updates a package in the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="oldPackage"></param>
+        /// <param name="newPackage"></param>
+        public static void UpdatePackage(TravelExpertsContext db, Package oldPackage, Package newPackage)
+        {
+            db.Entry(oldPackage).CurrentValues.SetValues(newPackage);
+            db.SaveChanges();
         }
 
-        public static void UpdatePackage(Package oldPackage, Package newPackage)
+        /// <summary>
+        /// Deletes a package from the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="package"></param>
+        public static void DeletePackage(TravelExpertsContext db, Package package)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Entry(oldPackage).CurrentValues.SetValues(newPackage);
-            context.SaveChanges();
-        }
-
-        public static void DeletePackage(Package package)
-        {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Packages.Remove(package);
-            context.SaveChanges();
+            db.Packages.Remove(package);
+            db.SaveChanges();
         }
     }
 }

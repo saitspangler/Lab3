@@ -11,35 +11,71 @@ namespace TravelExpertsDatas
     /// </summary>
     public class ProductManager
     {
-        public static List<Product> GetAllProducts()
+        /// <summary>
+        /// Get all products from the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <returns>List of products from the database</returns>
+        public static List<Product> GetAllProducts(TravelExpertsContext db)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            List<Product> products = context.Products.ToList();
+            List<Product> products = db.Products.ToList();
             return products;
         }
-        public static Product GetProduct(int productId)
+
+        /// <summary>
+        /// Get all products from given supplier from the database
+        /// </summary>
+        /// <param name="db, supplier"></param>
+        /// <returns>List of products from the database</returns>
+        public static List<Product> GetProductsBySupplier(TravelExpertsContext db, Supplier supplier)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            Product product = context.Products.Find(productId);
+
+            List<Product> products = db.Products.Where(p => p.ProductsSuppliers.Any(ps => ps.SupplierId == supplier.SupplierId)).ToList();
+            return products;
+        }
+        /// <summary>
+        /// Get product given product id
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="productId"></param>
+        /// <returns>the product with that id</returns>
+        public static Product GetProduct(TravelExpertsContext db, int productId)
+        {
+            Product product = db.Products.Find(productId);
             return product;
         }
-        public static void AddProduct(Product product)
+        /// <summary>
+        /// Add a product to the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="product"></param>
+        /// <returns>updated database</returns>
+        public static void AddProduct(TravelExpertsContext db, Product product)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Products.Add(product);
-            context.SaveChanges();
+            db.Products.Add(product);
+            db.SaveChanges();
         }
-        public static void UpdateProduct(Product oldProduct, Product newProduct)
+        /// <summary>
+        /// Update a product in the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="oldProduct"></param>
+        /// <param name="newProduct"></param>
+        public static void UpdateProduct(TravelExpertsContext db, Product oldProduct, Product newProduct)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Entry(oldProduct).CurrentValues.SetValues(newProduct);
-            context.SaveChanges();
+            db.Entry(oldProduct).CurrentValues.SetValues(newProduct);
+            db.SaveChanges();
         }
-        public static void DeleteProduct(Product product)
+
+        /// <summary>
+        /// Delete a product from the database
+        /// </summary>
+        /// <param name="db"></param>
+        /// <param name="product"></param>
+        public static void DeleteProduct(TravelExpertsContext db, Product product)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Products.Remove(product);
-            context.SaveChanges();
+            db.Products.Remove(product);
+            db.SaveChanges();
         }
     }
 }
