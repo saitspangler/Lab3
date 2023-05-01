@@ -20,7 +20,7 @@ namespace TravelExpertsDatas
             return packages;
         }
 
-        public static Package GetPackage(int packageId)
+        public static Package GetPackageById(int packageId)
         {
             TravelExpertsContext context = new TravelExpertsContext();
             Package package = context.Packages.Find(packageId);
