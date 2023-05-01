@@ -1,4 +1,6 @@
 namespace TravelExpertsInternal
+
+    // author of this form : Hector Villouta
 {
     public partial class Start : Form
     {
@@ -19,9 +21,11 @@ namespace TravelExpertsInternal
             thirdForm.Show();
         }
 
+
         private void btnSuppliers_Click(object sender, EventArgs e)
         {
-
+            frmSupplier suppliersForm = new frmSupplier();
+            suppliersForm.Show();
         }
 
         private void btnProductSuppliers_Click(object sender, EventArgs e)
