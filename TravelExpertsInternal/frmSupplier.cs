@@ -27,6 +27,12 @@ namespace TravelExpertsInternal
         {
             DisplaySuppliers();
         }
+
+        //method populates the DataGridView control with data from the Suppliers
+        //table in the database. It first clears any existing rows and
+        //columns, then creates columns for SupplierId, Supplier Name,
+        //and Modify button
+
         private void DisplaySuppliers()
         {
             dgvSuppliers.Rows.Clear();
@@ -50,9 +56,13 @@ namespace TravelExpertsInternal
             }
         }
 
+        private void ModifySupplier(Supplier currentSupplier)
+        {
 
+            throw new NotImplementedException();
+        }
 
-        private void dgvSuppliers_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSupplier_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == MODIFY_INDEX)
             {
@@ -72,12 +82,6 @@ namespace TravelExpertsInternal
                     MessageBox.Show("Error while modifying a supplier: " + ex.Message, ex.GetType().ToString());
                 }
             }
-        }
-
-        private void ModifySupplier(Supplier currentSupplier)
-        {
-
-            throw new NotImplementedException();
         }
     }
 }
