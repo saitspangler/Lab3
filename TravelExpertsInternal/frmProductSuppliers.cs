@@ -58,13 +58,13 @@ namespace TravelExpertsInternal
             foreach (ProductsSupplier ps in productSupplier)
             {
                 dgvProductSuppliers.Rows.Add(ps.ProductSupplierId, ps.ProductId, ps.SupplierId);
-                
+
             }
         }
         // controls when user clicks on the data grid view (only modify cell is interactive)
         private void dgvProductSuppliers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if(e.ColumnIndex == MODIFY_INDEX)
+            if (e.ColumnIndex == MODIFY_INDEX)
             {
                 int productSupplierID = Convert.ToInt32(dgvProductSuppliers.Rows[e.RowIndex].Cells[0].Value);
 
@@ -73,7 +73,7 @@ namespace TravelExpertsInternal
                     currentProductSupplier = ProductSuppliersManager.GetProductSupplier(productSupplierID);
                     if (currentProductSupplier != null)
                     {
-                        if(e.ColumnIndex == MODIFY_INDEX) // modify
+                        if (e.ColumnIndex == MODIFY_INDEX) // modify
                         {
                             ModifyProductSupplier();
                         }
@@ -123,6 +123,47 @@ namespace TravelExpertsInternal
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error while modifying a product supplier:" + ex.Message, ex.GetType().ToString());
+                }
+            }
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier(); // makes an object of the second form
+            secondForm.isAdd = true;
+            secondForm.currentProductsSupplier = null;
+            DialogResult = secondForm.ShowDialog();
+            secondForm.Focus();
+            if (DialogResult == DialogResult.OK) // proceed with add
+            {
+                currentProductSupplier = secondForm.currentProductsSupplier;
+                if (currentProductSupplier != null)
+                {
+                    try
+                    {
+                        ProductSuppliersManager.AddProductSupplier(currentProductSupplier);
+                        DisplayProductsSupplier(); // refresh grid
+                    }
+                    catch (DbUpdateException ex) // errors coming from SaveChanges
+                    {
+                        string errorMessage = "Error(s) while adding product:\n";
+                        var sqlException = (SqlException)ex.InnerException;
+                        foreach (SqlError error in sqlException.Errors)
+                        {
+                            errorMessage += "ERROR CODE:  " + error.Number +
+                                            " " + error.Message + "\n";
+                        }
+                        MessageBox.Show(errorMessage);
+                    }
+                    catch (SqlException)
+                    {
+                        MessageBox.Show("Database connection lost while adding a customer. Try again later");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Error while adding a product: " +
+                            ex.Message, ex.GetType().ToString());
+                    }
                 }
             }
         }

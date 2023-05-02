@@ -10,7 +10,7 @@ namespace TravelExpertsDatas
     /*
     * 
     * 
-    * Addition: Added GetAllProductIDs method
+    * Addition: Added GetAllProductIDs and ProductId methods
     * Added on May 1, 2023
     * By: Peter Thiel
     */
@@ -25,6 +25,7 @@ namespace TravelExpertsDatas
             List<Product> products = db.Products.ToList();
             return products;
         }
+
         public static Product GetProductById(int productId)
         {
             TravelExpertsContext db = new TravelExpertsContext();
@@ -110,5 +111,7 @@ namespace TravelExpertsDatas
             }
             return ids;
         }
+        
     }
+
 }
