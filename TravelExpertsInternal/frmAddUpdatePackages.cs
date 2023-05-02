@@ -194,11 +194,25 @@ namespace TravelExpertsInternal
 
         private void btnAddToPackage_Click(object sender, EventArgs e)
         {
-            // Create a new Product object with the information of the selected product
-            var product = new Product { ProductId = selectedProductId, ProdName = selectedProductName };
+            // Check if a product is selected
+            if (string.IsNullOrEmpty(selectedProductName))
+            {
+                // Display an error message
+                MessageBox.Show("Please select a product to add.");
+            }
+            else if (lbPackageProductList.Items.Contains(selectedProductName))
+            {
+                // Display an error message
+                MessageBox.Show("This product is already in the package.");
+            }
+            else
+            {
+                // Create a new Product object with the information of the selected product
+                var product = new Product { ProductId = selectedProductId, ProdName = selectedProductName };
 
-            // Add the product name to the ListBox
-            lbPackageProductList.Items.Add(product.ProdName);
+                // Add the product name to the ListBox
+                lbPackageProductList.Items.Add(product.ProdName);
+            }
         }
 
         private void lbAddProductList_SelectedIndexChanged(object sender, EventArgs e)
@@ -214,6 +228,16 @@ namespace TravelExpertsInternal
         private void btnCancelAdd_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnRemoveFromPackage_Click(object sender, EventArgs e)
+        {
+            // Check if an item is selected in the ListBox
+            if (lbPackageProductList.SelectedItem != null)
+            {
+                // Remove the selected item from the ListBox
+                lbPackageProductList.Items.Remove(lbPackageProductList.SelectedItem);
+            }
         }
     }
 }
