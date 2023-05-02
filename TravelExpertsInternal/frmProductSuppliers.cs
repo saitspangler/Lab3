@@ -42,7 +42,7 @@ namespace TravelExpertsInternal
             // do some formatting
             dgvProductSuppliers.Columns.Add("ProductSupplierId", "Product Supplier ID");
             dgvProductSuppliers.Columns.Add("ProductId", "Product ID");
-            dgvProductSuppliers.Columns.Add("SupplierId", "Supplier ID");
+            dgvProductSuppliers.Columns.Add("Supplier", "Sup");
             // add modify column
             var modifyColumn = new DataGridViewButtonColumn()
             {
@@ -56,6 +56,7 @@ namespace TravelExpertsInternal
             foreach (ProductsSupplier ps in productSupplier)
             {
                 dgvProductSuppliers.Rows.Add(ps.ProductSupplierId, ps.ProductId, ps.SupplierId);
+                
             }
         }
         // controls when user clicks on the data grid view (only modify cell is interactive)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace TravelExpertsDatas
         {
             List<ProductsSupplier> productSuppliers = new List<ProductsSupplier >(); // empty list of product suppliers
             using (TravelExpertsContext dB = new TravelExpertsContext()){
-                productSuppliers = dB.ProductsSuppliers.ToList();
+                productSuppliers = dB.ProductsSuppliers.Include(s => s.Supplier).ToList();
             }
             return productSuppliers;
         }
