@@ -43,7 +43,7 @@ namespace TravelExpertsInternal
 
             }
         }
-
+        // display supplier info if modify
         private void DisplaySupplier()
         {
             if (currentSupplier != null)
