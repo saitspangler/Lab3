@@ -78,11 +78,12 @@ namespace TravelExpertsInternal
                 int supplierIndex = SupplierManager.GetAllSupplierIDs().IndexOf((int)currentProductsSupplier.SupplierId);
                 if (supplierIndex > 0)
                 {
-                    cboSupplierID.SelectedValue = currentProductsSupplier.SupplierId; 
+                    cboSupplierID.SelectedValue = supplierIndex; 
                 }
             }
         }
 
+        // when the accept button is clicked
         private void btnAccept_Click(object sender, EventArgs e)
         {
             bool valid = true;
@@ -123,8 +124,8 @@ namespace TravelExpertsInternal
                 }
                 // fill in data of product supplier object with new values
                 currentProductsSupplier.ProductSupplierId = Convert.ToInt32(txtProductsSupplierID);
-                currentProductsSupplier.ProductId = Convert.ToInt32(cboProductID.SelectedValue);
-                currentProductsSupplier.SupplierId = Convert.ToInt32(cboSupplierID.SelectedValue);
+                currentProductsSupplier.ProductId = Convert.ToInt32(cboProductID);
+                currentProductsSupplier.SupplierId = Convert.ToInt32(cboSupplierID);
 
                 DialogResult = DialogResult.OK; 
             }

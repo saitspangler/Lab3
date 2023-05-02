@@ -55,11 +55,17 @@
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
+            btnAccept = new Button();
+            btnCancel = new Button();
+            label6 = new Label();
+            txtEmail = new TextBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(txtEmail);
+            groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(txtURL);
             groupBox1.Controls.Add(txtFax);
             groupBox1.Controls.Add(txtCountry);
@@ -90,7 +96,7 @@
             groupBox1.Margin = new Padding(4);
             groupBox1.Name = "groupBox1";
             groupBox1.Padding = new Padding(4);
-            groupBox1.Size = new Size(636, 381);
+            groupBox1.Size = new Size(636, 349);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Add new Supplier Contact";
@@ -132,14 +138,14 @@
             // 
             // txtPhone
             // 
-            txtPhone.Location = new Point(140, 266);
+            txtPhone.Location = new Point(140, 229);
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(163, 29);
             txtPhone.TabIndex = 22;
             // 
             // txtPostalCode
             // 
-            txtPostalCode.Location = new Point(140, 225);
+            txtPostalCode.Location = new Point(140, 188);
             txtPostalCode.Name = "txtPostalCode";
             txtPostalCode.Size = new Size(163, 29);
             txtPostalCode.TabIndex = 21;
@@ -221,7 +227,7 @@
             // label11
             // 
             label11.AutoSize = true;
-            label11.Location = new Point(59, 269);
+            label11.Location = new Point(59, 232);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
             label11.Size = new Size(57, 21);
@@ -251,7 +257,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(22, 228);
+            label8.Location = new Point(22, 191);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(94, 21);
@@ -318,11 +324,51 @@
             label1.TabIndex = 0;
             label1.Text = "First Name:";
             // 
+            // btnAccept
+            // 
+            btnAccept.Location = new Point(157, 373);
+            btnAccept.Name = "btnAccept";
+            btnAccept.Size = new Size(75, 33);
+            btnAccept.TabIndex = 1;
+            btnAccept.Text = "&Accept";
+            btnAccept.UseVisualStyleBackColor = true;
+            btnAccept.Click += btnAccept_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(407, 373);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(75, 33);
+            btnCancel.TabIndex = 2;
+            btnCancel.Text = "&Cancel";
+            btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(65, 269);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(51, 21);
+            label6.TabIndex = 28;
+            label6.Text = "Email:";
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(140, 266);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(163, 29);
+            txtEmail.TabIndex = 29;
+            // 
             // frmAddModifySupplier
             // 
+            AcceptButton = btnAccept;
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnCancel;
             ClientSize = new Size(700, 431);
+            Controls.Add(btnCancel);
+            Controls.Add(btnAccept);
             Controls.Add(groupBox1);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
@@ -363,5 +409,9 @@
         private TextBox txtCompany;
         private TextBox txtFName;
         private TextBox txtSupplier;
+        private Button btnAccept;
+        private Button btnCancel;
+        private TextBox txtEmail;
+        private Label label6;
     }
 }
