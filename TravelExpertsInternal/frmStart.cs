@@ -29,5 +29,11 @@ namespace TravelExpertsInternal
             frmProductSuppliers fourthForm = new frmProductSuppliers();
             fourthForm.Show();
         }
+
+        private void btnAddProduct_Click(object sender, EventArgs e)
+        {
+            frmAddUpdateProduct addUpdateProductForm = new frmAddUpdateProduct();
+            addUpdateProductForm.Show();
+        }
     }
 }
