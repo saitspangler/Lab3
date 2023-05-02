@@ -51,7 +51,7 @@
             btnAddPackages.Name = "btnAddPackages";
             btnAddPackages.Size = new Size(203, 62);
             btnAddPackages.TabIndex = 1;
-            btnAddPackages.Text = "Packages";
+            btnAddPackages.Text = "Add / Update Packages";
             btnAddPackages.UseVisualStyleBackColor = true;
             btnAddPackages.Click += btnAddPackages_Click;
             // 
