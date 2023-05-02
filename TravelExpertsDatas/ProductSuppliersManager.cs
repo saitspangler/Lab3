@@ -21,8 +21,8 @@ namespace TravelExpertsDatas
     {
         public static List<ProductsSupplier> GetAllProductSuppliers()
         {
-            List<ProductsSupplier> productSuppliers = new List<ProductsSupplier >(); // empty list of product suppliers
-            using (TravelExpertsContext dB = new TravelExpertsContext()){
+            List<ProductsSupplier> productSuppliers = new List<ProductsSupplier>(); // empty list of product suppliers
+            using (TravelExpertsContext dB = new TravelExpertsContext()) {
                 productSuppliers = dB.ProductsSuppliers.Include(s => s.Supplier).ToList();
             }
             return productSuppliers;
@@ -35,7 +35,7 @@ namespace TravelExpertsDatas
         public static ProductsSupplier? GetProductSupplier(int prodSupplerId)
         {
             ProductsSupplier productsSupplier = null;
-            using(TravelExpertsContext dB =new TravelExpertsContext())
+            using (TravelExpertsContext dB = new TravelExpertsContext())
             {
                 productsSupplier = dB.ProductsSuppliers.Find(prodSupplerId);
             }
@@ -47,7 +47,7 @@ namespace TravelExpertsDatas
         /// <param name="newProductsSupplier">new products supplier data to add</param>
         public static void AddProductSupplier(ProductsSupplier newProductsSupplier)
         {
-            if(newProductsSupplier != null)
+            if (newProductsSupplier != null)
             {
                 using (TravelExpertsContext dB = new TravelExpertsContext())
                 {
@@ -67,7 +67,7 @@ namespace TravelExpertsDatas
                 using (TravelExpertsContext dB = new TravelExpertsContext())
                 {
                     ProductsSupplier? productsSupplier = dB.ProductsSuppliers.Find(newProductsSupplierData.ProductId);
-                    if(productsSupplier != null) // it exists
+                    if (productsSupplier != null) // it exists
                     {
                         productsSupplier.ProductId = newProductsSupplierData.ProductId;
                         productsSupplier.SupplierId = newProductsSupplierData.SupplierId;
@@ -78,6 +78,15 @@ namespace TravelExpertsDatas
                     dB.SaveChanges();
                 }
             }
+        }
+        public static List<int> GetAllProductsSupplierIDs()
+        {
+            List<int> ids = new List<int>();
+            using (TravelExpertsContext dB = new TravelExpertsContext())
+            {
+                ids = dB.ProductsSuppliers.Select(ps => ps.ProductSupplierId).ToList();
+            }
+            return ids;
         }
 
         // delete workflow is not required

@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace TravelExpertsDatas
 {
+
+    /*
+    * 
+    * 
+    * Addition: Added GetAllProductIDs method
+    * Added on May 1, 2023
+    * By: Peter Thiel
+    */
     /// <summary>
     /// Repository of methods to work with the Products table of the Travel Experts Database
     /// </summary>
@@ -38,6 +46,19 @@ namespace TravelExpertsDatas
             TravelExpertsContext context = new TravelExpertsContext();
             context.Products.Remove(product);
             context.SaveChanges();
+        }
+        /// <summary>
+        /// get a list of all product ids
+        /// </summary>
+        /// <returns>returns a list of all product ids</returns>
+        public static List<int> GetAllProductIDs()
+        {
+            List<int> ids = new List<int>();
+            using (TravelExpertsContext dB = new TravelExpertsContext())
+            {
+                ids = dB.Products.Select(p => p.ProductId).ToList();
+            }
+            return ids;
         }
     }
 }

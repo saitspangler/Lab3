@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Windows.Forms;
 using TravelExpertsDatas;
 
@@ -6,21 +8,15 @@ namespace TravelExpertsInternal
 {
     public partial class frmSupplier : Form
     {
+        // private variables / constants
         private DataGridView dgvSuppliers;
         private const int MODIFY_INDEX = 2;
+        private SupplierContact? currentSupplier;
 
         public frmSupplier()
         {
             InitializeComponent();
 
-            dgvSuppliers = new DataGridView
-            {
-                Dock = DockStyle.Fill,
-                AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            };
-            this.Controls.Add(dgvSuppliers);
-
-            this.Load += frmSupplier_Load;
         }
 
         private void frmSupplier_Load(object? sender, EventArgs e)
@@ -56,13 +52,49 @@ namespace TravelExpertsInternal
             }
         }
 
-        private void ModifySupplier(Supplier currentSupplier)
+        private void ModifySupplier(SupplierContact currentSupplier)
         {
 
-            throw new NotImplementedException();
+            // create another form to AddModifySupplier
+            frmAddModifySupplier secondForm = new frmAddModifySupplier();
+            secondForm.isAdd = false;
+            secondForm.currentSupplier = currentSupplier;
+            DialogResult = secondForm.ShowDialog();
+
+            if (DialogResult == DialogResult.OK) // proceed with modify
+            {
+                currentSupplier = secondForm.currentSupplier; // new data values
+                try
+                {
+                    if (currentSupplier != null)
+                    {
+                        SupplierManager.UpdateSupplier(currentSupplier);
+                        DisplaySuppliers(); // refresh grid 
+                    }
+                }
+                catch (DbUpdateException ex) // errors coming from SaveChanges
+                {
+                    string errorMessage = "Error(s) while modifying product supplier:\n";
+                    var sqlException = (SqlException)ex.InnerException;
+                    foreach (SqlError error in sqlException.Errors)
+                    {
+                        errorMessage += "ERROR CODE:  " + error.Number +
+                                        " " + error.Message + "\n";
+                    }
+                    MessageBox.Show(errorMessage);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Database connection lost while modifying a product supplier. Try again later");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error while modifying a product supplier:" + ex.Message, ex.GetType().ToString());
+                }
+            }
         }
 
-        private void dgvSupplier_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void dgvSuppliers_CellClick_1(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == MODIFY_INDEX)
             {
@@ -70,11 +102,14 @@ namespace TravelExpertsInternal
 
                 try
                 {
-                    Supplier currentSupplier = SupplierManager.GetSupplier(supplierID);
+                    currentSupplier = SupplierManager.GetSupplier(supplierID);
 
                     if (currentSupplier != null)
                     {
-                        ModifySupplier(currentSupplier);
+                        if (e.ColumnIndex == MODIFY_INDEX) // modify
+                        {
+                            ModifySupplier(currentSupplier);
+                        }
                     }
                 }
                 catch (Exception ex)
