@@ -15,37 +15,48 @@ namespace TravelExpertsDatas
 
         public static List<Package> GetAllPackages()
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            List<Package> packages = context.Packages.ToList();
+            TravelExpertsContext db = new TravelExpertsContext();
+            List<Package> packages = db.Packages.ToList();
             return packages;
         }
 
-        public static Package GetPackageById(int packageId)
+        public static Package GetPackageById(TravelExpertsContext db, int packageId)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            Package package = context.Packages.Find(packageId);
+            Package package = db.Packages.Find(packageId);
             return package;
         }
 
         public static void AddPackage(Package package)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Packages.Add(package);
-            context.SaveChanges();
+            TravelExpertsContext db = new TravelExpertsContext();
+            db.Packages.Add(package);
+            db.SaveChanges();
         }
 
-        public static void UpdatePackage(Package oldPackage, Package newPackage)
+        public static void UpdatePackage(int packageId, Package newPackage)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Entry(oldPackage).CurrentValues.SetValues(newPackage);
-            context.SaveChanges();
+            using (var db = new TravelExpertsContext())
+            {
+                // Retrieve the Package object from the database
+                var package = db.Packages.Find(packageId);
+
+                // Update the Package object with the new values
+                package.PkgName = newPackage.PkgName;
+                package.PkgDesc = newPackage.PkgDesc;
+                package.PkgStartDate = newPackage.PkgStartDate;
+                package.PkgEndDate = newPackage.PkgEndDate;
+                package.PkgBasePrice = newPackage.PkgBasePrice;
+                package.PkgAgencyCommission = newPackage.PkgAgencyCommission;
+
+                // Save the changes to the database
+                db.SaveChanges();
+            }
         }
 
-        public static void DeletePackage(Package package)
+        public static void DeletePackage(TravelExpertsContext db, Package package)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Packages.Remove(package);
-            context.SaveChanges();
+            db.Packages.Remove(package);
+            db.SaveChanges();
         }
     }
 }

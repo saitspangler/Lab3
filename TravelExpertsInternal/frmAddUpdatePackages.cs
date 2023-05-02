@@ -16,16 +16,14 @@ namespace TravelExpertsInternal
     {
         private Package package;
 
+        private int selectedProductId;
+
+        private string selectedProductName;
+
         public frmAddUpdatePackages(Package package = null)
         {
-
             InitializeComponent();
             this.package = package;
-            if (package == null)
-            {
-                addPackage();
-            }
-            else { modifyPackage(package.PackageId); }
             LoadSuppliers();
         }
         private void LoadSuppliers()
@@ -45,52 +43,134 @@ namespace TravelExpertsInternal
 
         private void frmAddUpdatePackages_Load(object sender, EventArgs e)
         {
-
+            if (package != null && package.PackageId > 0)
+            {
+                modifyPackage(package.PackageId);
+            }
+            else { addPackage(); }
         }
 
         private void addPackage()
         {
-
+            // Initialize the controls on the form with default values for a new package
+            txtPackageName.Text = "";
+            txtPackageDescription.Text = "";
+            dtpStartDate.Value = DateTime.Now;
+            dtpEndDate.Value = DateTime.Now;
+            txtPackagePrice.Text = "0.00";
+            txtPackageAgencyCommission.Text = "0.00";
         }
 
         private void modifyPackage(int id)
         {
-            dgvPackageProductList.Columns.Clear();
 
             // create a new instance of the TravelExpertsContext class
             TravelExpertsContext db = new TravelExpertsContext();
+            // Retrieve the Package object from the database and include its associated products
+            package = db.Packages
+                .Include(p => p.PackagesProductsSuppliers)
+                .ThenInclude(pps => pps.ProductSupplier)
+                .ThenInclude(ps => ps.Product)
+                .FirstOrDefault(p => p.PackageId == id);
 
-            // define the LINQ query
-            var query = from pa in db.Packages
-                        join pps in db.PackagesProductsSuppliers on pa.PackageId equals pps.PackageId
-                        join ps in db.ProductsSuppliers on pps.ProductSupplierId equals ps.ProductSupplierId
-                        join p in db.Products on ps.ProductId equals p.ProductId
-                        where pa.PackageId == id
-                        select p;
+            // Load the data from the Package object into the controls on the form
+            txtPackageName.Text = package.PkgName;
+            txtPackageDescription.Text = package.PkgDesc;
+            dtpStartDate.Value = package.PkgStartDate.GetValueOrDefault();
+            dtpEndDate.Value = package.PkgEndDate.GetValueOrDefault();
+            txtPackagePrice.Text = package.PkgBasePrice.ToString("F2");
+            txtPackageAgencyCommission.Text = package.PkgAgencyCommission.GetValueOrDefault().ToString("F2");
 
-            // execute the LINQ query and retrieve the results
-            List<Product> products = query.ToList();
-            dgvPackageProductList.DataSource = products;
-            dgvPackageProductList.Columns[0].Visible = false;
-            dgvPackageProductList.Columns[1].HeaderText = "Product";
-            dgvPackageProductList.Columns[1].Width = 200;
+            // Clear the ListBox and add the product names to it
+            lbPackageProductList.Items.Clear();
+            foreach (var pps in package.PackagesProductsSuppliers)
+            {
+                lbPackageProductList.Items.Add(pps.ProductSupplier.Product.ProdName);
+            }
+
         }
 
         private void btnSavePackage_Click(object sender, EventArgs e)
         {
-            PackagesManager.AddPackage(package);
+            // Create a new instance of the TravelExpertsContext class
+            using (var db = new TravelExpertsContext())
+            {
+                // Check if the package object is null
+                if (package == null)
+                {
+                    // Create a new Package object
+                    package = new Package();
+                }
+
+                // Update the Package object with the data from the controls on the form
+                package.PkgName = txtPackageName.Text;
+                package.PkgDesc = txtPackageDescription.Text;
+                package.PkgStartDate = dtpStartDate.Value;
+                package.PkgEndDate = dtpEndDate.Value;
+                package.PkgBasePrice = decimal.Parse(txtPackagePrice.Text);
+                package.PkgAgencyCommission = decimal.Parse(txtPackageAgencyCommission.Text);
+
+                // Check if the Package object has a valid PackageId
+                if (package.PackageId > 0)
+                {
+                    // Update the existing Package object in the database
+                    db.Entry(package).State = EntityState.Modified;
+                }
+                else
+                {
+                    // Add the new Package object to the database
+                    db.Packages.Add(package);
+                }
+
+                try
+                {
+                    // Save changes to the database
+                    db.SaveChanges();
+                }
+                catch (DbUpdateException ex)
+                {
+                    // Display the message from the inner exception
+                    MessageBox.Show(ex.InnerException.Message);
+                }
+                // Get the selected products from the ListBox
+                var selectedProducts = lbPackageProductList.Items.Cast<string>().ToList();
+
+                // Remove any existing associations between this package and products that are not selected
+                var existingAssociations = db.PackagesProductsSuppliers.Where(pps => pps.PackageId == package.PackageId).ToList();
+                foreach (var association in existingAssociations)
+                {
+                    var product = db.ProductsSuppliers.Where(ps => ps.ProductSupplierId == association.ProductSupplierId).Select(ps => ps.Product).FirstOrDefault();
+                    if (!selectedProducts.Contains(product.ProdName))
+                    {
+                        db.PackagesProductsSuppliers.Remove(association);
+                    }
+                }
+
+                // Add new associations between this package and the selected products
+                foreach (var productName in selectedProducts)
+                {
+                    var product = db.Products.FirstOrDefault(p => p.ProdName == productName);
+                    if (product != null)
+                    {
+                        var productSupplierId = db.ProductsSuppliers.Where(ps => ps.ProductId == product.ProductId).Select(ps => ps.ProductSupplierId).FirstOrDefault();
+                        if (!existingAssociations.Any(pps => pps.ProductSupplierId == productSupplierId))
+                        {
+                            var newAssociation = new PackagesProductsSupplier { PackageId = package.PackageId, ProductSupplierId = productSupplierId };
+                            db.PackagesProductsSuppliers.Add(newAssociation);
+                        }
+                    }
+                }
+
+                // Save changes to the database
+                db.SaveChanges();
+            }
+            this.Close();
         }
 
         private void cbSuppliers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Clear the DataGridView
-            dgvAddProductsList.Rows.Clear();
-            dgvAddProductsList.Columns.Clear();
-            DataGridViewTextBoxColumn productNameColumn = new DataGridViewTextBoxColumn();
-            productNameColumn.HeaderText = "Product Name";
-            productNameColumn.Name = "ProductName";
-            dgvAddProductsList.Columns.Add(productNameColumn);
-
+            // Clear the ListBox
+            lbAddProductList.Items.Clear();
 
             // Get the selected supplier name
             string selectedSupplierName = cbSuppliers.SelectedItem.ToString();
@@ -102,19 +182,38 @@ namespace TravelExpertsInternal
                 selectedSupplier = context.Suppliers.Include(s => s.ProductsSuppliers).ThenInclude(ps => ps.Product).FirstOrDefault(s => s.SupName == selectedSupplierName);
             }
 
-            // Add the products from the selected supplier to the DataGridView
+            // Add the products from the selected supplier to the ListBox
             if (selectedSupplier != null)
             {
                 foreach (ProductsSupplier ps in selectedSupplier.ProductsSuppliers)
                 {
-                    dgvAddProductsList.Rows.Add(ps.Product.ProdName);
+                    lbAddProductList.Items.Add(ps.Product);
                 }
             }
         }
 
-        private void dgvAddProductsList_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void btnAddToPackage_Click(object sender, EventArgs e)
         {
+            // Create a new Product object with the information of the selected product
+            var product = new Product { ProductId = selectedProductId, ProdName = selectedProductName };
 
+            // Add the product name to the ListBox
+            lbPackageProductList.Items.Add(product.ProdName);
+        }
+
+        private void lbAddProductList_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Get the selected item in the ListBox
+            var selectedItem = (Product)lbAddProductList.SelectedItem;
+
+            // Get the ProductId of the selected item and store it in the selectedProductId variable
+            selectedProductId = selectedItem.ProductId;
+            selectedProductName = selectedItem.ProdName;
+        }
+
+        private void btnCancelAdd_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

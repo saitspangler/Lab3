@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using TravelExpertsDatas;
+﻿using TravelExpertsDatas;
 
 namespace TravelExpertsInternal
 {
@@ -40,6 +31,7 @@ namespace TravelExpertsInternal
             dgvPackages.Columns[1].HeaderText = "Name";
             dgvPackages.Columns[1].Width = 150;
             dgvPackages.Columns[2].HeaderText = "Start Date";
+            dgvPackages.Columns[2].DefaultCellStyle.Format = "d";
             dgvPackages.Columns[2].Width = 100;
             dgvPackages.Columns[3].HeaderText = "End Date";
             dgvPackages.Columns[3].DefaultCellStyle.Format = "d";
@@ -52,8 +44,7 @@ namespace TravelExpertsInternal
             dgvPackages.Columns[6].HeaderText = "Agency Commission";
             dgvPackages.Columns[6].DefaultCellStyle.Format = "c";
             dgvPackages.Columns[6].Width = 150;
-            dgvPackages.Columns[7].HeaderText = "Bookings";
-            dgvPackages.Columns[7].Width = 100;
+            dgvPackages.Columns[7].Visible = false;
             dgvPackages.Columns[8].Visible = false;
             dgvPackages.Columns.Add(modifyColumn);
 
@@ -67,15 +58,26 @@ namespace TravelExpertsInternal
                 var package = (Package)dgvPackages.Rows[e.RowIndex].DataBoundItem;
 
                 var form = new frmAddUpdatePackages(package);
+                form.FormClosed += Form_FormClosed;
                 form.Show();
             }
         }
 
         private void btnAddPackage_Click(object sender, EventArgs e)
         {
-            var newPackage = new Package();
-            frmAddUpdatePackages newForm = new frmAddUpdatePackages(newPackage);
+            frmAddUpdatePackages newForm = new frmAddUpdatePackages();
+            newForm.FormClosed += Form_FormClosed;
             newForm.Show();
+        }
+
+        private void Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DisplayPackages();
+        }
+
+        private void btnBackHome_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

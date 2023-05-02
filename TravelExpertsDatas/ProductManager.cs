@@ -13,29 +13,27 @@ namespace TravelExpertsDatas
     {
         public static List<Product> GetAllProducts()
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            List<Product> products = context.Products.ToList();
+            TravelExpertsContext db = new TravelExpertsContext();
+            List<Product> products = db.Products.ToList();
             return products;
         }
-        public static Product GetProduct(int productId)
+        public static Product GetProductById(int productId)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            Product product = context.Products.Find(productId);
+            TravelExpertsContext db = new TravelExpertsContext();
+            Product product = db.Products.Find(productId);
             return product;
         }
-        public static void AddProduct(Product product)
+        public static void AddProduct(TravelExpertsContext db, Product product)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Products.Add(product);
-            context.SaveChanges();
+            db.Products.Add(product);
+            db.SaveChanges();
         }
-        public static void UpdateProduct(Product oldProduct, Product newProduct)
+        public static void UpdateProduct(TravelExpertsContext db, Product oldProduct, Product newProduct)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Entry(oldProduct).CurrentValues.SetValues(newProduct);
-            context.SaveChanges();
+            db.Entry(oldProduct).CurrentValues.SetValues(newProduct);
+            db.SaveChanges();
         }
-        public static void DeleteProduct(Product product)
+        public static void DeleteProduct(TravelExpertsContext db, Product product)
         {
             TravelExpertsContext context = new TravelExpertsContext();
             context.Products.Remove(product);
