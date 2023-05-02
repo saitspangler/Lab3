@@ -67,18 +67,39 @@ namespace TravelExpertsInternal
         {
             if (currentProductsSupplier != null)
             {
-
                 txtProductsSupplierID.Text = currentProductsSupplier.ProductSupplierId.ToString();
 
-                int productIndex = ProductManager.GetAllProductIDs().IndexOf((int)currentProductsSupplier.ProductId);
-                if (productIndex >= 0)
+                using (var context = new TravelExpertsContext())
                 {
-                    cboProductID.SelectedIndex = productIndex;
-                }
-                int supplierIndex = SupplierManager.GetAllSupplierIDs().IndexOf((int)currentProductsSupplier.SupplierId);
-                if (supplierIndex > 0)
-                {
-                    cboSupplierID.SelectedValue = supplierIndex; 
+                    var productSupplier = context.ProductsSuppliers
+                                                 .FirstOrDefault(ps => ps.ProductSupplierId == currentProductsSupplier.ProductSupplierId);
+
+                    if (productSupplier != null)
+                    {
+                        // get the supplier name
+                        var supplierName = context.Suppliers
+                                                   .Where(s => s.SupplierId == productSupplier.SupplierId)
+                                                   .Select(s => s.SupName)
+                                                   .FirstOrDefault();
+
+                        // set the supplier combobox
+                        var supplierItem = new { SupplierId = productSupplier.SupplierId, SupName = supplierName };
+                        cboSupplierID.DataSource = new List<object> { supplierItem };
+                        cboSupplierID.DisplayMember = "SupName";
+                        cboSupplierID.ValueMember = "SupplierId";
+
+                        // get the product name
+                        var productName = context.Products
+                                                  .Where(p => p.ProductId == productSupplier.ProductId)
+                                                  .Select(p => p.ProdName)
+                                                  .FirstOrDefault();
+
+                        // set the product combobox
+                        var productItem = new { ProductId = productSupplier.ProductId, ProdName = productName };
+                        cboProductID.DataSource = new List<object> { productItem };
+                        cboProductID.DisplayMember = "ProdName";
+                        cboProductID.ValueMember = "ProductId";
+                    }
                 }
             }
         }
@@ -88,7 +109,7 @@ namespace TravelExpertsInternal
         {
             bool valid = true;
             // if valid
-            if (isAdd) // validate code
+            if (!isAdd) // if modify validate code
             {
                 if (Validator.IsPresent(txtProductsSupplierID))
                 {
@@ -116,14 +137,13 @@ namespace TravelExpertsInternal
             }
             // for both Add and Modify
 
-            if (valid && currentProductsSupplier != null)
+            if (valid)
             {
                 if (isAdd) // need to create the object
                 {
                     currentProductsSupplier = new ProductsSupplier();
                 }
                 // fill in data of product supplier object with new values
-                currentProductsSupplier.ProductSupplierId = Convert.ToInt32(txtProductsSupplierID);
                 currentProductsSupplier.ProductId = Convert.ToInt32(cboProductID);
                 currentProductsSupplier.SupplierId = Convert.ToInt32(cboSupplierID);
 

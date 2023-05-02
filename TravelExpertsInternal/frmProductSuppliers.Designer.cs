@@ -29,25 +29,53 @@
         private void InitializeComponent()
         {
             dgvProductSuppliers = new DataGridView();
+            btnAdd = new Button();
+            btnCancel = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProductSuppliers).BeginInit();
             SuspendLayout();
             // 
             // dgvProductSuppliers
             // 
             dgvProductSuppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProductSuppliers.Location = new Point(12, 12);
+            dgvProductSuppliers.Location = new Point(15, 80);
+            dgvProductSuppliers.Margin = new Padding(4, 4, 4, 4);
             dgvProductSuppliers.Name = "dgvProductSuppliers";
             dgvProductSuppliers.RowTemplate.Height = 25;
-            dgvProductSuppliers.Size = new Size(776, 426);
+            dgvProductSuppliers.Size = new Size(934, 226);
             dgvProductSuppliers.TabIndex = 0;
             dgvProductSuppliers.CellClick += dgvProductSuppliers_CellClick;
             // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(108, 21);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(236, 36);
+            btnAdd.TabIndex = 2;
+            btnAdd.Text = "&Add New Products Supplier";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
+            // 
+            // btnCancel
+            // 
+            btnCancel.Location = new Point(781, 21);
+            btnCancel.Name = "btnCancel";
+            btnCancel.Size = new Size(111, 36);
+            btnCancel.TabIndex = 3;
+            btnCancel.Text = "&Back";
+            btnCancel.UseVisualStyleBackColor = true;
+            // 
             // frmProductSuppliers
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AcceptButton = btnAdd;
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            CancelButton = btnCancel;
+            ClientSize = new Size(981, 356);
+            Controls.Add(btnCancel);
+            Controls.Add(btnAdd);
             Controls.Add(dgvProductSuppliers);
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "frmProductSuppliers";
             Text = "frmProductSuppliers";
             Load += frmProductSuppliers_Load;
@@ -58,5 +86,7 @@
         #endregion
 
         private DataGridView dgvProductSuppliers;
+        private Button btnAdd;
+        private Button btnCancel;
     }
 }
