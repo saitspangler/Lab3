@@ -36,9 +36,11 @@
             // 
             // dgvPackages
             // 
+            dgvPackages.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvPackages.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvPackages.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPackages.Location = new Point(15, 221);
-            dgvPackages.Margin = new Padding(4, 4, 4, 4);
+            dgvPackages.Margin = new Padding(4);
             dgvPackages.Name = "dgvPackages";
             dgvPackages.RowTemplate.Height = 25;
             dgvPackages.Size = new Size(1369, 532);
@@ -49,7 +51,7 @@
             // 
             btnAddPackage.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             btnAddPackage.Location = new Point(15, 48);
-            btnAddPackage.Margin = new Padding(4, 4, 4, 4);
+            btnAddPackage.Margin = new Padding(4);
             btnAddPackage.Name = "btnAddPackage";
             btnAddPackage.Size = new Size(243, 80);
             btnAddPackage.TabIndex = 1;
@@ -60,7 +62,7 @@
             // btnBackHome
             // 
             btnBackHome.Location = new Point(993, 48);
-            btnBackHome.Margin = new Padding(4, 4, 4, 4);
+            btnBackHome.Margin = new Padding(4);
             btnBackHome.Name = "btnBackHome";
             btnBackHome.Size = new Size(276, 80);
             btnBackHome.TabIndex = 2;
@@ -77,7 +79,7 @@
             Controls.Add(btnAddPackage);
             Controls.Add(dgvPackages);
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "frmPackages";
             Text = "frmPackages";
             Load += frmPackages_Load;
