@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             dgvProducts = new DataGridView();
+            btnAdd = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
             // 
@@ -38,15 +39,26 @@
             dgvProducts.Location = new Point(12, 12);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowTemplate.Height = 25;
-            dgvProducts.Size = new Size(776, 383);
+            dgvProducts.Size = new Size(776, 351);
             dgvProducts.TabIndex = 0;
-            dgvProducts.CellContentClick += dataGridView1_CellContentClick;
+            dgvProducts.CellClick += dgvProducts_CellClick;
+            // 
+            // btnAdd
+            // 
+            btnAdd.Location = new Point(12, 389);
+            btnAdd.Name = "btnAdd";
+            btnAdd.Size = new Size(123, 38);
+            btnAdd.TabIndex = 1;
+            btnAdd.Text = "&Add";
+            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.Click += btnAdd_Click;
             // 
             // frmProducts
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
             Name = "frmProducts";
             Text = "frmProducts";
@@ -58,5 +70,6 @@
         #endregion
 
         private DataGridView dgvProducts;
+        private Button btnAdd;
     }
 }

@@ -33,6 +33,7 @@
             btnProducts = new Button();
             btnProductSuppliers = new Button();
             btnSuppliers = new Button();
+            btnAddProduct = new Button();
             SuspendLayout();
             // 
             // lblWelcome
@@ -57,7 +58,7 @@
             // 
             // btnProducts
             // 
-            btnProducts.Location = new Point(354, 177);
+            btnProducts.Location = new Point(323, 177);
             btnProducts.Name = "btnProducts";
             btnProducts.Size = new Size(203, 62);
             btnProducts.TabIndex = 2;
@@ -67,7 +68,7 @@
             // 
             // btnProductSuppliers
             // 
-            btnProductSuppliers.Location = new Point(840, 177);
+            btnProductSuppliers.Location = new Point(781, 177);
             btnProductSuppliers.Name = "btnProductSuppliers";
             btnProductSuppliers.Size = new Size(203, 62);
             btnProductSuppliers.TabIndex = 3;
@@ -77,7 +78,7 @@
             // 
             // btnSuppliers
             // 
-            btnSuppliers.Location = new Point(599, 177);
+            btnSuppliers.Location = new Point(545, 177);
             btnSuppliers.Name = "btnSuppliers";
             btnSuppliers.Size = new Size(203, 62);
             btnSuppliers.TabIndex = 4;
@@ -85,10 +86,21 @@
             btnSuppliers.UseVisualStyleBackColor = true;
             btnSuppliers.Click += btnSuppliers_Click;
             // 
+            // btnAddProduct
+            // 
+            btnAddProduct.Location = new Point(323, 328);
+            btnAddProduct.Name = "btnAddProduct";
+            btnAddProduct.Size = new Size(193, 77);
+            btnAddProduct.TabIndex = 5;
+            btnAddProduct.Text = "&Add Product";
+            btnAddProduct.UseVisualStyleBackColor = true;
+            btnAddProduct.Click += btnAddProduct_Click;
+            // 
             // Start
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
+
             ClientSize = new Size(1236, 630);
             Controls.Add(btnSuppliers);
             Controls.Add(btnProductSuppliers);
@@ -110,5 +122,6 @@
         private Button btnProducts;
         private Button btnProductSuppliers;
         private Button btnSuppliers;
+        private Button btnAddProduct;
     }
 }
