@@ -6,6 +6,14 @@ using System.Threading.Tasks;
 
 namespace TravelExpertsDatas
 {
+
+    /*
+    * 
+    * 
+    * Addition: Added GetAllProductIDs method
+    * Added on May 1, 2023
+    * By: Peter Thiel
+    */
     /// <summary>
     /// Repository of methods to work with the Products table of the Travel Experts Database
     /// </summary>
@@ -13,22 +21,22 @@ namespace TravelExpertsDatas
     {
         public static List<Product> GetAllProducts()
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            List<Product> products = context.Products.ToList();
+            TravelExpertsContext db = new TravelExpertsContext();
+            List<Product> products = db.Products.ToList();
             return products;
         }
-        public static Product GetProduct(int productId)
+        public static Product GetProductById(int productId)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            Product product = context.Products.Find(productId);
+            TravelExpertsContext db = new TravelExpertsContext();
+            Product product = db.Products.Find(productId);
             return product;
         }
-        public static void AddProduct(Product product)
+        public static void AddProduct(TravelExpertsContext db, Product product)
         {
-            TravelExpertsContext context = new TravelExpertsContext();
-            context.Products.Add(product);
-            context.SaveChanges();
+            db.Products.Add(product);
+            db.SaveChanges();
         }
+
         //public static void UpdateProduct(Product oldProduct, Product newProduct)
         //{
         //    TravelExpertsContext context = new TravelExpertsContext();
@@ -88,6 +96,19 @@ namespace TravelExpertsDatas
             TravelExpertsContext context = new TravelExpertsContext();
             context.Products.Remove(product);
             context.SaveChanges();
+        }
+        /// <summary>
+        /// get a list of all product ids
+        /// </summary>
+        /// <returns>returns a list of all product ids</returns>
+        public static List<int> GetAllProductIDs()
+        {
+            List<int> ids = new List<int>();
+            using (TravelExpertsContext dB = new TravelExpertsContext())
+            {
+                ids = dB.Products.Select(p => p.ProductId).ToList();
+            }
+            return ids;
         }
     }
 }

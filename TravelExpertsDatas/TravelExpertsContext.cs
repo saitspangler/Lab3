@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 
@@ -63,6 +63,8 @@ public partial class TravelExpertsContext : DbContext
         .UseSqlServer("Server=SAIT229235;Database=TravelExperts;Trusted_Connection=True;Encrypt=False");
 
 
+    //=> optionsBuilder.UseSqlServer("Server=SAIT229274;Database=TravelExperts;Trusted_Connection=True;Encrypt=False");
+    => optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress;Database=TravelExperts;Trusted_Connection=True;Encrypt=False");
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Affiliation>(entity =>

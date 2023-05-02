@@ -52,7 +52,7 @@
             btnAddPackages.Name = "btnAddPackages";
             btnAddPackages.Size = new Size(203, 62);
             btnAddPackages.TabIndex = 1;
-            btnAddPackages.Text = "Packages";
+            btnAddPackages.Text = "Add / Update Packages";
             btnAddPackages.UseVisualStyleBackColor = true;
             btnAddPackages.Click += btnAddPackages_Click;
             // 
@@ -100,8 +100,8 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1029, 630);
-            Controls.Add(btnAddProduct);
+
+            ClientSize = new Size(1236, 630);
             Controls.Add(btnSuppliers);
             Controls.Add(btnProductSuppliers);
             Controls.Add(btnProducts);

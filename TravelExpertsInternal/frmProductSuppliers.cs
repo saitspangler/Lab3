@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -31,10 +33,10 @@ namespace TravelExpertsInternal
         // on form load
         private void frmProductSuppliers_Load(object sender, EventArgs e)
         {
-            DisplayProductSuppliers();
+            DisplayProductsSupplier();
         }
         // displays the product supplier form
-        private void DisplayProductSuppliers()
+        private void DisplayProductsSupplier()
         {
             dgvProductSuppliers.Rows.Clear();
             List<ProductsSupplier> productSupplier = ProductSuppliersManager.GetAllProductSuppliers();
@@ -42,7 +44,7 @@ namespace TravelExpertsInternal
             // do some formatting
             dgvProductSuppliers.Columns.Add("ProductSupplierId", "Product Supplier ID");
             dgvProductSuppliers.Columns.Add("ProductId", "Product ID");
-            dgvProductSuppliers.Columns.Add("SupplierId", "Supplier ID");
+            dgvProductSuppliers.Columns.Add("Supplier", "Supplier ID");
             // add modify column
             var modifyColumn = new DataGridViewButtonColumn()
             {
@@ -56,6 +58,7 @@ namespace TravelExpertsInternal
             foreach (ProductsSupplier ps in productSupplier)
             {
                 dgvProductSuppliers.Rows.Add(ps.ProductSupplierId, ps.ProductId, ps.SupplierId);
+                
             }
         }
         // controls when user clicks on the data grid view (only modify cell is interactive)
@@ -86,7 +89,42 @@ namespace TravelExpertsInternal
         private void ModifyProductSupplier()
         {
             // create another form to AddModifyProductSupplier
-            throw new NotImplementedException();
+            frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier();
+            secondForm.isAdd = false;
+            secondForm.currentProductsSupplier = currentProductSupplier;
+            DialogResult = secondForm.ShowDialog();
+
+            if (DialogResult == DialogResult.OK) // proceed with modify
+            {
+                currentProductSupplier = secondForm.currentProductsSupplier; // new data values
+                try
+                {
+                    if (currentProductSupplier != null)
+                    {
+                        ProductSuppliersManager.UpdateProductSupplier(currentProductSupplier);
+                        DisplayProductsSupplier(); // refresh grid 
+                    }
+                }
+                catch (DbUpdateException ex) // errors coming from SaveChanges
+                {
+                    string errorMessage = "Error(s) while modifying product supplier:\n";
+                    var sqlException = (SqlException)ex.InnerException;
+                    foreach (SqlError error in sqlException.Errors)
+                    {
+                        errorMessage += "ERROR CODE:  " + error.Number +
+                                        " " + error.Message + "\n";
+                    }
+                    MessageBox.Show(errorMessage);
+                }
+                catch (SqlException ex)
+                {
+                    MessageBox.Show("Database connection lost while modifying a product supplier. Try again later");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error while modifying a product supplier:" + ex.Message, ex.GetType().ToString());
+                }
+            }
         }
     }
 }
