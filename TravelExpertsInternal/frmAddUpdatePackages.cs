@@ -75,7 +75,8 @@ namespace TravelExpertsInternal
             dtpStartDate.Value = package.PkgStartDate.GetValueOrDefault();
             dtpEndDate.Value = package.PkgEndDate.GetValueOrDefault();
             txtPackagePrice.Text = package.PkgBasePrice.ToString("F2");
-            txtPackageAgencyCommission.Text = package.PkgAgencyCommission.GetValueOrDefault().ToString("F2");
+            txtPackageAgencyCommission.Text = package.PkgAgencyCommission.
+                GetValueOrDefault().ToString("F2");
 
             // Clear the ListBox and add the product names to it
             lbPackageProductList.Items.Clear();
@@ -100,8 +101,12 @@ namespace TravelExpertsInternal
 
                 // Update the Package object with the data from the controls on the form
                 package.PkgName = txtPackageName.Text;
-                package.PkgDesc = txtPackageDescription.Text;
-                package.PkgStartDate = dtpStartDate.Value;
+                if (txtPackageDescription.Text.Length > 50)
+                {
+                    MessageBox.Show("The package description cannot exceed 50 characters. Your input has been truncated.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtPackageDescription.Text = txtPackageDescription.Text.Substring(0, 50);
+                }
+                package.PkgDesc = txtPackageDescription.Text; package.PkgStartDate = dtpStartDate.Value;
                 package.PkgEndDate = dtpEndDate.Value;
                 package.PkgBasePrice = decimal.Parse(txtPackagePrice.Text);
                 package.PkgAgencyCommission = decimal.Parse(txtPackageAgencyCommission.Text);
@@ -132,10 +137,12 @@ namespace TravelExpertsInternal
                 var selectedProducts = lbPackageProductList.Items.Cast<string>().ToList();
 
                 // Remove any existing associations between this package and products that are not selected
-                var existingAssociations = db.PackagesProductsSuppliers.Where(pps => pps.PackageId == package.PackageId).ToList();
+                var existingAssociations = db.PackagesProductsSuppliers.Where
+                    (pps => pps.PackageId == package.PackageId).ToList();
                 foreach (var association in existingAssociations)
                 {
-                    var product = db.ProductsSuppliers.Where(ps => ps.ProductSupplierId == association.ProductSupplierId).Select(ps => ps.Product).FirstOrDefault();
+                    var product = db.ProductsSuppliers.Where(ps => ps.ProductSupplierId == 
+                    association.ProductSupplierId).Select(ps => ps.Product).FirstOrDefault();
                     if (!selectedProducts.Contains(product.ProdName))
                     {
                         db.PackagesProductsSuppliers.Remove(association);
@@ -148,10 +155,12 @@ namespace TravelExpertsInternal
                     var product = db.Products.FirstOrDefault(p => p.ProdName == productName);
                     if (product != null)
                     {
-                        var productSupplierId = db.ProductsSuppliers.Where(ps => ps.ProductId == product.ProductId).Select(ps => ps.ProductSupplierId).FirstOrDefault();
+                        var productSupplierId = db.ProductsSuppliers.Where(ps => ps.ProductId 
+                        == product.ProductId).Select(ps => ps.ProductSupplierId).FirstOrDefault();
                         if (!existingAssociations.Any(pps => pps.ProductSupplierId == productSupplierId))
                         {
-                            var newAssociation = new PackagesProductsSupplier { PackageId = package.PackageId, ProductSupplierId = productSupplierId };
+                            var newAssociation = new PackagesProductsSupplier { PackageId = package.PackageId,
+                                ProductSupplierId = productSupplierId };
                             db.PackagesProductsSuppliers.Add(newAssociation);
                         }
                     }
@@ -175,7 +184,8 @@ namespace TravelExpertsInternal
             Supplier selectedSupplier = null;
             using (var context = new TravelExpertsContext())
             {
-                selectedSupplier = context.Suppliers.Include(s => s.ProductsSuppliers).ThenInclude(ps => ps.Product).FirstOrDefault(s => s.SupName == selectedSupplierName);
+                selectedSupplier = context.Suppliers.Include(s => s.ProductsSuppliers).
+                    ThenInclude(ps => ps.Product).FirstOrDefault(s => s.SupName == selectedSupplierName);
             }
 
             // Add the products from the selected supplier to the ListBox
@@ -190,11 +200,25 @@ namespace TravelExpertsInternal
 
         private void btnAddToPackage_Click(object sender, EventArgs e)
         {
-            // Create a new Product object with the information of the selected product
-            var product = new Product { ProductId = selectedProductId, ProdName = selectedProductName };
+            // Check if a product is selected
+            if (string.IsNullOrEmpty(selectedProductName))
+            {
+                // Display an error message
+                MessageBox.Show("Please select a product to add.");
+            }
+            else if (lbPackageProductList.Items.Contains(selectedProductName))
+            {
+                // Display an error message
+                MessageBox.Show("This product is already in the package.");
+            }
+            else
+            {
+                // Create a new Product object with the information of the selected product
+                var product = new Product { ProductId = selectedProductId, ProdName = selectedProductName };
 
-            // Add the product name to the ListBox
-            lbPackageProductList.Items.Add(product.ProdName);
+                // Add the product name to the ListBox
+                lbPackageProductList.Items.Add(product.ProdName);
+            }
         }
 
         private void lbAddProductList_SelectedIndexChanged(object sender, EventArgs e)
@@ -210,6 +234,16 @@ namespace TravelExpertsInternal
         private void btnCancelAdd_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnRemoveFromPackage_Click(object sender, EventArgs e)
+        {
+            // Check if an item is selected in the ListBox
+            if (lbPackageProductList.SelectedItem != null)
+            {
+                // Remove the selected item from the ListBox
+                lbPackageProductList.Items.Remove(lbPackageProductList.SelectedItem);
+            }
         }
     }
 }

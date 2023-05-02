@@ -49,6 +49,7 @@
             txtPackageDescription = new TextBox();
             lbPackageProductList = new ListBox();
             btnCancelAdd = new Button();
+            btnRemoveFromPackage = new Button();
             SuspendLayout();
             // 
             // btnSavePackage
@@ -67,7 +68,7 @@
             // 
             cbSuppliers.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cbSuppliers.FormattingEnabled = true;
-            cbSuppliers.Location = new Point(463, 389);
+            cbSuppliers.Location = new Point(459, 347);
             cbSuppliers.Margin = new Padding(4);
             cbSuppliers.Name = "cbSuppliers";
             cbSuppliers.Size = new Size(277, 24);
@@ -78,7 +79,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(514, 347);
+            label1.Location = new Point(511, 318);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(145, 21);
@@ -89,7 +90,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(104, 330);
+            label2.Location = new Point(104, 318);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
             label2.Size = new Size(145, 21);
@@ -99,10 +100,10 @@
             // btnAddToPackage
             // 
             btnAddToPackage.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddToPackage.Location = new Point(511, 429);
+            btnAddToPackage.Location = new Point(511, 379);
             btnAddToPackage.Margin = new Padding(4);
             btnAddToPackage.Name = "btnAddToPackage";
-            btnAddToPackage.Size = new Size(179, 102);
+            btnAddToPackage.Size = new Size(179, 58);
             btnAddToPackage.TabIndex = 6;
             btnAddToPackage.Text = "<< Add To Package";
             btnAddToPackage.UseVisualStyleBackColor = true;
@@ -238,9 +239,9 @@
             // 
             lbPackageProductList.FormattingEnabled = true;
             lbPackageProductList.ItemHeight = 21;
-            lbPackageProductList.Location = new Point(38, 371);
+            lbPackageProductList.Location = new Point(38, 347);
             lbPackageProductList.Name = "lbPackageProductList";
-            lbPackageProductList.Size = new Size(328, 151);
+            lbPackageProductList.Size = new Size(328, 172);
             lbPackageProductList.TabIndex = 21;
             // 
             // btnCancelAdd
@@ -255,11 +256,24 @@
             btnCancelAdd.UseVisualStyleBackColor = true;
             btnCancelAdd.Click += btnCancelAdd_Click;
             // 
+            // btnRemoveFromPackage
+            // 
+            btnRemoveFromPackage.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnRemoveFromPackage.Location = new Point(511, 445);
+            btnRemoveFromPackage.Margin = new Padding(4);
+            btnRemoveFromPackage.Name = "btnRemoveFromPackage";
+            btnRemoveFromPackage.Size = new Size(179, 58);
+            btnRemoveFromPackage.TabIndex = 23;
+            btnRemoveFromPackage.Text = "Remove From Package >>";
+            btnRemoveFromPackage.UseVisualStyleBackColor = true;
+            btnRemoveFromPackage.Click += btnRemoveFromPackage_Click;
+            // 
             // frmAddUpdatePackages
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1228, 805);
+            Controls.Add(btnRemoveFromPackage);
             Controls.Add(btnCancelAdd);
             Controls.Add(lbPackageProductList);
             Controls.Add(txtPackageDescription);
@@ -312,5 +326,6 @@
         private TextBox txtPackageDescription;
         private ListBox lbPackageProductList;
         private Button btnCancelAdd;
+        private Button btnRemoveFromPackage;
     }
 }
