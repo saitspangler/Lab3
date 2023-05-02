@@ -30,14 +30,10 @@ namespace TravelExpertsInternal
         {
             cbSuppliers.Items.Clear();
             // Get all suppliers from the database
-            using (var context = new TravelExpertsContext())
+            var suppliers = SupplierManager.GetAllSuppliers();
+            foreach (Supplier supplier in suppliers)
             {
-                var suppliers = (from s in context.Suppliers
-                                 select s).ToList();
-                foreach (Supplier supplier in suppliers)
-                {
-                    cbSuppliers.Items.Add(supplier.SupName);
-                }
+                cbSuppliers.Items.Add(supplier.SupName);
             }
         }
 
