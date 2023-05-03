@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace TravelExpertsDatas
 {
+    /*
+    * Addition: changed GetPackageByID workflow
+    * Added on May 3, 2023
+    * By: Peter Thiel
+    */
     public class PackagesManager
     {
         ///summary
@@ -20,9 +25,14 @@ namespace TravelExpertsDatas
             return packages;
         }
 
-        public static Package GetPackageById(TravelExpertsContext db, int packageId)
+        public static Package GetPackageById(int packageId)
         {
-            Package package = db.Packages.Find(packageId);
+            Package package = null;
+            using (TravelExpertsContext dB = new TravelExpertsContext())
+            {
+                package = dB.Packages.Find(packageId);
+            }
+            
             return package;
         }
 
