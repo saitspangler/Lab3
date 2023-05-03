@@ -96,56 +96,33 @@ namespace TravelExpertsInternal
         }
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            bool valid = true;
-            // if valid
+            using (TravelExpertsContext dbContext = new TravelExpertsContext())
             {
-                if (Validator.IsPresent(txtSupplier))
+                var supplier = new Supplier
                 {
-
-                    currentSupplier = new SupplierContact();
-
-
-                    // check if unique
-                    int id = Convert.ToInt32(txtSupplier);
-                    List<int> ids = SupplierManager.GetAllSupplierIDs();
-                    foreach (int p in ids)
-                    {
-                        if (p == id)
-                        {
-                            MessageBox.Show($"Duplicate product code: {id}");
-                            valid = false; // found duplicate
-                        }
-                    }
-                }
-                else // empty string
+                    SupName = txtSupplier.Text
+                };
+                var supplierContact = new SupplierContact
                 {
-                    valid = false;
-                }
-            }
-            // for both Add and Modify
-
-            if (valid && currentSupplier != null)
-            {
-
-                currentSupplier = new SupplierContact();
-
-                // fill in data of product supplier object with new values
-                currentSupplier.SupplierId = Convert.ToInt32(txtSupplier.Text);
-                currentSupplier.SupConFirstName = txtFName.Text;
-                currentSupplier.SupConLastName = txtLName.Text;
-                currentSupplier.SupConCompany = txtCompany.Text;
-                currentSupplier.SupConAddress = txtAddress.Text;
-                currentSupplier.SupConCity = txtCity.Text;
-                currentSupplier.SupConProv = txtProvince.Text;
-                currentSupplier.SupConPostal = txtPostalCode.Text;
-                currentSupplier.SupConCountry = txtCountry.Text;
-                currentSupplier.SupConBusPhone = txtPhone.Text;
-                currentSupplier.SupConFax = txtFax.Text;
-                currentSupplier.SupConEmail = txtEmail.Text;
-                currentSupplier.SupConUrl = txtURL.Text;
-                currentSupplier.AffiliationId = cboAffiliation.Text;
-
+                    SupConFirstName = txtFName.Text,
+                    SupConLastName = txtLName.Text,
+                    SupConCompany = txtCompany.Text,
+                    SupConAddress = txtAddress.Text,
+                    SupConCity = txtCity.Text,
+                    SupConProv = txtProvince.Text,
+                    SupConPostal = txtPostalCode.Text,
+                    SupConCountry = txtCountry.Text,
+                    SupConBusPhone = txtPhone.Text,
+                    SupConFax = txtFax.Text,
+                    SupConEmail = txtEmail.Text,
+                    SupConUrl = txtURL.Text,
+                    AffiliationId = cboAffiliation.Text,
+                    Supplier = supplier
+                };
+                dbContext.SupplierContacts.Add(supplierContact);
+                dbContext.SaveChanges();
                 DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
 
