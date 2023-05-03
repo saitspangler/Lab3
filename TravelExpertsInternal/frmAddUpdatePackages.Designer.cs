@@ -73,6 +73,7 @@
             cbSuppliers.Name = "cbSuppliers";
             cbSuppliers.Size = new Size(277, 24);
             cbSuppliers.TabIndex = 2;
+            cbSuppliers.Tag = "Supplier";
             cbSuppliers.SelectedIndexChanged += cbSuppliers_SelectedIndexChanged;
             // 
             // label1
@@ -130,6 +131,7 @@
             lbAddProductList.Name = "lbAddProductList";
             lbAddProductList.Size = new Size(355, 184);
             lbAddProductList.TabIndex = 8;
+            lbAddProductList.Tag = "Product List";
             lbAddProductList.SelectedIndexChanged += lbAddProductList_SelectedIndexChanged;
             // 
             // label4
@@ -198,6 +200,7 @@
             dtpEndDate.Name = "dtpEndDate";
             dtpEndDate.Size = new Size(305, 26);
             dtpEndDate.TabIndex = 15;
+            dtpEndDate.Tag = "End Date";
             // 
             // dtpStartDate
             // 
@@ -205,6 +208,7 @@
             dtpStartDate.Name = "dtpStartDate";
             dtpStartDate.Size = new Size(313, 26);
             dtpStartDate.TabIndex = 16;
+            dtpStartDate.Tag = "Start Date";
             // 
             // txtPackageName
             // 
@@ -212,6 +216,7 @@
             txtPackageName.Name = "txtPackageName";
             txtPackageName.Size = new Size(348, 26);
             txtPackageName.TabIndex = 17;
+            txtPackageName.Tag = "Package Name";
             // 
             // txtPackagePrice
             // 
@@ -219,6 +224,7 @@
             txtPackagePrice.Name = "txtPackagePrice";
             txtPackagePrice.Size = new Size(172, 26);
             txtPackagePrice.TabIndex = 18;
+            txtPackagePrice.Tag = "Base Price";
             // 
             // txtPackageAgencyCommission
             // 
@@ -226,6 +232,7 @@
             txtPackageAgencyCommission.Name = "txtPackageAgencyCommission";
             txtPackageAgencyCommission.Size = new Size(146, 26);
             txtPackageAgencyCommission.TabIndex = 19;
+            txtPackageAgencyCommission.Tag = "Agency Commission";
             // 
             // txtPackageDescription
             // 
@@ -234,6 +241,7 @@
             txtPackageDescription.Name = "txtPackageDescription";
             txtPackageDescription.Size = new Size(348, 165);
             txtPackageDescription.TabIndex = 20;
+            txtPackageDescription.Tag = "Description";
             // 
             // lbPackageProductList
             // 
@@ -243,6 +251,7 @@
             lbPackageProductList.Name = "lbPackageProductList";
             lbPackageProductList.Size = new Size(328, 172);
             lbPackageProductList.TabIndex = 21;
+            lbPackageProductList.Tag = "Current Package";
             // 
             // btnCancelAdd
             // 
