@@ -28,7 +28,6 @@ namespace TravelExpertsInternal
         {
             InitializeComponent();
             this.currentSupplier = currentSupplier;
-            LoadAffiliations();
         }
 
         private void frmAddModifySupplier_Load(object sender, EventArgs e)
@@ -58,7 +57,6 @@ namespace TravelExpertsInternal
             txtFax.Text = " ";
             txtEmail.Text = " ";
             txtURL.Text = " ";
-            cboAffiliation.Text = " ";
 
         }
 
@@ -81,48 +79,71 @@ namespace TravelExpertsInternal
             txtFax.Text = currentSupplier.SupConFax;
             txtEmail.Text = currentSupplier.SupConEmail;
             txtURL.Text = currentSupplier.SupConUrl;
-            cboAffiliation.Text = currentSupplier.AffiliationId?.ToString() ?? "";
         }
 
-        private void LoadAffiliations()
-        {
-            cboAffiliation.Items.Clear();
-            var affiliations = SupplierManager.GetAllAffiliations();
-            foreach (Affiliation a in affiliations)
-            {
-                cboAffiliation.Items.Add(a.AffilitationId);
-            }
-
-        }
         private void btnAccept_Click(object sender, EventArgs e)
         {
             using (TravelExpertsContext dbContext = new TravelExpertsContext())
             {
-                var supplier = new Supplier
+                if (currentSupplier == null)
                 {
-                    SupName = txtSupplier.Text
-                };
-                var supplierContact = new SupplierContact
-                {
-                    SupConFirstName = txtFName.Text,
-                    SupConLastName = txtLName.Text,
-                    SupConCompany = txtCompany.Text,
-                    SupConAddress = txtAddress.Text,
-                    SupConCity = txtCity.Text,
-                    SupConProv = txtProvince.Text,
-                    SupConPostal = txtPostalCode.Text,
-                    SupConCountry = txtCountry.Text,
-                    SupConBusPhone = txtPhone.Text,
-                    SupConFax = txtFax.Text,
-                    SupConEmail = txtEmail.Text,
-                    SupConUrl = txtURL.Text,
-                    AffiliationId = cboAffiliation.Text,
-                    Supplier = supplier
-                };
-                dbContext.SupplierContacts.Add(supplierContact);
-                dbContext.SaveChanges();
-                DialogResult = DialogResult.OK;
-                this.Close();
+                    //check if supplier is null
+                    if (currentSupplier == null)
+                    {
+                        currentSupplier = new SupplierContact();
+                    }
+                    var supplier = new Supplier
+                    {
+                        SupName = txtSupplier.Text
+                    };
+                    var supplierContact = new SupplierContact
+                    {
+                        SupConFirstName = txtFName.Text,
+                        SupConLastName = txtLName.Text,
+                        SupConCompany = txtCompany.Text,
+                        SupConAddress = txtAddress.Text,
+                        SupConCity = txtCity.Text,
+                        SupConProv = txtProvince.Text,
+                        SupConPostal = txtPostalCode.Text,
+                        SupConCountry = txtCountry.Text,
+                        SupConBusPhone = txtPhone.Text,
+                        SupConFax = txtFax.Text,
+                        SupConEmail = txtEmail.Text,
+                        SupConUrl = txtURL.Text,
+                        Supplier = supplier
+                    };
+                    dbContext.SupplierContacts.Add(supplierContact);
+                    dbContext.SaveChanges();
+                    DialogResult = DialogResult.OK;
+                    this.Close(); 
+                }
+                else
+                    {
+                        // Retrieve existing supplier and suppliercontact records from the database
+                        var supplier = dbContext.Suppliers.Find(currentSupplier.SupplierId);
+                        var supplierContact = dbContext.SupplierContacts.Find(currentSupplier.SupplierContactId);
+
+                        // Update properties of existing records
+                        supplier.SupName = txtSupplier.Text;
+                        supplierContact.SupConFirstName = txtFName.Text;
+                        supplierContact.SupConLastName = txtLName.Text;
+                        supplierContact.SupConCompany = txtCompany.Text;
+                        supplierContact.SupConAddress = txtAddress.Text;
+                        supplierContact.SupConCity = txtCity.Text;
+                        supplierContact.SupConProv = txtProvince.Text;
+                        supplierContact.SupConPostal = txtPostalCode.Text;
+                        supplierContact.SupConCountry = txtCountry.Text;
+                        supplierContact.SupConBusPhone = txtPhone.Text;
+                        supplierContact.SupConFax = txtFax.Text;
+                        supplierContact.SupConEmail = txtEmail.Text;
+                        supplierContact.SupConUrl = txtURL.Text;
+
+                        // Save changes to the database
+                        dbContext.SaveChanges();
+
+                        DialogResult = DialogResult.OK;
+                        this.Close();
+                }
             }
         }
 
