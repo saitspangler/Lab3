@@ -36,6 +36,19 @@ namespace TravelExpertsInternal
             return isValid;
         }
 
+        public static bool IsEmptyList(ListBox listBox)
+        {
+            bool isValid = true;
+
+            if (listBox.Items != null)  // bad
+            {
+                MessageBox.Show(listBox.Tag + " is required");
+                isValid = false;
+                listBox.Focus();
+            }
+            return isValid;
+        }
+
         /// <summary>
         /// checks if combobox has value selected
         /// </summary>
@@ -188,6 +201,19 @@ namespace TravelExpertsInternal
                 textBox.SelectAll(); // select all text in the box for replacement 
                 isValid = false;
                 textBox.Focus();
+            }
+            return isValid;
+        }
+
+        public static bool CompareDecimal(TextBox baseComparison, TextBox comparison)
+        {
+            bool isValid = true;
+            if(Convert.ToDecimal(baseComparison.Text) > Convert.ToDecimal(comparison.Text))
+            {
+                MessageBox.Show(baseComparison.Tag + " has to be less than " + comparison.Tag);
+                baseComparison.SelectAll(); // select all text in the box for replacement
+                isValid = false;
+                baseComparison.Focus();
             }
             return isValid;
         }

@@ -63,6 +63,7 @@
             btnBack.Text = "&Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
+
             // 
             // frmProducts
             // 
@@ -71,6 +72,7 @@
             CancelButton = btnBack;
             ClientSize = new Size(800, 450);
             Controls.Add(btnBack);
+
             Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
             Name = "frmProducts";
@@ -85,5 +87,6 @@
         private DataGridView dgvProducts;
         private Button btnAdd;
         private Button btnBack;
+
     }
 }
