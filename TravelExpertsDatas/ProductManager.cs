@@ -32,8 +32,9 @@ namespace TravelExpertsDatas
             Product product = db.Products.Find(productId);
             return product;
         }
-        public static void AddProduct(TravelExpertsContext db, Product product)
+        public static void AddProduct(Product product)
         {
+            TravelExpertsContext db = new TravelExpertsContext();
             db.Products.Add(product);
             db.SaveChanges();
         }
