@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 namespace TravelExpertsDatas
@@ -79,6 +80,32 @@ namespace TravelExpertsDatas
                 }
                 
             }
+        }
+
+        /// <summary>
+        /// Get a specific supplier contact by supplier id
+        /// </summary>
+        /// <param name="supplierId"></param>
+        /// <returns>the desired supplier contact</returns>
+        public static SupplierContact GetSupplierContactBySupplierId(int supplierId)
+        {
+            using (TravelExpertsContext dbContext = new TravelExpertsContext())
+            {
+                SupplierContact supplierContact = dbContext.SupplierContacts
+                    .Include(sc => sc.Supplier) // Include the Supplier navigation property
+                    .FirstOrDefault(sc => sc.SupplierId == supplierId);
+                return supplierContact;
+            }
+        }
+
+        public static List<Affiliation> GetAllAffiliations()
+        {
+            List<Affiliation> affiliations = new List<Affiliation>();
+            using (TravelExpertsContext dbContext = new TravelExpertsContext())
+            {
+                affiliations = dbContext.Affiliations.ToList();
+            }
+            return affiliations;
         }
     }
 }

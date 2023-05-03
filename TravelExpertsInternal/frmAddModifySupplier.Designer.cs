@@ -44,8 +44,6 @@
             txtFName = new TextBox();
             txtSupplier = new TextBox();
             label14 = new Label();
-            label13 = new Label();
-            cboAffiliation = new ComboBox();
             label12 = new Label();
             label11 = new Label();
             label10 = new Label();
@@ -79,8 +77,6 @@
             groupBox1.Controls.Add(txtFName);
             groupBox1.Controls.Add(txtSupplier);
             groupBox1.Controls.Add(label14);
-            groupBox1.Controls.Add(label13);
-            groupBox1.Controls.Add(cboAffiliation);
             groupBox1.Controls.Add(label12);
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(label10);
@@ -108,6 +104,7 @@
             txtEmail.Size = new Size(163, 29);
             txtEmail.TabIndex = 29;
             txtEmail.Tag = "Email";
+
             // 
             // label6
             // 
@@ -209,20 +206,19 @@
             // 
             // txtSupplier
             // 
-            txtSupplier.Location = new Point(346, 29);
+            txtSupplier.Location = new Point(140, 29);
             txtSupplier.Name = "txtSupplier";
-            txtSupplier.ReadOnly = true;
-            txtSupplier.Size = new Size(100, 29);
+            txtSupplier.Size = new Size(449, 29);
             txtSupplier.TabIndex = 15;
             txtSupplier.Tag = "Supplier ID";
             // 
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(377, 309);
+            label14.Location = new Point(351, 309);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
-            label14.Size = new Size(42, 21);
+            label14.Size = new Size(68, 21);
             label14.TabIndex = 14;
             label14.Text = "URL:";
             // 
@@ -268,12 +264,12 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(211, 32);
+            label10.Location = new Point(-1, 32);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(90, 21);
+            label10.Size = new Size(117, 21);
             label10.TabIndex = 9;
-            label10.Text = "Supplier ID:";
+            label10.Text = "Supplier Name:";
             // 
             // label9
             // 
@@ -373,6 +369,8 @@
             btnCancel.TabIndex = 2;
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
+
             // 
             // frmAddModifySupplier
             // 
@@ -409,8 +407,6 @@
         private Label label12;
         private Label label11;
         private Label label14;
-        private Label label13;
-        private ComboBox cboAffiliation;
         private TextBox txtURL;
         private TextBox txtFax;
         private TextBox txtCountry;

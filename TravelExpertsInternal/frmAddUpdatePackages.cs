@@ -106,7 +106,8 @@ namespace TravelExpertsInternal
                     MessageBox.Show("The package description cannot exceed 50 characters. Your input has been truncated.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txtPackageDescription.Text = txtPackageDescription.Text.Substring(0, 50);
                 }
-                package.PkgDesc = txtPackageDescription.Text; package.PkgStartDate = dtpStartDate.Value;
+                package.PkgDesc = txtPackageDescription.Text; 
+                package.PkgStartDate = dtpStartDate.Value;
                 package.PkgEndDate = dtpEndDate.Value;
                 package.PkgBasePrice = decimal.Parse(txtPackagePrice.Text);
                 package.PkgAgencyCommission = decimal.Parse(txtPackageAgencyCommission.Text);
