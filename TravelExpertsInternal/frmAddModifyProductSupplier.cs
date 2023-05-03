@@ -21,6 +21,12 @@ namespace TravelExpertsInternal
         * Author: Peter Thiel
         */
 
+        /* Provided code for 'DisplayProductsSupplier()' so that comboboxes show ProdNames and SupNames 
+         * instead of ProductIds and SupplierIds.
+         * Changed frmAddModifyProductSupplier design.
+         *Author: Allen F. Horton
+         */
+
         // form level variables
         // public data for main form to set
         public bool isAdd; // true if Add false if Modify
@@ -54,6 +60,7 @@ namespace TravelExpertsInternal
             if (isAdd) // an add operation
             {
                 this.Text = "Add Products Supplier";
+                DisplayProductsSupplier();
             }
             else // modify
             {
@@ -62,12 +69,11 @@ namespace TravelExpertsInternal
 
             }
         }
-        // display product supplier info if modify
+        // display product supplier info if modify or add 
         private void DisplayProductsSupplier()
         {
             if (currentProductsSupplier != null)
             {
-                txtProductsSupplierID.Text = currentProductsSupplier.ProductSupplierId.ToString();
 
                 using (var context = new TravelExpertsContext())
                 {
@@ -102,39 +108,29 @@ namespace TravelExpertsInternal
                     }
                 }
             }
+            else if (isAdd) // handle scenario where ProductSupplier is being added
+            {
+                using (var context = new TravelExpertsContext())
+                {
+                    var suppliers = context.Suppliers.Select(s => new { s.SupplierId, s.SupName }).ToList();
+                    cboSupplierID.DataSource = suppliers;
+                    cboSupplierID.DisplayMember = "SupName";
+                    cboSupplierID.ValueMember = "SupplierId";
+
+                    var products = context.Products.Select(p => new { p.ProductId, p.ProdName }).ToList();
+                    cboProductID.DataSource = products;
+                    cboProductID.DisplayMember = "ProdName";
+                    cboProductID.ValueMember = "ProductId";
+                }
+            }
+
         }
 
         // when the accept button is clicked
         private void btnAccept_Click(object sender, EventArgs e)
         {
             bool valid = true;
-            // if valid
-            if (!isAdd) // if modify validate code
-            {
-                if (Validator.IsPresent(txtProductsSupplierID))
-                {
-                    if (isAdd) // need to create a new product object
-                    {
-                        currentProductsSupplier = new ProductsSupplier();
-                    }
-
-                    // check if unique
-                    int id = Convert.ToInt32(txtProductsSupplierID);
-                    List<int> ids = ProductSuppliersManager.GetAllProductsSupplierIDs();
-                    foreach (int p in ids)
-                    {
-                        if (p == id)
-                        {
-                            MessageBox.Show($"Duplicate product code: {id}");
-                            valid = false; // found duplicate
-                        }
-                    }
-                }
-                else // empty string
-                {
-                    valid = false;
-                }
-            }
+           
             // for both Add and Modify
 
             if (valid)
@@ -147,9 +143,9 @@ namespace TravelExpertsInternal
                 currentProductsSupplier.ProductId = Convert.ToInt32(cboProductID);
                 currentProductsSupplier.SupplierId = Convert.ToInt32(cboSupplierID);
 
-                DialogResult = DialogResult.OK; 
+                DialogResult = DialogResult.OK;
             }
-            
+
         }
 
         // no need to write code for Cancel button because it has been set as CancelButton on the form

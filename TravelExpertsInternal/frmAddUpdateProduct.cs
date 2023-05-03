@@ -11,6 +11,10 @@ using TravelExpertsDatas;
 
 namespace TravelExpertsInternal
 {
+    /*All the below was done by Allen F. Horton.
+     * Form allows you to add or update selected product.
+     */
+
     public partial class frmAddUpdateProduct : Form
     {
         // public because main form needs to set it

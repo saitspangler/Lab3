@@ -30,7 +30,7 @@
         {
             dgvProducts = new DataGridView();
             btnAdd = new Button();
-            btnExitProductsPage = new Button();
+            btnBack = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
             // 
@@ -54,22 +54,25 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
-            // btnExitProductsPage
+            // btnBack
             // 
-            btnExitProductsPage.Location = new Point(667, 389);
-            btnExitProductsPage.Name = "btnExitProductsPage";
-            btnExitProductsPage.Size = new Size(121, 38);
-            btnExitProductsPage.TabIndex = 2;
-            btnExitProductsPage.Text = "Back";
-            btnExitProductsPage.UseVisualStyleBackColor = true;
-            btnExitProductsPage.Click += btnExitProductsPage_Click;
+            btnBack.Location = new Point(664, 389);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(124, 38);
+            btnBack.TabIndex = 2;
+            btnBack.Text = "&Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+
             // 
             // frmProducts
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnBack;
             ClientSize = new Size(800, 450);
-            Controls.Add(btnExitProductsPage);
+            Controls.Add(btnBack);
+
             Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
             Name = "frmProducts";
@@ -83,6 +86,7 @@
 
         private DataGridView dgvProducts;
         private Button btnAdd;
-        private Button btnExitProductsPage;
+        private Button btnBack;
+
     }
 }
