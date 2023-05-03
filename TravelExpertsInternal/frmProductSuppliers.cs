@@ -19,6 +19,10 @@ namespace TravelExpertsInternal
     * Created on Apr 28, 2023
     * Author: Peter Thiel
     */
+
+    /* 1. Fixed 'Back' button.
+     * 2. Made 'DisplayProductsSupplier()' so that it shows ProdName for ProductId and SupName SupplierId in dgv.
+     * Author: Allen F. Horton*/
     public partial class frmProductSuppliers : Form
     {
         // constants
@@ -35,7 +39,9 @@ namespace TravelExpertsInternal
         {
             DisplayProductsSupplier();
         }
-        // displays the product supplier form
+       
+        //Display ProductsSuppliers in dgv
+        // Author: Allen F. Horton
         private void DisplayProductsSupplier()
         {
             dgvProductSuppliers.Rows.Clear();
@@ -43,8 +49,8 @@ namespace TravelExpertsInternal
             dgvProductSuppliers.Columns.Clear();
             // do some formatting
             dgvProductSuppliers.Columns.Add("ProductSupplierId", "Product Supplier ID");
-            dgvProductSuppliers.Columns.Add("ProductId", "Product ID");
-            dgvProductSuppliers.Columns.Add("Supplier", "Supplier ID");
+            dgvProductSuppliers.Columns.Add("Product", "Product");
+            dgvProductSuppliers.Columns.Add("Supplier", "Supplier");
             // add modify column
             var modifyColumn = new DataGridViewButtonColumn()
             {
@@ -55,12 +61,24 @@ namespace TravelExpertsInternal
             dgvProductSuppliers.Columns.Add(modifyColumn);
             dgvProductSuppliers.Columns[0].Width = 100;
             dgvProductSuppliers.Columns[1].Width = 200;
-            foreach (ProductsSupplier ps in productSupplier)
+            // join with Product and Supplier tables and select ProdName and SupName instead of IDs
+            var query = from ps in productSupplier
+                        join p in ProductManager.GetAllProducts() on ps.ProductId equals p.ProductId
+                        join s in SupplierManager.GetAllSuppliers() on ps.SupplierId equals s.SupplierId
+                        select new
+                        {
+                            ps.ProductSupplierId,
+                            ProdName = p.ProdName,
+                            SupName = s.SupName
+                        };
+            foreach (var result in query)
             {
-                dgvProductSuppliers.Rows.Add(ps.ProductSupplierId, ps.ProductId, ps.SupplierId);
-
+                dgvProductSuppliers.Rows.Add(result.ProductSupplierId, result.ProdName, result.SupName);
             }
         }
+
+
+
         // controls when user clicks on the data grid view (only modify cell is interactive)
         private void dgvProductSuppliers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -166,6 +184,11 @@ namespace TravelExpertsInternal
                     }
                 }
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

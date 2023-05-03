@@ -30,6 +30,7 @@
         {
             dgvProducts = new DataGridView();
             btnAdd = new Button();
+            btnBack = new Button();
             ((System.ComponentModel.ISupportInitialize)dgvProducts).BeginInit();
             SuspendLayout();
             // 
@@ -53,11 +54,23 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
+            // btnBack
+            // 
+            btnBack.Location = new Point(664, 389);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(124, 38);
+            btnBack.TabIndex = 2;
+            btnBack.Text = "&Back";
+            btnBack.UseVisualStyleBackColor = true;
+            btnBack.Click += btnBack_Click;
+            // 
             // frmProducts
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            CancelButton = btnBack;
             ClientSize = new Size(800, 450);
+            Controls.Add(btnBack);
             Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
             Name = "frmProducts";
@@ -71,5 +84,6 @@
 
         private DataGridView dgvProducts;
         private Button btnAdd;
+        private Button btnBack;
     }
 }

@@ -38,7 +38,7 @@
             // 
             dgvProductSuppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductSuppliers.Location = new Point(15, 80);
-            dgvProductSuppliers.Margin = new Padding(4, 4, 4, 4);
+            dgvProductSuppliers.Margin = new Padding(4);
             dgvProductSuppliers.Name = "dgvProductSuppliers";
             dgvProductSuppliers.RowTemplate.Height = 25;
             dgvProductSuppliers.Size = new Size(934, 226);
@@ -63,6 +63,7 @@
             btnCancel.TabIndex = 3;
             btnCancel.Text = "&Back";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
             // frmProductSuppliers
             // 
@@ -75,7 +76,7 @@
             Controls.Add(btnAdd);
             Controls.Add(dgvProductSuppliers);
             Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "frmProductSuppliers";
             Text = "frmProductSuppliers";
             Load += frmProductSuppliers_Load;
