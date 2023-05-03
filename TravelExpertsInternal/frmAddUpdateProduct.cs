@@ -13,6 +13,10 @@ namespace TravelExpertsInternal
 {
     /*All the below was done by Allen F. Horton.
      * Form allows you to add or update selected product.
+     * Addition: added field validation for add/update workflows
+     * Added on May 3, 2023
+     * By: Peter Thiel
+
      */
 
     public partial class frmAddUpdateProduct : Form
@@ -54,14 +58,18 @@ namespace TravelExpertsInternal
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (isAdd) // need to create the object
+            // for both add and modify
+            if (Validator.IsPresent(txtProdName))
             {
-                currentProduct = new Product();
-            }
-            // put data in
-            currentProduct.ProdName = txtProdName.Text;
+                if (isAdd) // need to create the object
+                {
+                    currentProduct = new Product();
+                }
+                // put data in
+                currentProduct.ProdName = txtProdName.Text;
 
-            DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
+            }
         }
     }
 }
