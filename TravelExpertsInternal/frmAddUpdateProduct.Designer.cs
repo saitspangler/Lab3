@@ -61,6 +61,7 @@
             txtProdName.Name = "txtProdName";
             txtProdName.Size = new Size(135, 23);
             txtProdName.TabIndex = 2;
+            txtProdName.Tag = "Product Name";
             // 
             // btnSave
             // 
