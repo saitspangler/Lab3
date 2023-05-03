@@ -91,8 +91,13 @@ namespace TravelExpertsInternal
                 }
             }
             // for both Add and Modify
-
-            if (valid && currentSupplier != null)
+            // we are assuming that URL, fax are optional fields and therefore no validation is being performed
+            if (valid && currentSupplier != null &&
+                Validator.IsPresent(txtFName) && Validator.IsPresent(txtLName) && Validator.IsPresent(txtCompany) &&
+                Validator.IsPresent(txtAddress) && Validator.IsPresent(txtCity) && Validator.IsPresent(txtProvince) &&
+                Validator.IsPresent(txtPostalCode) && Validator.IsPresent(txtCountry) &&
+                Validator.IsPresent(txtPhone) | Validator.IsPresent(txtEmail)
+                )
             {
                 if (isAdd) // need to create the object
                 {
