@@ -54,18 +54,19 @@ namespace TravelExpertsInternal
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            bool isValid = false;
-            if (isAdd) // validate code
+           
+            // for add and modify
+            if (Validator.IsPresent(txtProdName))
             {
-                if (Validator.IsPresent(txtProdName))
+                if (isAdd) // validate code
                 {
                     currentProduct = new Product();
                 }
-            }
-            // put data in
-            currentProduct.ProdName = txtProdName.Text;
+                // put data in
+                currentProduct.ProdName = txtProdName.Text;
 
-            DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK; 
+            }
         }
     }
 }

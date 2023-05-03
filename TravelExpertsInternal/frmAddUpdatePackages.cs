@@ -117,7 +117,7 @@ namespace TravelExpertsInternal
 
         private void btnSavePackage_Click(object sender, EventArgs e)
         {
-            decimal MaxCommission = Convert.ToDecimal(txtPackagePrice.Text);
+            decimal MinCommission = Convert.ToDecimal(txtPackagePrice.Text);
             DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(2)) < 0 ? MINSTART_DATE : MINSTART_DATE.AddDays(2);
             
             // Create a new instance of the TravelExpertsContext class
@@ -129,7 +129,7 @@ namespace TravelExpertsInternal
                     Validator.IsPresent(txtPackageDescription) && 
                     Validator.IsDateInRange(dtpStartDate, MINSTART_DATE, MAX_DATE) && Validator.IsDateInRange(dtpEndDate, MinEndDate, MAX_DATE) &&
                     Validator.IsDecimalInRange(txtPackagePrice, 200, 100000) &&
-                    Validator.IsDecimalInRange(txtPackageAgencyCommission, 200, MaxCommission) && Validator.CompareDecimal(txtPackagePrice, txtPackageAgencyCommission)
+                    Validator.IsDecimalInRange(txtPackageAgencyCommission, 200, MinCommission) && Validator.CompareDecimal(txtPackageAgencyCommission, txtPackagePrice)
                     )                    
                 {
                     // Check if the package object is null
