@@ -10,7 +10,6 @@ namespace TravelExpertsInternal
     {
         // private variables / constants
         private DataGridView dgvSuppliers;
-        private const int MODIFY_INDEX = 2;
         private SupplierContact? currentSupplier;
 
         public frmSupplier()
@@ -31,92 +30,55 @@ namespace TravelExpertsInternal
 
         private void DisplaySuppliers()
         {
-            dgvSuppliers.Rows.Clear();
-            List<Supplier> suppliers = SupplierManager.GetAllSuppliers();
             dgvSuppliers.Columns.Clear();
-            dgvSuppliers.Columns.Add("SupplierId", "Supplier ID");
-            dgvSuppliers.Columns.Add("SupName", "Supplier Name");
+            List<Supplier> suppliers = SupplierManager.GetAllSuppliers();
+            dgvSuppliers.DataSource = suppliers;
             // Add modify column
-            var modifyColumn = new DataGridViewButtonColumn()
+            var modifyColumn = new DataGridViewButtonColumn
             {
-                UseColumnTextForButtonValue = true,
+                Name = "Modify",
                 Text = "Modify",
-                HeaderText = ""
+                UseColumnTextForButtonValue = true,
+                Width = 100
             };
+            dgvSuppliers.Columns[0].Visible = false;
+            dgvSuppliers.Columns[1].Width = 250;
+            dgvSuppliers.Columns[2].Visible = false;
+            dgvSuppliers.Columns[3].Visible = false;
             dgvSuppliers.Columns.Add(modifyColumn);
-            dgvSuppliers.Columns[0].Width = 100;
-            dgvSuppliers.Columns[1].Width = 200;
-            foreach (Supplier supplier in suppliers)
-            {
-                dgvSuppliers.Rows.Add(supplier.SupplierId, supplier.SupName);
-            }
+
         }
 
-        private void ModifySupplier(SupplierContact currentSupplier)
+        private void dgvSuppliers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            // create another form to AddModifySupplier
-            frmAddModifySupplier secondForm = new frmAddModifySupplier();
-            secondForm.isAdd = false;
-            secondForm.currentSupplier = currentSupplier;
-            DialogResult = secondForm.ShowDialog();
-
-            if (DialogResult == DialogResult.OK) // proceed with modify
+            if (e.ColumnIndex == dgvSuppliers.Columns["Modify"].Index)
             {
-                currentSupplier = secondForm.currentSupplier; // new data values
-                try
-                {
-                    if (currentSupplier != null)
-                    {
-                        SupplierManager.UpdateSupplier(currentSupplier);
-                        DisplaySuppliers(); // refresh grid 
-                    }
-                }
-                catch (DbUpdateException ex) // errors coming from SaveChanges
-                {
-                    string errorMessage = "Error(s) while modifying product supplier:\n";
-                    var sqlException = (SqlException)ex.InnerException;
-                    foreach (SqlError error in sqlException.Errors)
-                    {
-                        errorMessage += "ERROR CODE:  " + error.Number +
-                                        " " + error.Message + "\n";
-                    }
-                    MessageBox.Show(errorMessage);
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Database connection lost while modifying a product supplier. Try again later");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error while modifying a product supplier:" + ex.Message, ex.GetType().ToString());
-                }
+                // Get the selected package
+                var supplier = (Supplier)dgvSuppliers.Rows[e.RowIndex].DataBoundItem;
+                var supContactId = SupplierManager.GetSupplierContactBySupplierId(supplier.SupplierId);
+                var form = new frmAddModifySupplier(supContactId);
+                form.FormClosed += Form_FormClosed;
+                form.Show();
             }
         }
-
-        private void dgvSuppliers_CellClick_1(object sender, DataGridViewCellEventArgs e)
+        private void btnExitSupplierPage_Click(object sender, EventArgs e)
         {
-            if (e.ColumnIndex == MODIFY_INDEX)
-            {
-                int supplierID = Convert.ToInt32(dgvSuppliers.Rows[e.RowIndex].Cells[0].Value);
-
-                try
-                {
-                    currentSupplier = SupplierManager.GetSupplier(supplierID);
-
-                    if (currentSupplier != null)
-                    {
-                        if (e.ColumnIndex == MODIFY_INDEX) // modify
-                        {
-                            ModifySupplier(currentSupplier);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error while modifying a supplier: " + ex.Message, ex.GetType().ToString());
-                }
-            }
+            this.Close();
         }
+
+        private void btnAddSupplier_Click(object sender, EventArgs e)
+        {
+            frmAddModifySupplier newForm = new frmAddModifySupplier();
+            newForm.FormClosed += Form_FormClosed;
+            newForm.Show();
+        }
+
+
+        private void Form_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            DisplaySuppliers();
+        }
+
+
     }
 }
