@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            txtEmail = new TextBox();
+            label6 = new Label();
             txtURL = new TextBox();
             txtFax = new TextBox();
             txtCountry = new TextBox();
@@ -42,8 +44,6 @@
             txtFName = new TextBox();
             txtSupplier = new TextBox();
             label14 = new Label();
-            label13 = new Label();
-            cboAffiliation = new ComboBox();
             label12 = new Label();
             label11 = new Label();
             label10 = new Label();
@@ -52,18 +52,17 @@
             label7 = new Label();
             label5 = new Label();
             label4 = new Label();
-            label3 = new Label();
             label2 = new Label();
             label1 = new Label();
             btnAccept = new Button();
             btnCancel = new Button();
-            label6 = new Label();
-            txtEmail = new TextBox();
+            label13 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label13);
             groupBox1.Controls.Add(txtEmail);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(txtURL);
@@ -79,8 +78,6 @@
             groupBox1.Controls.Add(txtFName);
             groupBox1.Controls.Add(txtSupplier);
             groupBox1.Controls.Add(label14);
-            groupBox1.Controls.Add(label13);
-            groupBox1.Controls.Add(cboAffiliation);
             groupBox1.Controls.Add(label12);
             groupBox1.Controls.Add(label11);
             groupBox1.Controls.Add(label10);
@@ -89,7 +86,6 @@
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(36, 17);
@@ -101,12 +97,31 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Add new Supplier Contact";
             // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(140, 266);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(163, 29);
+            txtEmail.TabIndex = 29;
+            txtEmail.Tag = "Email";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(65, 269);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(51, 21);
+            label6.TabIndex = 28;
+            label6.Text = "Email:";
+            // 
             // txtURL
             // 
             txtURL.Location = new Point(426, 306);
             txtURL.Name = "txtURL";
             txtURL.Size = new Size(163, 29);
             txtURL.TabIndex = 27;
+            txtURL.Tag = "URL";
             // 
             // txtFax
             // 
@@ -114,6 +129,7 @@
             txtFax.Name = "txtFax";
             txtFax.Size = new Size(163, 29);
             txtFax.TabIndex = 26;
+            txtFax.Tag = "Fax";
             // 
             // txtCountry
             // 
@@ -121,6 +137,7 @@
             txtCountry.Name = "txtCountry";
             txtCountry.Size = new Size(163, 29);
             txtCountry.TabIndex = 25;
+            txtCountry.Tag = "Country";
             // 
             // txtProvince
             // 
@@ -128,6 +145,7 @@
             txtProvince.Name = "txtProvince";
             txtProvince.Size = new Size(163, 29);
             txtProvince.TabIndex = 24;
+            txtProvince.Tag = "Province";
             // 
             // txtCity
             // 
@@ -135,6 +153,7 @@
             txtCity.Name = "txtCity";
             txtCity.Size = new Size(163, 29);
             txtCity.TabIndex = 23;
+            txtCity.Tag = "City";
             // 
             // txtPhone
             // 
@@ -142,6 +161,7 @@
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(163, 29);
             txtPhone.TabIndex = 22;
+            txtPhone.Tag = "Phone";
             // 
             // txtPostalCode
             // 
@@ -149,6 +169,7 @@
             txtPostalCode.Name = "txtPostalCode";
             txtPostalCode.Size = new Size(163, 29);
             txtPostalCode.TabIndex = 21;
+            txtPostalCode.Tag = "Postal Code";
             // 
             // txtAddress
             // 
@@ -156,6 +177,7 @@
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(163, 29);
             txtAddress.TabIndex = 19;
+            txtAddress.Tag = "Address";
             // 
             // txtLName
             // 
@@ -163,6 +185,7 @@
             txtLName.Name = "txtLName";
             txtLName.Size = new Size(163, 29);
             txtLName.TabIndex = 18;
+            txtLName.Tag = "Last Name";
             // 
             // txtCompany
             // 
@@ -170,6 +193,7 @@
             txtCompany.Name = "txtCompany";
             txtCompany.Size = new Size(163, 29);
             txtCompany.TabIndex = 17;
+            txtCompany.Tag = "Company";
             // 
             // txtFName
             // 
@@ -177,42 +201,25 @@
             txtFName.Name = "txtFName";
             txtFName.Size = new Size(163, 29);
             txtFName.TabIndex = 16;
+            txtFName.Tag = "First Name";
             // 
             // txtSupplier
             // 
-            txtSupplier.Location = new Point(346, 29);
+            txtSupplier.Location = new Point(140, 29);
             txtSupplier.Name = "txtSupplier";
-            txtSupplier.ReadOnly = true;
-            txtSupplier.Size = new Size(100, 29);
+            txtSupplier.Size = new Size(449, 29);
             txtSupplier.TabIndex = 15;
+            txtSupplier.Tag = "Supplier ID";
             // 
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(377, 309);
+            label14.Location = new Point(351, 309);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
-            label14.Size = new Size(42, 21);
+            label14.Size = new Size(68, 21);
             label14.TabIndex = 14;
-            label14.Text = "URL:";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(36, 309);
-            label13.Margin = new Padding(4, 0, 4, 0);
-            label13.Name = "label13";
-            label13.Size = new Size(80, 21);
-            label13.TabIndex = 13;
-            label13.Text = "Affiliation:";
-            // 
-            // cboAffiliation
-            // 
-            cboAffiliation.FormattingEnabled = true;
-            cboAffiliation.Location = new Point(140, 306);
-            cboAffiliation.Name = "cboAffiliation";
-            cboAffiliation.Size = new Size(163, 29);
-            cboAffiliation.TabIndex = 12;
+            label14.Text = "Website:";
             // 
             // label12
             // 
@@ -237,12 +244,12 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(211, 32);
+            label10.Location = new Point(-1, 32);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(90, 21);
+            label10.Size = new Size(117, 21);
             label10.TabIndex = 9;
-            label10.Text = "Supplier ID:";
+            label10.Text = "Supplier Name:";
             // 
             // label9
             // 
@@ -294,16 +301,6 @@
             label4.TabIndex = 3;
             label4.Text = "Address:";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(36, 109);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(80, 21);
-            label3.TabIndex = 2;
-            label3.Text = "Company:";
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -342,23 +339,16 @@
             btnCancel.TabIndex = 2;
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
+            btnCancel.Click += btnCancel_Click;
             // 
-            // label6
+            // label13
             // 
-            label6.AutoSize = true;
-            label6.Location = new Point(65, 269);
-            label6.Margin = new Padding(4, 0, 4, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(51, 21);
-            label6.TabIndex = 28;
-            label6.Text = "Email:";
-            // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(140, 266);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(163, 29);
-            txtEmail.TabIndex = 29;
+            label13.AutoSize = true;
+            label13.Location = new Point(0, 109);
+            label13.Name = "label13";
+            label13.Size = new Size(126, 21);
+            label13.TabIndex = 30;
+            label13.Text = "Company Name:";
             // 
             // frmAddModifySupplier
             // 
@@ -395,8 +385,6 @@
         private Label label12;
         private Label label11;
         private Label label14;
-        private Label label13;
-        private ComboBox cboAffiliation;
         private TextBox txtURL;
         private TextBox txtFax;
         private TextBox txtCountry;
@@ -413,5 +401,6 @@
         private Button btnCancel;
         private TextBox txtEmail;
         private Label label6;
+        private Label label13;
     }
 }

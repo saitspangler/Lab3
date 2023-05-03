@@ -13,6 +13,9 @@ using TravelExpertsDatas;
 
 namespace TravelExpertsInternal
 {
+    /*All the below was done by Allen F. Horton.
+     * Form allows you to select a product to add or update.
+     */
     public partial class frmProducts : Form
     {
         private Product currentProduct;
@@ -153,6 +156,11 @@ namespace TravelExpertsInternal
                     }
                 }
             }
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
