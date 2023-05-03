@@ -141,6 +141,7 @@ namespace TravelExpertsInternal
                         // Save changes to the database
                         dbContext.SaveChanges();
 
+
                         DialogResult = DialogResult.OK;
                         this.Close();
                 }

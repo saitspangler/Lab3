@@ -103,6 +103,8 @@
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(163, 29);
             txtEmail.TabIndex = 29;
+            txtEmail.Tag = "Email";
+
             // 
             // label6
             // 
@@ -120,6 +122,7 @@
             txtURL.Name = "txtURL";
             txtURL.Size = new Size(163, 29);
             txtURL.TabIndex = 27;
+            txtURL.Tag = "URL";
             // 
             // txtFax
             // 
@@ -127,6 +130,7 @@
             txtFax.Name = "txtFax";
             txtFax.Size = new Size(163, 29);
             txtFax.TabIndex = 26;
+            txtFax.Tag = "Fax";
             // 
             // txtCountry
             // 
@@ -134,6 +138,7 @@
             txtCountry.Name = "txtCountry";
             txtCountry.Size = new Size(163, 29);
             txtCountry.TabIndex = 25;
+            txtCountry.Tag = "Country";
             // 
             // txtProvince
             // 
@@ -141,6 +146,7 @@
             txtProvince.Name = "txtProvince";
             txtProvince.Size = new Size(163, 29);
             txtProvince.TabIndex = 24;
+            txtProvince.Tag = "Province";
             // 
             // txtCity
             // 
@@ -148,6 +154,7 @@
             txtCity.Name = "txtCity";
             txtCity.Size = new Size(163, 29);
             txtCity.TabIndex = 23;
+            txtCity.Tag = "City";
             // 
             // txtPhone
             // 
@@ -155,6 +162,7 @@
             txtPhone.Name = "txtPhone";
             txtPhone.Size = new Size(163, 29);
             txtPhone.TabIndex = 22;
+            txtPhone.Tag = "Phone";
             // 
             // txtPostalCode
             // 
@@ -162,6 +170,7 @@
             txtPostalCode.Name = "txtPostalCode";
             txtPostalCode.Size = new Size(163, 29);
             txtPostalCode.TabIndex = 21;
+            txtPostalCode.Tag = "Postal Code";
             // 
             // txtAddress
             // 
@@ -169,6 +178,7 @@
             txtAddress.Name = "txtAddress";
             txtAddress.Size = new Size(163, 29);
             txtAddress.TabIndex = 19;
+            txtAddress.Tag = "Address";
             // 
             // txtLName
             // 
@@ -176,6 +186,7 @@
             txtLName.Name = "txtLName";
             txtLName.Size = new Size(163, 29);
             txtLName.TabIndex = 18;
+            txtLName.Tag = "Last Name";
             // 
             // txtCompany
             // 
@@ -183,6 +194,7 @@
             txtCompany.Name = "txtCompany";
             txtCompany.Size = new Size(163, 29);
             txtCompany.TabIndex = 17;
+            txtCompany.Tag = "Company";
             // 
             // txtFName
             // 
@@ -190,6 +202,7 @@
             txtFName.Name = "txtFName";
             txtFName.Size = new Size(163, 29);
             txtFName.TabIndex = 16;
+            txtFName.Tag = "First Name";
             // 
             // txtSupplier
             // 
@@ -197,6 +210,7 @@
             txtSupplier.Name = "txtSupplier";
             txtSupplier.Size = new Size(449, 29);
             txtSupplier.TabIndex = 15;
+            txtSupplier.Tag = "Supplier ID";
             // 
             // label14
             // 
@@ -206,7 +220,26 @@
             label14.Name = "label14";
             label14.Size = new Size(68, 21);
             label14.TabIndex = 14;
-            label14.Text = "Website:";
+            label14.Text = "URL:";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(36, 309);
+            label13.Margin = new Padding(4, 0, 4, 0);
+            label13.Name = "label13";
+            label13.Size = new Size(80, 21);
+            label13.TabIndex = 13;
+            label13.Text = "Affiliation:";
+            // 
+            // cboAffiliation
+            // 
+            cboAffiliation.FormattingEnabled = true;
+            cboAffiliation.Location = new Point(140, 306);
+            cboAffiliation.Name = "cboAffiliation";
+            cboAffiliation.Size = new Size(163, 29);
+            cboAffiliation.TabIndex = 12;
+            cboAffiliation.Tag = "Affiliation";
             // 
             // label12
             // 
@@ -337,6 +370,7 @@
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
+
             // 
             // frmAddModifySupplier
             // 
