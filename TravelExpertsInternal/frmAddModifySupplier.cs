@@ -24,9 +24,10 @@ namespace TravelExpertsInternal
         public bool isAdd; // true if Add false if Modify
         public SupplierContact? currentSupplier = null; // selected supplier when Modify or null when Add
 
-        public frmAddModifySupplier()
+        public frmAddModifySupplier(SupplierContact currentSupplier = null)
         {
             InitializeComponent();
+            this.currentSupplier = currentSupplier;
         }
 
         private void frmAddModifySupplier_Load(object sender, EventArgs e)

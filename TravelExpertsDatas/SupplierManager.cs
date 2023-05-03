@@ -80,5 +80,20 @@ namespace TravelExpertsDatas
                 
             }
         }
+
+        /// <summary>
+        /// Get a specific supplier contact by supplier id
+        /// </summary>
+        /// <param name="supplierId"></param>
+        /// <returns>the desired supplier contact</returns>
+        public static SupplierContact GetSupplierContactBySupplierId(int supplierId)
+        {
+            using (TravelExpertsContext dbContext = new TravelExpertsContext())
+            {
+                SupplierContact supplierContact = dbContext.SupplierContacts
+                    .FirstOrDefault(sc => sc.SupplierId == supplierId);
+                return supplierContact;
+            }
+        }
     }
 }

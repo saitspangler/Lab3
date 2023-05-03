@@ -28,35 +28,61 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvSuppliers = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)this.dgvSuppliers).BeginInit();
+            dgvSuppliers = new DataGridView();
+            btnAddSupplier = new Button();
+            btnExitSupplierPage = new Button();
+            ((System.ComponentModel.ISupportInitialize)dgvSuppliers).BeginInit();
             SuspendLayout();
             // 
             // dgvSuppliers
             // 
-            this.dgvSuppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSuppliers.Location = new Point(12, 12);
-            this.dgvSuppliers.Name = "dgvSuppliers";
-            this.dgvSuppliers.RowTemplate.Height = 25;
-            this.dgvSuppliers.Size = new Size(776, 426);
-            this.dgvSuppliers.TabIndex = 0;
-            this.dgvSuppliers.CellClick += this.dgvSuppliers_CellClick_1;
+            dgvSuppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvSuppliers.Location = new Point(12, 12);
+            dgvSuppliers.Name = "dgvSuppliers";
+            dgvSuppliers.RowTemplate.Height = 25;
+            dgvSuppliers.Size = new Size(554, 478);
+            dgvSuppliers.TabIndex = 0;
+            dgvSuppliers.CellContentClick += dgvSuppliers_CellContentClick;
+            // 
+            // btnAddSupplier
+            // 
+            btnAddSupplier.Location = new Point(572, 12);
+            btnAddSupplier.Name = "btnAddSupplier";
+            btnAddSupplier.Size = new Size(161, 58);
+            btnAddSupplier.TabIndex = 1;
+            btnAddSupplier.Text = "Add Supplier";
+            btnAddSupplier.UseVisualStyleBackColor = true;
+            btnAddSupplier.Click += btnAddSupplier_Click;
+            // 
+            // btnExitSupplierPage
+            // 
+            btnExitSupplierPage.Location = new Point(572, 432);
+            btnExitSupplierPage.Name = "btnExitSupplierPage";
+            btnExitSupplierPage.Size = new Size(161, 58);
+            btnExitSupplierPage.TabIndex = 2;
+            btnExitSupplierPage.Text = "Back";
+            btnExitSupplierPage.UseVisualStyleBackColor = true;
+            btnExitSupplierPage.Click += btnExitSupplierPage_Click;
             // 
             // frmSupplier
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(this.dgvSuppliers);
+            ClientSize = new Size(890, 502);
+            Controls.Add(btnExitSupplierPage);
+            Controls.Add(btnAddSupplier);
+            Controls.Add(dgvSuppliers);
             Name = "frmSupplier";
             Text = "frmSupplier";
             Load += frmSupplier_Load;
-            ((System.ComponentModel.ISupportInitialize)this.dgvSuppliers).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvSuppliers).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        
+
+        private Button btnAddSupplier;
+        private Button btnExitSupplierPage;
     }
 }
