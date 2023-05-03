@@ -7,7 +7,7 @@ namespace TravelExpertsDatas
     /*
     * 
     * 
-    * Addition: Added GetAllSupplierIDs, UpdateSupplier methods
+    * Addition: Added GetAllSupplierIDs, UpdateSupplier, AddSupplier methods
     * Added on May 1, 2023
     * By: Peter Thiel
     */
@@ -81,6 +81,36 @@ namespace TravelExpertsDatas
                 
             }
         }
+        /// <summary>
+        /// adds a new supplier contact to the database
+        /// </summary>
+        /// <param name="newContact">new supplier contact data</param>
+        public static void AddSupplierContact(SupplierContact newContact)
+        {
+            if (newContact != null)
+            {
+                using (TravelExpertsContext dB =  new TravelExpertsContext())
+                {
+                    dB.SupplierContacts.Add(newContact);
+                    dB.SaveChanges();
+                }
+            }
+        }
+        /// <summary>
+        /// add a new contact to the database
+        /// </summary>
+        /// <param name="newSupplier">new supplier data to add</param>
+        public static void AddSupplier(Supplier newSupplier)
+        {
+            if (newSupplier != null)
+            {
+                using (TravelExpertsContext dB = new TravelExpertsContext())
+                {
+                    dB.Suppliers.Add(newSupplier);
+                    dB.SaveChanges();
+                }
+            }
+        }
 
         /// <summary>
         /// Get a specific supplier contact by supplier id
@@ -97,7 +127,10 @@ namespace TravelExpertsDatas
                 return supplierContact;
             }
         }
-
+        /// <summary>
+        /// get a list of Affiliations
+        /// </summary>
+        /// <returns>return list of affiliations</returns>
         public static List<Affiliation> GetAllAffiliations()
         {
             List<Affiliation> affiliations = new List<Affiliation>();

@@ -7,7 +7,7 @@ using TravelExpertsDatas;
 namespace TravelExpertsInternal
 {
     /*
-    * Addition: changed Add/Mofdify Package workflow
+    * Addition: changed Add/Modify Package workflow
     * Added on May 3, 2023
     * By: Peter Thiel
     */
@@ -86,17 +86,27 @@ namespace TravelExpertsInternal
                             {
                                 UpdatePackage();
                             }
-
+                        }
+                        catch (DbUpdateException ex) // errors coming from SaveChanges
+                        {
+                            string errorMessage = "Error(s) while modifying package:\n";
+                            var sqlException = (SqlException)ex.InnerException;
+                            foreach (SqlError error in sqlException.Errors)
+                            {
+                                errorMessage += "ERROR CODE:  " + error.Number +
+                                                " " + error.Message + "\n";
+                            }
+                            MessageBox.Show(errorMessage);
+                        }
+                        catch (SqlException ex)
+                        {
+                            MessageBox.Show("Database connection lost while modifying a package. Try again later");
                         }
                         catch (Exception ex)
                         {
-                            MessageBox.Show("Error while adding a product:" + ex.Message, ex.GetType().ToString());
+                            MessageBox.Show("Error while modifying a package:" + ex.Message, ex.GetType().ToString());
                         }
-
-                    
-
                 }
-                
             }
         }
         // modify current pacakge
@@ -111,6 +121,7 @@ namespace TravelExpertsInternal
                 currentPackage = newForm.package; // new data values
                 try
                 {
+                    // save changes to the database
                     PackagesManager.UpdatePackage(currentPackage.PackageId, currentPackage);
                     DisplayPackages(); // refresh grid
                 }
@@ -155,7 +166,7 @@ namespace TravelExpertsInternal
                     }
                     catch (DbUpdateException ex) // errors coming from SaveChanges
                     {
-                        string errorMessage = "Error(s) while adding packagel:\n";
+                        string errorMessage = "Error(s) while adding package:\n";
                         var sqlException = (SqlException)ex.InnerException;
                         foreach (SqlError error in sqlException.Errors)
                         {
