@@ -39,7 +39,8 @@
             // 
             lblAddUpdateProduct.AutoSize = true;
             lblAddUpdateProduct.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
-            lblAddUpdateProduct.Location = new Point(142, 45);
+            lblAddUpdateProduct.Location = new Point(180, 20);
+            lblAddUpdateProduct.Margin = new Padding(4, 0, 4, 0);
             lblAddUpdateProduct.Name = "lblAddUpdateProduct";
             lblAddUpdateProduct.Size = new Size(92, 28);
             lblAddUpdateProduct.TabIndex = 0;
@@ -49,7 +50,8 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(39, 143);
+            label1.Location = new Point(52, 75);
+            label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(113, 21);
             label1.TabIndex = 1;
@@ -57,16 +59,20 @@
             // 
             // txtProdName
             // 
-            txtProdName.Location = new Point(189, 143);
+            txtProdName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            txtProdName.Location = new Point(245, 75);
+            txtProdName.Margin = new Padding(4, 4, 4, 4);
             txtProdName.Name = "txtProdName";
-            txtProdName.Size = new Size(135, 23);
+            txtProdName.Size = new Size(172, 29);
             txtProdName.TabIndex = 2;
+            txtProdName.Tag = "Product Name";
             // 
             // btnSave
             // 
-            btnSave.Location = new Point(39, 217);
+            btnSave.Location = new Point(103, 199);
+            btnSave.Margin = new Padding(4, 4, 4, 4);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(113, 39);
+            btnSave.Size = new Size(94, 35);
             btnSave.TabIndex = 3;
             btnSave.Text = "&Save";
             btnSave.UseVisualStyleBackColor = true;
@@ -74,24 +80,28 @@
             // 
             // btnCancel
             // 
-            btnCancel.Location = new Point(211, 217);
+            btnCancel.Location = new Point(274, 199);
+            btnCancel.Margin = new Padding(4, 4, 4, 4);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(113, 39);
+            btnCancel.Size = new Size(101, 35);
             btnCancel.TabIndex = 4;
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             // 
             // frmAddUpdateProduct
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AcceptButton = btnSave;
+            AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnCancel;
-            ClientSize = new Size(377, 340);
+            ClientSize = new Size(485, 284);
             Controls.Add(btnCancel);
             Controls.Add(btnSave);
             Controls.Add(txtProdName);
             Controls.Add(label1);
             Controls.Add(lblAddUpdateProduct);
+            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "frmAddUpdateProduct";
             Text = "frmAddUpdateProduct";
             Load += frmAddUpdateProduct_Load;

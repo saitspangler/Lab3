@@ -50,9 +50,13 @@ namespace TravelExpertsInternal
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (isAdd) // need to create the object
+            bool isValid = false;
+            if (isAdd) // validate code
             {
-                currentProduct = new Product();
+                if (Validator.IsPresent(txtProdName))
+                {
+                    currentProduct = new Product();
+                }
             }
             // put data in
             currentProduct.ProdName = txtProdName.Text;
