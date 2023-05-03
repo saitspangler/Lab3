@@ -52,16 +52,17 @@
             label7 = new Label();
             label5 = new Label();
             label4 = new Label();
-            label3 = new Label();
             label2 = new Label();
             label1 = new Label();
             btnAccept = new Button();
             btnCancel = new Button();
+            label13 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label13);
             groupBox1.Controls.Add(txtEmail);
             groupBox1.Controls.Add(label6);
             groupBox1.Controls.Add(txtURL);
@@ -85,7 +86,6 @@
             groupBox1.Controls.Add(label7);
             groupBox1.Controls.Add(label5);
             groupBox1.Controls.Add(label4);
-            groupBox1.Controls.Add(label3);
             groupBox1.Controls.Add(label2);
             groupBox1.Controls.Add(label1);
             groupBox1.Location = new Point(36, 17);
@@ -104,7 +104,6 @@
             txtEmail.Size = new Size(163, 29);
             txtEmail.TabIndex = 29;
             txtEmail.Tag = "Email";
-
             // 
             // label6
             // 
@@ -220,26 +219,7 @@
             label14.Name = "label14";
             label14.Size = new Size(68, 21);
             label14.TabIndex = 14;
-            label14.Text = "URL:";
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(36, 309);
-            label13.Margin = new Padding(4, 0, 4, 0);
-            label13.Name = "label13";
-            label13.Size = new Size(80, 21);
-            label13.TabIndex = 13;
-            label13.Text = "Affiliation:";
-            // 
-            // cboAffiliation
-            // 
-            cboAffiliation.FormattingEnabled = true;
-            cboAffiliation.Location = new Point(140, 306);
-            cboAffiliation.Name = "cboAffiliation";
-            cboAffiliation.Size = new Size(163, 29);
-            cboAffiliation.TabIndex = 12;
-            cboAffiliation.Tag = "Affiliation";
+            label14.Text = "Website:";
             // 
             // label12
             // 
@@ -321,16 +301,6 @@
             label4.TabIndex = 3;
             label4.Text = "Address:";
             // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(36, 109);
-            label3.Margin = new Padding(4, 0, 4, 0);
-            label3.Name = "label3";
-            label3.Size = new Size(80, 21);
-            label3.TabIndex = 2;
-            label3.Text = "Company:";
-            // 
             // label2
             // 
             label2.AutoSize = true;
@@ -370,7 +340,15 @@
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
-
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(0, 109);
+            label13.Name = "label13";
+            label13.Size = new Size(126, 21);
+            label13.TabIndex = 30;
+            label13.Text = "Company Name:";
             // 
             // frmAddModifySupplier
             // 
@@ -423,5 +401,6 @@
         private Button btnCancel;
         private TextBox txtEmail;
         private Label label6;
+        private Label label13;
     }
 }

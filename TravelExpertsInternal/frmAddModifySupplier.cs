@@ -24,6 +24,7 @@ namespace TravelExpertsInternal
         // public data for main form to set
         private SupplierContact currentSupplier; // selected supplier when Modify or null when Add
 
+
         public frmAddModifySupplier(SupplierContact currentSupplier = null)
         {
             InitializeComponent();
@@ -83,21 +84,40 @@ namespace TravelExpertsInternal
 
         private void btnAccept_Click(object sender, EventArgs e)
         {
-            using (TravelExpertsContext dbContext = new TravelExpertsContext())
+            using (TravelExpertsContext db = new TravelExpertsContext())
             {
                 if (currentSupplier == null)
                 {
-                    //check if supplier is null
-                    if (currentSupplier == null)
-                    {
-                        currentSupplier = new SupplierContact();
-                    }
+                    // Generate a new unique SupplierId value
+                    int newSupplierId = db.Suppliers.Max(s => s.SupplierId) + 1;
+                    // Create a new Supplier object
                     var supplier = new Supplier
                     {
+                        SupplierId = newSupplierId,
                         SupName = txtSupplier.Text
                     };
+
+
+                    // Add the new Supplier object to the database
+                    db.Suppliers.Add(supplier);
+
+                    try
+                    {
+                        // Save changes to the database
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle any errors that may occur
+                        MessageBox.Show(ex.InnerException?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+                    // Generate a new unique SupplierContactId value
+                    int newSupplierContactId = db.SupplierContacts.Max(sc => sc.SupplierContactId) + 1;
+                    // Create a new SupplierContact object
                     var supplierContact = new SupplierContact
                     {
+                        SupplierContactId = newSupplierContactId,
                         SupConFirstName = txtFName.Text,
                         SupConLastName = txtLName.Text,
                         SupConCompany = txtCompany.Text,
@@ -110,41 +130,59 @@ namespace TravelExpertsInternal
                         SupConFax = txtFax.Text,
                         SupConEmail = txtEmail.Text,
                         SupConUrl = txtURL.Text,
-                        Supplier = supplier
+                        SupplierId = supplier.SupplierId
                     };
-                    dbContext.SupplierContacts.Add(supplierContact);
-                    dbContext.SaveChanges();
-                    DialogResult = DialogResult.OK;
-                    this.Close(); 
+
+                    // Add the new SupplierContact objects to the database
+                    db.SupplierContacts.Add(supplierContact);
+
+                    try
+                    {
+                        // Save changes to the database
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle any errors that may occur
+                        MessageBox.Show(ex.InnerException?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
+                {
+                    // Retrieve existing supplier and suppliercontact records from the database
+                    var supplier = db.Suppliers.Find(currentSupplier.SupplierId);
+                    var supplierContact = db.SupplierContacts.Find(currentSupplier.SupplierContactId);
+
+                    // Update properties of existing records
+                    supplier.SupName = txtSupplier.Text;
+                    supplierContact.SupConFirstName = txtFName.Text;
+                    supplierContact.SupConLastName = txtLName.Text;
+                    supplierContact.SupConCompany = txtCompany.Text;
+                    supplierContact.SupConAddress = txtAddress.Text;
+                    supplierContact.SupConCity = txtCity.Text;
+                    supplierContact.SupConProv = txtProvince.Text;
+                    supplierContact.SupConPostal = txtPostalCode.Text;
+                    supplierContact.SupConCountry = txtCountry.Text;
+                    supplierContact.SupConBusPhone = txtPhone.Text;
+                    supplierContact.SupConFax = txtFax.Text;
+                    supplierContact.SupConEmail = txtEmail.Text;
+                    supplierContact.SupConUrl = txtURL.Text;
+
+                    // Try to save changes to the database
+                    try
                     {
-                        // Retrieve existing supplier and suppliercontact records from the database
-                        var supplier = dbContext.Suppliers.Find(currentSupplier.SupplierId);
-                        var supplierContact = dbContext.SupplierContacts.Find(currentSupplier.SupplierContactId);
-
-                        // Update properties of existing records
-                        supplier.SupName = txtSupplier.Text;
-                        supplierContact.SupConFirstName = txtFName.Text;
-                        supplierContact.SupConLastName = txtLName.Text;
-                        supplierContact.SupConCompany = txtCompany.Text;
-                        supplierContact.SupConAddress = txtAddress.Text;
-                        supplierContact.SupConCity = txtCity.Text;
-                        supplierContact.SupConProv = txtProvince.Text;
-                        supplierContact.SupConPostal = txtPostalCode.Text;
-                        supplierContact.SupConCountry = txtCountry.Text;
-                        supplierContact.SupConBusPhone = txtPhone.Text;
-                        supplierContact.SupConFax = txtFax.Text;
-                        supplierContact.SupConEmail = txtEmail.Text;
-                        supplierContact.SupConUrl = txtURL.Text;
-
                         // Save changes to the database
-                        dbContext.SaveChanges();
+                        db.SaveChanges();
+                    }
+                    catch (Exception ex)
+                    {
+                        // Handle any errors that may occur
+                        MessageBox.Show(ex.InnerException?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
 
-
-                        DialogResult = DialogResult.OK;
-                        this.Close();
                 }
+                DialogResult = DialogResult.OK;
+                this.Close();
             }
         }
 
