@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            txtEmail = new TextBox();
+            label6 = new Label();
             txtURL = new TextBox();
             txtFax = new TextBox();
             txtCountry = new TextBox();
@@ -57,8 +59,6 @@
             label1 = new Label();
             btnAccept = new Button();
             btnCancel = new Button();
-            label6 = new Label();
-            txtEmail = new TextBox();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -100,6 +100,23 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Add new Supplier Contact";
+            // 
+            // txtEmail
+            // 
+            txtEmail.Location = new Point(140, 266);
+            txtEmail.Name = "txtEmail";
+            txtEmail.Size = new Size(163, 29);
+            txtEmail.TabIndex = 29;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(65, 269);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(51, 21);
+            label6.TabIndex = 28;
+            label6.Text = "Email:";
             // 
             // txtURL
             // 
@@ -342,23 +359,7 @@
             btnCancel.TabIndex = 2;
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(65, 269);
-            label6.Margin = new Padding(4, 0, 4, 0);
-            label6.Name = "label6";
-            label6.Size = new Size(51, 21);
-            label6.TabIndex = 28;
-            label6.Text = "Email:";
-            // 
-            // txtEmail
-            // 
-            txtEmail.Location = new Point(140, 266);
-            txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(163, 29);
-            txtEmail.TabIndex = 29;
+            btnCancel.Click += btnCancel_Click;
             // 
             // frmAddModifySupplier
             // 

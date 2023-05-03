@@ -95,5 +95,15 @@ namespace TravelExpertsDatas
                 return supplierContact;
             }
         }
+
+        public static List<Affiliation> GetAllAffiliations()
+        {
+            List<Affiliation> affiliations = new List<Affiliation>();
+            using (TravelExpertsContext dbContext = new TravelExpertsContext())
+            {
+                affiliations = dbContext.Affiliations.ToList();
+            }
+            return affiliations;
+        }
     }
 }

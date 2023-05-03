@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,39 +29,71 @@ namespace TravelExpertsInternal
         {
             InitializeComponent();
             this.currentSupplier = currentSupplier;
+            LoadAffiliations();
         }
 
         private void frmAddModifySupplier_Load(object sender, EventArgs e)
         {
-            // differentiates between Add and Modify
-            if (isAdd) // an add operation
+            if (currentSupplier != null && currentSupplier.SupplierId > 0)
             {
-                this.Text = "Add Contact";
+                modifySupplier((int)currentSupplier.SupplierId);
             }
-            else // modify
-            {
-                this.Text = "Modify Contact";
-                DisplaySupplier();
-
-            }
+            else { addSupplier(); }
         }
-        // display supplier info if modify
-        private void DisplaySupplier()
+
+        // add supplier
+        private void addSupplier()
         {
-            if (currentSupplier != null)
-            {
-                txtSupplier.Text = currentSupplier.SupplierId.ToString();
-                txtFName.Text = currentSupplier.SupConFirstName;
-                txtLName.Text = currentSupplier.SupConLastName;
-                txtCompany.Text = currentSupplier.SupConCompany;
-                txtAddress.Text = currentSupplier.SupConAddress;
-                txtCity.Text = currentSupplier.SupConCity;
-                txtCountry.Text = currentSupplier.SupConCountry;
-                txtPhone.Text = currentSupplier.SupConBusPhone;
+            //intialize controls on the form with default values
+            this.Text = "Add Supplier";
+            txtSupplier.Text = " ";
+            txtFName.Text = " ";
+            txtLName.Text = " ";
+            txtCompany.Text = " ";
+            txtAddress.Text = " ";
+            txtCity.Text = " ";
+            txtCountry.Text = " ";
+            txtPhone.Text = " ";
+            txtProvince.Text = " ";
+            txtPostalCode.Text = " ";
+            txtFax.Text = " ";
+            txtEmail.Text = " ";
+            txtURL.Text = " ";
+            cboAffiliation.Text = " ";
 
-            }
         }
 
+        // modify supplier
+        private void modifySupplier(int id)
+        {
+            //load the data from the current supplier object
+            this.Text = "Modify Supplier";
+            txtSupplier.Text = currentSupplier.SupplierId.ToString();
+            txtFName.Text = currentSupplier.SupConFirstName;
+            txtLName.Text = currentSupplier.SupConLastName;
+            txtCompany.Text = currentSupplier.SupConCompany;
+            txtAddress.Text = currentSupplier.SupConAddress;
+            txtCity.Text = currentSupplier.SupConCity;
+            txtCountry.Text = currentSupplier.SupConCountry;
+            txtPhone.Text = currentSupplier.SupConBusPhone;
+            txtProvince.Text = currentSupplier.SupConProv;
+            txtPostalCode.Text = currentSupplier.SupConPostal;
+            txtFax.Text = currentSupplier.SupConFax;
+            txtEmail.Text = currentSupplier.SupConEmail;
+            txtURL.Text = currentSupplier.SupConUrl;
+            cboAffiliation.Text = currentSupplier.AffiliationId?.ToString() ?? "";
+        }
+
+        private void LoadAffiliations()
+        {
+            cboAffiliation.Items.Clear();
+            var affiliations = SupplierManager.GetAllAffiliations();
+            foreach (Affiliation a in affiliations)
+            {
+               cboAffiliation.Items.Add(a.AffilitationId);
+            }
+            
+        }
         private void btnAccept_Click(object sender, EventArgs e)
         {
             bool valid = true;
@@ -100,23 +133,28 @@ namespace TravelExpertsInternal
                     currentSupplier = new SupplierContact();
                 }
                 // fill in data of product supplier object with new values
-                currentSupplier.SupplierId = Convert.ToInt32(txtSupplier);
-                currentSupplier.SupConFirstName = txtFName.ToString();
-                currentSupplier.SupConLastName = txtLName.ToString();
-                currentSupplier.SupConCompany = txtCompany.ToString();
-                currentSupplier.SupConAddress = txtAddress.ToString();
-                currentSupplier.SupConCity = txtCity.ToString();
-                currentSupplier.SupConProv = txtProvince.ToString();
-                currentSupplier.SupConPostal = txtPostalCode.ToString();
-                currentSupplier.SupConCountry = txtCountry.ToString();
-                currentSupplier.SupConBusPhone = txtPhone.ToString();
-                currentSupplier.SupConFax = txtFax.ToString();
-                currentSupplier.SupConEmail = txtEmail.ToString();
-                currentSupplier.SupConUrl = txtURL.ToString();
-                currentSupplier.AffiliationId = cboAffiliation.ToString();
+                currentSupplier.SupplierId = Convert.ToInt32(txtSupplier.Text);
+                currentSupplier.SupConFirstName = txtFName.Text;
+                currentSupplier.SupConLastName = txtLName.Text;
+                currentSupplier.SupConCompany = txtCompany.Text;
+                currentSupplier.SupConAddress = txtAddress.Text;
+                currentSupplier.SupConCity = txtCity.Text;
+                currentSupplier.SupConProv = txtProvince.Text;
+                currentSupplier.SupConPostal = txtPostalCode.Text;
+                currentSupplier.SupConCountry = txtCountry.Text;
+                currentSupplier.SupConBusPhone = txtPhone.Text;
+                currentSupplier.SupConFax = txtFax.Text;
+                currentSupplier.SupConEmail = txtEmail.Text;
+                currentSupplier.SupConUrl = txtURL.Text;
+                currentSupplier.AffiliationId = cboAffiliation.Text;
 
                 DialogResult = DialogResult.OK;
             }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
