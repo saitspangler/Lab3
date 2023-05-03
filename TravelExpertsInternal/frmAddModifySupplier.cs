@@ -22,8 +22,7 @@ namespace TravelExpertsInternal
     {
         // form level variables
         // public data for main form to set
-        public bool isAdd; // true if Add false if Modify
-        public SupplierContact? currentSupplier = null; // selected supplier when Modify or null when Add
+        private SupplierContact currentSupplier; // selected supplier when Modify or null when Add
 
         public frmAddModifySupplier(SupplierContact currentSupplier = null)
         {
@@ -68,7 +67,8 @@ namespace TravelExpertsInternal
         {
             //load the data from the current supplier object
             this.Text = "Modify Supplier";
-            txtSupplier.Text = currentSupplier.SupplierId.ToString();
+            if (currentSupplier?.Supplier != null)
+                txtSupplier.Text = currentSupplier.Supplier.SupName;
             txtFName.Text = currentSupplier.SupConFirstName;
             txtLName.Text = currentSupplier.SupConLastName;
             txtCompany.Text = currentSupplier.SupConCompany;
@@ -90,22 +90,20 @@ namespace TravelExpertsInternal
             var affiliations = SupplierManager.GetAllAffiliations();
             foreach (Affiliation a in affiliations)
             {
-               cboAffiliation.Items.Add(a.AffilitationId);
+                cboAffiliation.Items.Add(a.AffilitationId);
             }
-            
+
         }
         private void btnAccept_Click(object sender, EventArgs e)
         {
             bool valid = true;
             // if valid
-            if (isAdd) // validate code
             {
                 if (Validator.IsPresent(txtSupplier))
                 {
-                    if (isAdd) // need to create a new product object
-                    {
-                        currentSupplier = new SupplierContact();
-                    }
+
+                    currentSupplier = new SupplierContact();
+
 
                     // check if unique
                     int id = Convert.ToInt32(txtSupplier);
@@ -128,10 +126,9 @@ namespace TravelExpertsInternal
 
             if (valid && currentSupplier != null)
             {
-                if (isAdd) // need to create the object
-                {
-                    currentSupplier = new SupplierContact();
-                }
+
+                currentSupplier = new SupplierContact();
+
                 // fill in data of product supplier object with new values
                 currentSupplier.SupplierId = Convert.ToInt32(txtSupplier.Text);
                 currentSupplier.SupConFirstName = txtFName.Text;

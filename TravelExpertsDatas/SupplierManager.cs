@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 namespace TravelExpertsDatas
@@ -91,6 +92,7 @@ namespace TravelExpertsDatas
             using (TravelExpertsContext dbContext = new TravelExpertsContext())
             {
                 SupplierContact supplierContact = dbContext.SupplierContacts
+                    .Include(sc => sc.Supplier) // Include the Supplier navigation property
                     .FirstOrDefault(sc => sc.SupplierId == supplierId);
                 return supplierContact;
             }

@@ -197,10 +197,9 @@
             // 
             // txtSupplier
             // 
-            txtSupplier.Location = new Point(346, 29);
+            txtSupplier.Location = new Point(140, 29);
             txtSupplier.Name = "txtSupplier";
-            txtSupplier.ReadOnly = true;
-            txtSupplier.Size = new Size(100, 29);
+            txtSupplier.Size = new Size(449, 29);
             txtSupplier.TabIndex = 15;
             // 
             // label14
@@ -254,12 +253,12 @@
             // label10
             // 
             label10.AutoSize = true;
-            label10.Location = new Point(211, 32);
+            label10.Location = new Point(-1, 32);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(90, 21);
+            label10.Size = new Size(117, 21);
             label10.TabIndex = 9;
-            label10.Text = "Supplier ID:";
+            label10.Text = "Supplier Name:";
             // 
             // label9
             // 
