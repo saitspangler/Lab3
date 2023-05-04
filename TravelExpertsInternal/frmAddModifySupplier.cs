@@ -18,6 +18,9 @@ namespace TravelExpertsInternal
     * Created on May 1, 2023
     * Author: Peter Thiel
     */
+    /*
+     * Validation added by Peter Spangler
+     */
     public partial class frmAddModifySupplier : Form
     {
         // form level variables

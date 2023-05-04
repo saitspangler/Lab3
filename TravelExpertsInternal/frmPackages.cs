@@ -6,6 +6,12 @@ using TravelExpertsDatas;
 
 namespace TravelExpertsInternal
 {
+
+    /*
+    * The purpose of this application is to let the user maintain Travel Packages.
+    * Created on May 1, 2023
+    * Author: Peter Spangler
+    */
     /*
     * Addition: changed Add/Modify Package workflow
     * Added on May 3, 2023
