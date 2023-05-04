@@ -26,7 +26,7 @@ namespace TravelExpertsInternal
         public bool isAdd;
 
         // private constants
-        private readonly DateTime MINSTART_DATE = DateTime.Today.AddHours(23).AddMinutes(59);
+        private readonly DateTime MINSTART_DATE = DateTime.Today;
         private readonly DateTime MAX_DATE = new DateTime(2050, 1, 1);
         private decimal MIN_COMMISSION = 200;
         private decimal MAX_BASE_PRICE = 100000;
@@ -121,12 +121,12 @@ namespace TravelExpertsInternal
         private void btnSavePackage_Click(object sender, EventArgs e)
         {
             decimal MaxCommission = MIN_COMMISSION;
-            if (Validator.IsPresent(txtPackagePrice))
+            if (txtPackagePrice.Text == null)
             {
-                MaxCommission = Convert.ToDecimal(txtPackagePrice.Text); 
+                MaxCommission = 0; 
             }
            
-            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(MIN_TRIP_LENGTH)) < 0 ? MINSTART_DATE : MINSTART_DATE.AddDays(MIN_TRIP_LENGTH);
+            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(MIN_TRIP_LENGTH)) > 0 ? MINSTART_DATE : MINSTART_DATE.AddDays(MIN_TRIP_LENGTH);
             
             // Create a new instance of the TravelExpertsContext class
             using (var db = new TravelExpertsContext())
@@ -137,7 +137,7 @@ namespace TravelExpertsInternal
                     Validator.IsPresent(txtPackageDescription) && 
                     Validator.IsDateInRange(dtpStartDate, MINSTART_DATE, MAX_DATE) && Validator.IsDateInRange(dtpEndDate, MinEndDate, MAX_DATE) &&
                     Validator.IsDecimalInRange(txtPackagePrice, MIN_COMMISSION, MAX_BASE_PRICE) &&
-                    Validator.IsDecimalInRange(txtPackageAgencyCommission, MIN_COMMISSION, MaxCommission) && Validator.CompareDecimal(txtPackagePrice, txtPackageAgencyCommission)
+                    Validator.IsDecimalInRange(txtPackageAgencyCommission, MIN_COMMISSION, MaxCommission)
                     )                    
                 {
                     // Check if the package object is null
