@@ -15,7 +15,7 @@ namespace TravelExpertsInternal
     /*
     * 
     * 
-    * Addition: added field validation for add/update workflows
+    * Addition: added field validation for add/update workflows removed hard coding
     * Added on May 3, 2023
     * By: Peter Thiel
     */
