@@ -58,7 +58,7 @@ namespace TravelExpertsInternal
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-          
+
             // for add and modify
             if (Validator.IsPresent(txtProdName))
             {
@@ -70,7 +70,7 @@ namespace TravelExpertsInternal
                 // put data in
                 currentProduct.ProdName = txtProdName.Text;
 
-                DialogResult = DialogResult.OK; 
+                DialogResult = DialogResult.OK;
 
             }
         }

@@ -38,22 +38,22 @@
             // lblAddUpdateProduct
             // 
             lblAddUpdateProduct.AutoSize = true;
-            lblAddUpdateProduct.Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Point);
+            lblAddUpdateProduct.Font = new Font("Cascadia Mono", 15F, FontStyle.Regular, GraphicsUnit.Point);
             lblAddUpdateProduct.Location = new Point(180, 20);
             lblAddUpdateProduct.Margin = new Padding(4, 0, 4, 0);
             lblAddUpdateProduct.Name = "lblAddUpdateProduct";
-            lblAddUpdateProduct.Size = new Size(92, 28);
+            lblAddUpdateProduct.Size = new Size(120, 27);
             lblAddUpdateProduct.TabIndex = 0;
             lblAddUpdateProduct.Text = "Text Here";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(52, 75);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(113, 21);
+            label1.Size = new Size(127, 21);
             label1.TabIndex = 1;
             label1.Text = "Product Name:";
             // 
@@ -61,7 +61,7 @@
             // 
             txtProdName.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
             txtProdName.Location = new Point(245, 75);
-            txtProdName.Margin = new Padding(4, 4, 4, 4);
+            txtProdName.Margin = new Padding(4);
             txtProdName.Name = "txtProdName";
             txtProdName.Size = new Size(172, 29);
             txtProdName.TabIndex = 2;
@@ -70,7 +70,7 @@
             // btnSave
             // 
             btnSave.Location = new Point(103, 199);
-            btnSave.Margin = new Padding(4, 4, 4, 4);
+            btnSave.Margin = new Padding(4);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(94, 35);
             btnSave.TabIndex = 3;
@@ -81,7 +81,7 @@
             // btnCancel
             // 
             btnCancel.Location = new Point(274, 199);
-            btnCancel.Margin = new Padding(4, 4, 4, 4);
+            btnCancel.Margin = new Padding(4);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(101, 35);
             btnCancel.TabIndex = 4;
@@ -100,8 +100,8 @@
             Controls.Add(txtProdName);
             Controls.Add(label1);
             Controls.Add(lblAddUpdateProduct);
-            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(4, 4, 4, 4);
+            Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Margin = new Padding(4);
             Name = "frmAddUpdateProduct";
             Text = "frmAddUpdateProduct";
             Load += frmAddUpdateProduct_Load;

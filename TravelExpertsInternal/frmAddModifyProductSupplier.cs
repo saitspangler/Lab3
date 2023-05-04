@@ -130,7 +130,7 @@ namespace TravelExpertsInternal
         private void btnAccept_Click(object sender, EventArgs e)
         {
             bool valid = true;
-           
+
             // for both Add and Modify
 
             if (valid)

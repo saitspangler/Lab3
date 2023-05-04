@@ -49,6 +49,7 @@ namespace TravelExpertsInternal
         {
             //intialize controls on the form with default values
             this.Text = "Add Supplier";
+            groupBox1.Text = this.Text;
             txtSupplier.Text = " ";
             txtFName.Text = " ";
             txtLName.Text = " ";
@@ -70,6 +71,7 @@ namespace TravelExpertsInternal
         {
             //load the data from the current supplier object
             this.Text = "Modify Supplier";
+            groupBox1.Text = this.Text;
             if (currentSupplier?.Supplier != null)
                 txtSupplier.Text = currentSupplier.Supplier.SupName;
             txtFName.Text = currentSupplier.SupConFirstName;

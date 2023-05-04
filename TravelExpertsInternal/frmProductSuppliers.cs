@@ -39,7 +39,7 @@ namespace TravelExpertsInternal
         {
             DisplayProductsSupplier();
         }
-       
+
         //Display ProductsSuppliers in dgv
         // Author: Allen F. Horton
         private void DisplayProductsSupplier()
