@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            label13 = new Label();
             txtEmail = new TextBox();
             label6 = new Label();
             txtURL = new TextBox();
@@ -56,7 +57,6 @@
             label1 = new Label();
             btnAccept = new Button();
             btnCancel = new Button();
-            label13 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -96,6 +96,15 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Add new Supplier Contact";
+            // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(0, 109);
+            label13.Name = "label13";
+            label13.Size = new Size(126, 21);
+            label13.TabIndex = 30;
+            label13.Text = "Company Name:";
             // 
             // txtEmail
             // 
@@ -209,7 +218,7 @@
             txtSupplier.Name = "txtSupplier";
             txtSupplier.Size = new Size(449, 29);
             txtSupplier.TabIndex = 15;
-            txtSupplier.Tag = "Supplier ID";
+            txtSupplier.Tag = "Supplier Name";
             // 
             // label14
             // 
@@ -340,15 +349,6 @@
             btnCancel.Text = "&Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
-            // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(0, 109);
-            label13.Name = "label13";
-            label13.Size = new Size(126, 21);
-            label13.TabIndex = 30;
-            label13.Text = "Company Name:";
             // 
             // frmAddModifySupplier
             // 

@@ -6,11 +6,11 @@ using TravelExpertsDatas;
 
 namespace TravelExpertsInternal
 {
-    /*
-    * Addition: changed Add/Modify Package workflow
-    * Added on May 3, 2023
-    * By: Peter Thiel
-    */
+/*
+* Addition: changed Add/Modify Package workflow
+* Added on May 3, 2023
+* By: Peter Thiel
+*/
     public partial class frmSupplier : Form
     {
         // private variables / constants
@@ -59,86 +59,13 @@ namespace TravelExpertsInternal
             if (e.ColumnIndex == dgvSuppliers.Columns["Modify"].Index)
             {
                 // Get the selected package
-                //var supplier = (Supplier)dgvSuppliers.Rows[e.RowIndex].DataBoundItem;
-                //var supContactId = SupplierManager.GetSupplierContactBySupplierId(supplier.SupplierId);
-                //var form = new frmAddModifySupplier(supContactId);
-                //form.FormClosed += Form_FormClosed;
-                //form.Show();
-                if (dgvSuppliers.Rows[e.RowIndex].Cells[0].Value != null)
-                {
-                    int suppliersId;
-
-                    suppliersId = Convert.ToInt32(dgvSuppliers.Rows[e.RowIndex].Cells[0].Value);
-                    try
-                    {
-                        currentSupplier = SupplierManager.GetSupplierContactBySupplierId(suppliersId);
-                        if (currentSupplier != null)
-                        {
-                            UpdateSupplier();
-                        }
-                    }
-                    catch (DbUpdateException ex) // errors coming from SaveChanges
-                    {
-                        string errorMessage = "Error(s) while adding supplier:\n";
-                        var sqlException = (SqlException)ex.InnerException;
-                        foreach (SqlError error in sqlException.Errors)
-                        {
-                            errorMessage += "ERROR CODE:  " + error.Number +
-                                            " " + error.Message + "\n";
-                        }
-                        MessageBox.Show(errorMessage);
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Database connection lost while adding a supplier. Try again later");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error while adding a supplier:" + ex.Message, ex.GetType().ToString());
-                    }
-                }
-            }
-        
-        }
-
-        private void UpdateSupplier()
-        {
-            frmAddModifySupplier newForm = new frmAddModifySupplier();
-            newForm.isAdd = false; // is update
-            newForm.currentSupplier = currentSupplier;
-            DialogResult = newForm.ShowDialog();
-            if (DialogResult == DialogResult.OK) // proceed with update
-            {
-                currentSupplier = newForm.currentSupplier; // new data values
-                try
-                {
-                    // Save changes to the database
-                    SupplierManager.AddSupplierContact(currentSupplier);
-                    DisplaySuppliers(); // refresh the grid
-                }
-                catch (DbUpdateException ex) // errors coming from SaveChanges
-                {
-                    string errorMessage = "Error(s) while updating supplier:\n";
-                    var sqlException = (SqlException)ex.InnerException;
-                    foreach (SqlError error in sqlException.Errors)
-                    {
-                        errorMessage += "ERROR CODE:  " + error.Number +
-                                        " " + error.Message + "\n";
-                    }
-                    MessageBox.Show(errorMessage);
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Database connection lost while updating a supplier. Try again later");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error while updating a supplier:" + ex.Message, ex.GetType().ToString());
-                }
-                
+                var supplier = (Supplier)dgvSuppliers.Rows[e.RowIndex].DataBoundItem;
+                var supContactId = SupplierManager.GetSupplierContactBySupplierId(supplier.SupplierId);
+                var form = new frmAddModifySupplier(supContactId);
+                form.FormClosed += Form_FormClosed;
+                form.Show();
             }
         }
-
         private void btnExitSupplierPage_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -147,43 +74,8 @@ namespace TravelExpertsInternal
         private void btnAddSupplier_Click(object sender, EventArgs e)
         {
             frmAddModifySupplier newForm = new frmAddModifySupplier();
-            newForm.isAdd = true;
-            newForm.currentSupplier = null;
-            DialogResult = newForm.ShowDialog();
-            if (DialogResult == DialogResult.OK) // proceed with add
-            {
-                currentSupplier = newForm.currentSupplier;
-                if (currentSupplier != null)
-                {
-                    try
-                    {
-                        // Save changes to the database
-                        SupplierManager.AddSupplierContact(currentSupplier);
-                        DisplaySuppliers(); // refresh the grid
-                    }
-                    catch (DbUpdateException ex) // errors coming from SaveChanges
-                    {
-                        string errorMessage = "Error(s) while adding supplier:\n";
-                        var sqlException = (SqlException)ex.InnerException;
-                        foreach (SqlError error in sqlException.Errors)
-                        {
-                            errorMessage += "ERROR CODE:  " + error.Number +
-                                            " " + error.Message + "\n";
-                        }
-                        MessageBox.Show(errorMessage);
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Database connection lost while adding a supplier. Try again later");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error while adding a supplier:" + ex.Message, ex.GetType().ToString());
-                    }
-                }
-            }
-            //newForm.FormClosed += Form_FormClosed;
-            //newForm.Show();
+            newForm.FormClosed += Form_FormClosed;
+            newForm.Show();
         }
 
 
@@ -191,5 +83,7 @@ namespace TravelExpertsInternal
         {
             DisplaySuppliers();
         }
+
+
     }
 }

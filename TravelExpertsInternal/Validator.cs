@@ -23,11 +23,11 @@ namespace TravelExpertsInternal
         /// </summary>
         /// <param name="textBox">text box to check (Tag property is set)</param>
         /// <returns>true if valid and false if not</returns>
-        public static bool IsPresent(TextBox textBox) 
+        public static bool IsPresent(TextBox textBox)
         {
             bool isValid = true;
 
-            if (textBox.Text == "")  // bad
+            if (string.IsNullOrWhiteSpace(textBox.Text))  // bad
             {
                 MessageBox.Show(textBox.Tag + " is required");
                 isValid = false;
