@@ -13,16 +13,19 @@ using TravelExpertsDatas;
 namespace TravelExpertsInternal
 {
     /*
+    * 
+    *
     * The purpose of this application is to let the user maintain Travel Packages.
     * Created on May 1, 2023
     * Author: Peter Spangler
     */
 
     /*
-    * Addition: added field validation for add/update workflows
+    * Addition: added field validation for add/update workflows removed hard coding
     * Added on May 3, 2023
     * By: Peter Thiel
     */
+    
     public partial class frmAddUpdatePackages : Form
     {
         // public because start form needs to see it
@@ -30,8 +33,11 @@ namespace TravelExpertsInternal
         public bool isAdd;
 
         // private constants
-        private readonly DateTime MINSTART_DATE = DateTime.Today.AddHours(23).AddMinutes(59);
+        private readonly DateTime MINSTART_DATE = DateTime.Today;
         private readonly DateTime MAX_DATE = new DateTime(2050, 1, 1);
+        private decimal MIN_COMMISSION = 200;
+        private decimal MAX_BASE_PRICE = 100000;
+        private int MIN_TRIP_LENGTH = 2;
 
         private int selectedProductId;
 
@@ -121,19 +127,25 @@ namespace TravelExpertsInternal
 
         private void btnSavePackage_Click(object sender, EventArgs e)
         {
-            decimal MinCommission = Convert.ToDecimal(txtPackagePrice.Text);
-            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(2)) < 0 ? MINSTART_DATE : MINSTART_DATE.AddDays(2);
+            decimal MaxCommission = MIN_COMMISSION;
+            if (txtPackagePrice.Text == null)
+            {
+                MaxCommission = 0; 
+            }
+           
+            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(MIN_TRIP_LENGTH)) > 0 ? MINSTART_DATE : MINSTART_DATE.AddDays(MIN_TRIP_LENGTH);
+
             
             // Create a new instance of the TravelExpertsContext class
             using (var db = new TravelExpertsContext())
             {
                 // validation for add and update
                 // I took this out because it was breaking it: Validator.IsEmptyList(lbPackageProductList) &&
-                if (Validator.IsPresent(txtPackageName) && Validator.IsPresent(txtPackagePrice) &&
+                if (Validator.IsPresent(txtPackageName) && 
                     Validator.IsPresent(txtPackageDescription) && 
                     Validator.IsDateInRange(dtpStartDate, MINSTART_DATE, MAX_DATE) && Validator.IsDateInRange(dtpEndDate, MinEndDate, MAX_DATE) &&
-                    Validator.IsDecimalInRange(txtPackagePrice, 200, 100000) &&
-                    Validator.IsDecimalInRange(txtPackageAgencyCommission, 200, MinCommission) && Validator.CompareDecimal(txtPackageAgencyCommission, txtPackagePrice)
+                    Validator.IsDecimalInRange(txtPackagePrice, MIN_COMMISSION, MAX_BASE_PRICE) &&
+                    Validator.IsDecimalInRange(txtPackageAgencyCommission, MIN_COMMISSION, MaxCommission)
                     )                    
                 {
                     // Check if the package object is null
