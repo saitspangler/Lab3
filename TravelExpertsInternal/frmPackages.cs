@@ -1,12 +1,7 @@
-﻿using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.Metrics;
-using System.Threading.Channels;
-using TravelExpertsDatas;
+﻿using TravelExpertsDatas;
 
 namespace TravelExpertsInternal
 {
-
     /*
     * The purpose of this application is to let the user maintain Travel Packages.
     * Created on May 1, 2023
@@ -20,9 +15,6 @@ namespace TravelExpertsInternal
 
     public partial class frmPackages : Form
     {
-
-        private Package currentPackage;
-
         public frmPackages()
         {
             InitializeComponent();
@@ -74,125 +66,19 @@ namespace TravelExpertsInternal
             if (e.ColumnIndex == dgvPackages.Columns["Modify"].Index)
             {
                 // Get the selected package
-                //var package = (Package)dgvPackages.Rows[e.RowIndex].DataBoundItem;
+                var package = (Package)dgvPackages.Rows[e.RowIndex].DataBoundItem;
 
-                //var form = new frmAddUpdatePackages(package);
-                //form.FormClosed += Form_FormClosed;
-                //form.Show();
-
-                if (dgvPackages.Rows[e.RowIndex].Cells[0].Value != null)
-                {
-                    int packageId;
-                    
-                        packageId = Convert.ToInt32(dgvPackages.Rows[e.RowIndex].Cells[0].Value);
-                        try
-                        {
-                            currentPackage = PackagesManager.GetPackageById(packageId);
-                            if (currentPackage != null)
-                            {
-                                UpdatePackage();
-                            }
-                        }
-                        catch (DbUpdateException ex) // errors coming from SaveChanges
-                        {
-                            string errorMessage = "Error(s) while modifying package:\n";
-                            var sqlException = (SqlException)ex.InnerException;
-                            foreach (SqlError error in sqlException.Errors)
-                            {
-                                errorMessage += "ERROR CODE:  " + error.Number +
-                                                " " + error.Message + "\n";
-                            }
-                            MessageBox.Show(errorMessage);
-                        }
-                        catch (SqlException ex)
-                        {
-                            MessageBox.Show("Database connection lost while modifying a package. Try again later");
-                        }
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error while modifying a package:" + ex.Message, ex.GetType().ToString());
-                        }
-                }
-            }
-        }
-        // modify current pacakge
-        private void UpdatePackage()
-        {
-            frmAddUpdatePackages newForm = new frmAddUpdatePackages();
-            newForm.isAdd = false; // is modify
-            newForm.package = currentPackage;
-            DialogResult = newForm.ShowDialog();
-            if (DialogResult == DialogResult.OK) // proceed with modify
-            {
-                currentPackage = newForm.package; // new data values
-                try
-                {
-                    // save changes to the database
-                    PackagesManager.UpdatePackage(currentPackage.PackageId, currentPackage);
-                    DisplayPackages(); // refresh grid
-                }
-                catch (DbUpdateException ex) // errors coming from SaveChanges
-                {
-                    string errorMessage = "Error(s) while modifying package:\n";
-                    var sqlException = (SqlException)ex.InnerException;
-                    foreach (SqlError error in sqlException.Errors)
-                    {
-                        errorMessage += "ERROR CODE:  " + error.Number +
-                                        " " + error.Message + "\n";
-                    }
-                    MessageBox.Show(errorMessage);
-                }
-                catch (SqlException ex)
-                {
-                    MessageBox.Show("Database connection lost while modifying a package. Try again later");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error while modifying a package:" + ex.Message, ex.GetType().ToString());
-                }
+                var form = new frmAddUpdatePackages(package);
+                form.FormClosed += Form_FormClosed;
+                form.Show();
             }
         }
 
         private void btnAddPackage_Click(object sender, EventArgs e)
         {
             frmAddUpdatePackages newForm = new frmAddUpdatePackages();
-            newForm.isAdd = true;
-            newForm.package = null;
-            DialogResult = newForm.ShowDialog();
-            if (DialogResult == DialogResult.OK) // proceed with add
-            {
-                currentPackage = newForm.package;
-                if(currentPackage != null)
-                {
-                    try
-                    {
-                        // Save changes to the database
-                        PackagesManager.AddPackage(currentPackage);
-                        DisplayPackages(); // refresh the grid
-                    }
-                    catch (DbUpdateException ex) // errors coming from SaveChanges
-                    {
-                        string errorMessage = "Error(s) while adding package:\n";
-                        var sqlException = (SqlException)ex.InnerException;
-                        foreach (SqlError error in sqlException.Errors)
-                        {
-                            errorMessage += "ERROR CODE:  " + error.Number +
-                                            " " + error.Message + "\n";
-                        }
-                        MessageBox.Show(errorMessage);
-                    }
-                    catch (SqlException ex)
-                    {
-                        MessageBox.Show("Database connection lost while adding a package. Try again later");
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error while adding a package:" + ex.Message, ex.GetType().ToString());
-                    }
-                }
-            }
-            //newForm.FormClosed += Form_FormClosed;
-            //newForm.Show();
+            newForm.FormClosed += Form_FormClosed;
+            newForm.Show();
         }
 
         private void Form_FormClosed(object sender, FormClosedEventArgs e)

@@ -13,35 +13,37 @@ using TravelExpertsDatas;
 namespace TravelExpertsInternal
 {
     /*
+    * 
+    *
     * The purpose of this application is to let the user maintain Travel Packages.
     * Created on May 1, 2023
     * Author: Peter Spangler
     */
 
     /*
-    * Addition: added field validation for add/update workflows
+    * Addition: added field validation for add/update workflows removed hard coding
     * Added on May 3, 2023
     * By: Peter Thiel
     */
     public partial class frmAddUpdatePackages : Form
     {
-        // public because start form needs to see it
-        public Package package;
-        public bool isAdd;
+        private Package package;
 
         // private constants
-        private readonly DateTime MINSTART_DATE = DateTime.Today.AddHours(23).AddMinutes(59);
+        private readonly DateTime MINSTART_DATE = DateTime.Today;
         private readonly DateTime MAX_DATE = new DateTime(2050, 1, 1);
+        private decimal MIN_COMMISSION = 200;
+        private decimal MAX_BASE_PRICE = 100000;
+        private int MIN_TRIP_LENGTH = 2;
 
         private int selectedProductId;
 
         private string selectedProductName;
-        
 
-        public frmAddUpdatePackages()
+        public frmAddUpdatePackages(Package package = null)
         {
             InitializeComponent();
-            //this.package = package;
+            this.package = package;
             LoadSuppliers();
         }
         private void LoadSuppliers()
@@ -57,25 +59,11 @@ namespace TravelExpertsInternal
 
         private void frmAddUpdatePackages_Load(object sender, EventArgs e)
         {
-            //if (package != null && package.PackageId > 0)
-            //{
-            //    modifyPackage(package.PackageId);
-            //}
-            //else { addPackage(); }
-
-            if (isAdd == false) // it is Modify
+            if (package != null && package.PackageId > 0)
             {
-                this.Text = "Modify Package";
-                
-                    modifyPackage(package.PackageId); 
-                
-
+                modifyPackage(package.PackageId);
             }
-            else // it is Add
-            {
-                this.Text = "Add Package";
-                addPackage();
-            }
+            else { addPackage(); }
         }
 
         private void addPackage()
@@ -92,14 +80,14 @@ namespace TravelExpertsInternal
         private void modifyPackage(int id)
         {
 
-            //// create a new instance of the TravelExpertsContext class
-            //TravelExpertsContext db = new TravelExpertsContext();
-            //// Retrieve the Package object from the database and include its associated products
-            //package = db.Packages
-            //    .Include(p => p.PackagesProductsSuppliers)
-            //    .ThenInclude(pps => pps.ProductSupplier)
-            //    .ThenInclude(ps => ps.Product)
-            //    .FirstOrDefault(p => p.PackageId == id);
+            // create a new instance of the TravelExpertsContext class
+            TravelExpertsContext db = new TravelExpertsContext();
+            // Retrieve the Package object from the database and include its associated products
+            package = db.Packages
+                .Include(p => p.PackagesProductsSuppliers)
+                .ThenInclude(pps => pps.ProductSupplier)
+                .ThenInclude(ps => ps.Product)
+                .FirstOrDefault(p => p.PackageId == id);
 
             // Load the data from the Package object into the controls on the form
             txtPackageName.Text = package.PkgName;
@@ -121,20 +109,26 @@ namespace TravelExpertsInternal
 
         private void btnSavePackage_Click(object sender, EventArgs e)
         {
-            decimal MinCommission = Convert.ToDecimal(txtPackagePrice.Text);
-            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(2)) < 0 ? MINSTART_DATE : MINSTART_DATE.AddDays(2);
-            
+            decimal MaxCommission = MIN_COMMISSION;
+            if (txtPackagePrice.Text == null)
+            {
+                MaxCommission = 0;
+            }
+
+            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(MIN_TRIP_LENGTH)) > 0 
+                ? MINSTART_DATE : MINSTART_DATE.AddDays(MIN_TRIP_LENGTH);
+
             // Create a new instance of the TravelExpertsContext class
             using (var db = new TravelExpertsContext())
+
             {
-                // validation for add and update
-                // I took this out because it was breaking it: Validator.IsEmptyList(lbPackageProductList) &&
-                if (Validator.IsPresent(txtPackageName) && Validator.IsPresent(txtPackagePrice) &&
-                    Validator.IsPresent(txtPackageDescription) && 
-                    Validator.IsDateInRange(dtpStartDate, MINSTART_DATE, MAX_DATE) && Validator.IsDateInRange(dtpEndDate, MinEndDate, MAX_DATE) &&
-                    Validator.IsDecimalInRange(txtPackagePrice, 200, 100000) &&
-                    Validator.IsDecimalInRange(txtPackageAgencyCommission, 200, MinCommission) && Validator.CompareDecimal(txtPackageAgencyCommission, txtPackagePrice)
-                    )                    
+                if (Validator.IsPresent(txtPackageName) &&
+                    Validator.IsPresent(txtPackageDescription) &&
+                    Validator.IsDateInRange(dtpStartDate, MINSTART_DATE, MAX_DATE) && Validator.IsDateInRange
+                        (dtpEndDate, MinEndDate, MAX_DATE) &&
+                    Validator.IsDecimalInRange(txtPackagePrice, MIN_COMMISSION, MAX_BASE_PRICE) &&
+                    Validator.IsDecimalInRange(txtPackageAgencyCommission, MIN_COMMISSION, Convert.ToDecimal(txtPackagePrice.Text))
+                    )
                 {
                     // Check if the package object is null
                     if (package == null)
@@ -145,29 +139,36 @@ namespace TravelExpertsInternal
 
                     // Update the Package object with the data from the controls on the form
                     package.PkgName = txtPackageName.Text;
-                    if (txtPackageDescription.Text.Length > 50)
-                    {
-                        MessageBox.Show("The package description cannot exceed 50 characters. Your input has been truncated.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        txtPackageDescription.Text = txtPackageDescription.Text.Substring(0, 50);
-                    }
-                    package.PkgDesc = txtPackageDescription.Text; package.PkgStartDate = dtpStartDate.Value;
+                    package.PkgDesc = txtPackageDescription.Text; 
+                    package.PkgStartDate = dtpStartDate.Value;
                     package.PkgEndDate = dtpEndDate.Value;
                     package.PkgBasePrice = decimal.Parse(txtPackagePrice.Text);
                     package.PkgAgencyCommission = decimal.Parse(txtPackageAgencyCommission.Text);
 
-                    //// Check if the Package object has a valid PackageId
-                    //if (package.PackageId > 0)
-                    //{
-                    //    // Update the existing Package object in the database
-                    //    db.Entry(package).State = EntityState.Modified;
-                    //}
-                    //else
-                    //{
-                    //    // Add the new Package object to the database
-                    //    db.Packages.Add(package);
-                    //}
+                    // Check if the Package object has a valid PackageId
+                    if (package.PackageId > 0)
+                    {
+                        // Update the existing Package object in the database
+                        db.Entry(package).State = EntityState.Modified;
+                    }
+                    else
+                    {
+                        // Add the new Package object to the database
+                        db.Packages.Add(package);
+                    }
 
-                    
+                    try
+                    {
+                        // Save changes to the database
+                        db.SaveChanges();
+                        DialogResult = DialogResult.OK;
+                        this.Close();
+                    }
+                    catch (DbUpdateException ex)
+                    {
+                        // Display the message from the inner exception
+                        MessageBox.Show(ex.InnerException.Message);
+                    }
                     // Get the selected products from the ListBox
                     var selectedProducts = lbPackageProductList.Items.Cast<string>().ToList();
 
@@ -200,17 +201,15 @@ namespace TravelExpertsInternal
                                     ProductSupplierId = productSupplierId
                                 };
                                 db.PackagesProductsSuppliers.Add(newAssociation);
-                                
                             }
                         }
-                        
                     }
-                    DialogResult = DialogResult.OK;
-                    //// Save changes to the database
-                    //db.SaveChanges();
 
+                    // Save changes to the database
+                    db.SaveChanges();
+                    DialogResult = DialogResult.OK;
+                    this.Close();
                 }
-               
             }
             //this.Close();
         }
