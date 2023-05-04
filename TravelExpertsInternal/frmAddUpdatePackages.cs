@@ -28,6 +28,9 @@ namespace TravelExpertsInternal
         // private constants
         private readonly DateTime MINSTART_DATE = DateTime.Today.AddHours(23).AddMinutes(59);
         private readonly DateTime MAX_DATE = new DateTime(2050, 1, 1);
+        private decimal MIN_COMMISSION = 200;
+        private decimal MAX_BASE_PRICE = 100000;
+        private int MIN_TRIP_LENGTH = 2;
 
         private int selectedProductId;
 
@@ -117,19 +120,24 @@ namespace TravelExpertsInternal
 
         private void btnSavePackage_Click(object sender, EventArgs e)
         {
-            decimal MaxCommission = Convert.ToDecimal(txtPackagePrice.Text);
-            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(2)) < 0 ? MINSTART_DATE : MINSTART_DATE.AddDays(2);
+            decimal MaxCommission = MIN_COMMISSION;
+            if (Validator.IsPresent(txtPackagePrice))
+            {
+                MaxCommission = Convert.ToDecimal(txtPackagePrice.Text); 
+            }
+           
+            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(MIN_TRIP_LENGTH)) < 0 ? MINSTART_DATE : MINSTART_DATE.AddDays(MIN_TRIP_LENGTH);
             
             // Create a new instance of the TravelExpertsContext class
             using (var db = new TravelExpertsContext())
             {
                 // validation for add and update
                 // I took this out because it was breaking it: Validator.IsEmptyList(lbPackageProductList) &&
-                if (Validator.IsPresent(txtPackageName) && Validator.IsPresent(txtPackagePrice) &&
+                if (Validator.IsPresent(txtPackageName) && 
                     Validator.IsPresent(txtPackageDescription) && 
                     Validator.IsDateInRange(dtpStartDate, MINSTART_DATE, MAX_DATE) && Validator.IsDateInRange(dtpEndDate, MinEndDate, MAX_DATE) &&
-                    Validator.IsDecimalInRange(txtPackagePrice, 200, 100000) &&
-                    Validator.IsDecimalInRange(txtPackageAgencyCommission, 200, MaxCommission) && Validator.CompareDecimal(txtPackagePrice, txtPackageAgencyCommission)
+                    Validator.IsDecimalInRange(txtPackagePrice, MIN_COMMISSION, MAX_BASE_PRICE) &&
+                    Validator.IsDecimalInRange(txtPackageAgencyCommission, MIN_COMMISSION, MaxCommission) && Validator.CompareDecimal(txtPackagePrice, txtPackageAgencyCommission)
                     )                    
                 {
                     // Check if the package object is null
