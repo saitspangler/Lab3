@@ -18,11 +18,15 @@ namespace TravelExpertsInternal
     * Created on May 1, 2023
     * Author: Peter Thiel
     */
+    /*
+     * Validation added by Peter Spangler
+     */
     public partial class frmAddModifySupplier : Form
     {
         // form level variables
         // public data for main form to set
         private SupplierContact currentSupplier; // selected supplier when Modify or null when Add
+        private Supplier supplier;
 
 
         public frmAddModifySupplier(SupplierContact currentSupplier = null)
@@ -45,6 +49,7 @@ namespace TravelExpertsInternal
         {
             //intialize controls on the form with default values
             this.Text = "Add Supplier";
+            groupBox1.Text = this.Text;
             txtSupplier.Text = " ";
             txtFName.Text = " ";
             txtLName.Text = " ";
@@ -66,6 +71,7 @@ namespace TravelExpertsInternal
         {
             //load the data from the current supplier object
             this.Text = "Modify Supplier";
+            groupBox1.Text = this.Text;
             if (currentSupplier?.Supplier != null)
                 txtSupplier.Text = currentSupplier.Supplier.SupName;
             txtFName.Text = currentSupplier.SupConFirstName;
@@ -86,103 +92,115 @@ namespace TravelExpertsInternal
         {
             using (TravelExpertsContext db = new TravelExpertsContext())
             {
-                if (currentSupplier == null)
                 {
-                    // Generate a new unique SupplierId value
-                    int newSupplierId = db.Suppliers.Max(s => s.SupplierId) + 1;
-                    // Create a new Supplier object
-                    var supplier = new Supplier
+                    // Validate input fields
+                    if (Validator.IsPresent(txtSupplier) && Validator.IsPresent(txtFName) && Validator.IsPresent(txtLName) &&
+                        Validator.IsPresent(txtCompany) && Validator.IsPresent(txtAddress) && Validator.IsPresent(txtCity) &&
+                        Validator.IsPresent(txtProvince) && Validator.IsPresent(txtPostalCode))
                     {
-                        SupplierId = newSupplierId,
-                        SupName = txtSupplier.Text
-                    };
+                        if (currentSupplier == null)
+                        {
 
+                            // Generate a new unique SupplierId value
+                            int newSupplierId = db.Suppliers.Max(s => s.SupplierId) + 1;
+                            // Create a new Supplier object
+                            var supplier = new Supplier
+                            {
+                                SupplierId = newSupplierId,
+                                SupName = txtSupplier.Text
+                            };
 
-                    // Add the new Supplier object to the database
-                    db.Suppliers.Add(supplier);
+                            // Add the new Supplier object to the database
+                            db.Suppliers.Add(supplier);
 
-                    try
-                    {
-                        // Save changes to the database
-                        db.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle any errors that may occur
-                        MessageBox.Show(ex.InnerException?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                            try
+                            {
+                                // Save changes to the database
+                                db.SaveChanges();
+                                DialogResult = DialogResult.OK;
+                                this.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                // Handle any errors that may occur
+                                MessageBox.Show(ex.InnerException?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
 
-                    // Generate a new unique SupplierContactId value
-                    int newSupplierContactId = db.SupplierContacts.Max(sc => sc.SupplierContactId) + 1;
-                    // Create a new SupplierContact object
-                    var supplierContact = new SupplierContact
-                    {
-                        SupplierContactId = newSupplierContactId,
-                        SupConFirstName = txtFName.Text,
-                        SupConLastName = txtLName.Text,
-                        SupConCompany = txtCompany.Text,
-                        SupConAddress = txtAddress.Text,
-                        SupConCity = txtCity.Text,
-                        SupConProv = txtProvince.Text,
-                        SupConPostal = txtPostalCode.Text,
-                        SupConCountry = txtCountry.Text,
-                        SupConBusPhone = txtPhone.Text,
-                        SupConFax = txtFax.Text,
-                        SupConEmail = txtEmail.Text,
-                        SupConUrl = txtURL.Text,
-                        SupplierId = supplier.SupplierId
-                    };
+                            // Generate a new unique SupplierContactId value
+                            int newSupplierContactId = db.SupplierContacts.Max(sc => sc.SupplierContactId) + 1;
+                            // Create a new SupplierContact object
+                            var supplierContact = new SupplierContact
+                            {
+                                SupplierContactId = newSupplierContactId,
+                                SupConFirstName = txtFName.Text,
+                                SupConLastName = txtLName.Text,
+                                SupConCompany = txtCompany.Text,
+                                SupConAddress = txtAddress.Text,
+                                SupConCity = txtCity.Text,
+                                SupConProv = txtProvince.Text,
+                                SupConPostal = txtPostalCode.Text,
+                                SupConCountry = txtCountry.Text,
+                                SupConBusPhone = txtPhone.Text,
+                                SupConFax = txtFax.Text,
+                                SupConEmail = txtEmail.Text,
+                                SupConUrl = txtURL.Text,
+                                SupplierId = supplier.SupplierId
+                            };
 
-                    // Add the new SupplierContact objects to the database
-                    db.SupplierContacts.Add(supplierContact);
+                            // Add the new SupplierContact objects to the database
+                            db.SupplierContacts.Add(supplierContact);
 
-                    try
-                    {
-                        // Save changes to the database
-                        db.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle any errors that may occur
-                        MessageBox.Show(ex.InnerException?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            try
+                            {
+                                // Save changes to the database
+                                db.SaveChanges();
+                            }
+                            catch (Exception ex)
+                            {
+                                // Handle any errors that may occur
+                                MessageBox.Show(ex.InnerException?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                            DialogResult = DialogResult.OK;
+                            this.Close();
+
+                        }
+                        else
+                        {
+                            // Retrieve existing supplier and suppliercontact records from the database
+                            var supplier = db.Suppliers.Find(currentSupplier.SupplierId);
+                            var supplierContact = db.SupplierContacts.Find(currentSupplier.SupplierContactId);
+
+                            // Update properties of existing records
+                            supplier.SupName = txtSupplier.Text;
+                            supplierContact.SupConFirstName = txtFName.Text;
+                            supplierContact.SupConLastName = txtLName.Text;
+                            supplierContact.SupConCompany = txtCompany.Text;
+                            supplierContact.SupConAddress = txtAddress.Text;
+                            supplierContact.SupConCity = txtCity.Text;
+                            supplierContact.SupConProv = txtProvince.Text;
+                            supplierContact.SupConPostal = txtPostalCode.Text;
+                            supplierContact.SupConCountry = txtCountry.Text;
+                            supplierContact.SupConBusPhone = txtPhone.Text;
+                            supplierContact.SupConFax = txtFax.Text;
+                            supplierContact.SupConEmail = txtEmail.Text;
+                            supplierContact.SupConUrl = txtURL.Text;
+
+                            // Try to save changes to the database
+                            try
+                            {
+                                // Save changes to the database
+                                db.SaveChanges();
+                                DialogResult = DialogResult.OK;
+                                this.Close();
+                            }
+                            catch (Exception ex)
+                            {
+                                // Handle any errors that may occur
+                                MessageBox.Show(ex.InnerException?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
                 }
-                else
-                {
-                    // Retrieve existing supplier and suppliercontact records from the database
-                    var supplier = db.Suppliers.Find(currentSupplier.SupplierId);
-                    var supplierContact = db.SupplierContacts.Find(currentSupplier.SupplierContactId);
-
-                    // Update properties of existing records
-                    supplier.SupName = txtSupplier.Text;
-                    supplierContact.SupConFirstName = txtFName.Text;
-                    supplierContact.SupConLastName = txtLName.Text;
-                    supplierContact.SupConCompany = txtCompany.Text;
-                    supplierContact.SupConAddress = txtAddress.Text;
-                    supplierContact.SupConCity = txtCity.Text;
-                    supplierContact.SupConProv = txtProvince.Text;
-                    supplierContact.SupConPostal = txtPostalCode.Text;
-                    supplierContact.SupConCountry = txtCountry.Text;
-                    supplierContact.SupConBusPhone = txtPhone.Text;
-                    supplierContact.SupConFax = txtFax.Text;
-                    supplierContact.SupConEmail = txtEmail.Text;
-                    supplierContact.SupConUrl = txtURL.Text;
-
-                    // Try to save changes to the database
-                    try
-                    {
-                        // Save changes to the database
-                        db.SaveChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        // Handle any errors that may occur
-                        MessageBox.Show(ex.InnerException?.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-
-                }
-                DialogResult = DialogResult.OK;
-                this.Close();
             }
         }
 

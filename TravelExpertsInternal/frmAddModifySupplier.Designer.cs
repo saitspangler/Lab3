@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
+            label13 = new Label();
             txtEmail = new TextBox();
             label6 = new Label();
             txtURL = new TextBox();
@@ -56,7 +57,6 @@
             label1 = new Label();
             btnAccept = new Button();
             btnCancel = new Button();
-            label13 = new Label();
             groupBox1.SuspendLayout();
             SuspendLayout();
             // 
@@ -97,11 +97,20 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Add new Supplier Contact";
             // 
+            // label13
+            // 
+            label13.AutoSize = true;
+            label13.Location = new Point(0, 109);
+            label13.Name = "label13";
+            label13.Size = new Size(127, 21);
+            label13.TabIndex = 30;
+            label13.Text = "Company Name:";
+            // 
             // txtEmail
             // 
             txtEmail.Location = new Point(140, 266);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(163, 29);
+            txtEmail.Size = new Size(163, 26);
             txtEmail.TabIndex = 29;
             txtEmail.Tag = "Email";
             // 
@@ -111,7 +120,7 @@
             label6.Location = new Point(65, 269);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
-            label6.Size = new Size(51, 21);
+            label6.Size = new Size(64, 21);
             label6.TabIndex = 28;
             label6.Text = "Email:";
             // 
@@ -119,7 +128,7 @@
             // 
             txtURL.Location = new Point(426, 306);
             txtURL.Name = "txtURL";
-            txtURL.Size = new Size(163, 29);
+            txtURL.Size = new Size(163, 26);
             txtURL.TabIndex = 27;
             txtURL.Tag = "URL";
             // 
@@ -127,7 +136,7 @@
             // 
             txtFax.Location = new Point(426, 266);
             txtFax.Name = "txtFax";
-            txtFax.Size = new Size(163, 29);
+            txtFax.Size = new Size(163, 26);
             txtFax.TabIndex = 26;
             txtFax.Tag = "Fax";
             // 
@@ -135,7 +144,7 @@
             // 
             txtCountry.Location = new Point(426, 225);
             txtCountry.Name = "txtCountry";
-            txtCountry.Size = new Size(163, 29);
+            txtCountry.Size = new Size(163, 26);
             txtCountry.TabIndex = 25;
             txtCountry.Tag = "Country";
             // 
@@ -143,7 +152,7 @@
             // 
             txtProvince.Location = new Point(426, 185);
             txtProvince.Name = "txtProvince";
-            txtProvince.Size = new Size(163, 29);
+            txtProvince.Size = new Size(163, 26);
             txtProvince.TabIndex = 24;
             txtProvince.Tag = "Province";
             // 
@@ -151,7 +160,7 @@
             // 
             txtCity.Location = new Point(426, 145);
             txtCity.Name = "txtCity";
-            txtCity.Size = new Size(163, 29);
+            txtCity.Size = new Size(163, 26);
             txtCity.TabIndex = 23;
             txtCity.Tag = "City";
             // 
@@ -159,7 +168,7 @@
             // 
             txtPhone.Location = new Point(140, 229);
             txtPhone.Name = "txtPhone";
-            txtPhone.Size = new Size(163, 29);
+            txtPhone.Size = new Size(163, 26);
             txtPhone.TabIndex = 22;
             txtPhone.Tag = "Phone";
             // 
@@ -167,7 +176,7 @@
             // 
             txtPostalCode.Location = new Point(140, 188);
             txtPostalCode.Name = "txtPostalCode";
-            txtPostalCode.Size = new Size(163, 29);
+            txtPostalCode.Size = new Size(163, 26);
             txtPostalCode.TabIndex = 21;
             txtPostalCode.Tag = "Postal Code";
             // 
@@ -175,7 +184,7 @@
             // 
             txtAddress.Location = new Point(140, 145);
             txtAddress.Name = "txtAddress";
-            txtAddress.Size = new Size(163, 29);
+            txtAddress.Size = new Size(163, 26);
             txtAddress.TabIndex = 19;
             txtAddress.Tag = "Address";
             // 
@@ -183,7 +192,7 @@
             // 
             txtLName.Location = new Point(426, 71);
             txtLName.Name = "txtLName";
-            txtLName.Size = new Size(163, 29);
+            txtLName.Size = new Size(163, 26);
             txtLName.TabIndex = 18;
             txtLName.Tag = "Last Name";
             // 
@@ -191,7 +200,7 @@
             // 
             txtCompany.Location = new Point(140, 106);
             txtCompany.Name = "txtCompany";
-            txtCompany.Size = new Size(163, 29);
+            txtCompany.Size = new Size(163, 26);
             txtCompany.TabIndex = 17;
             txtCompany.Tag = "Company";
             // 
@@ -199,7 +208,7 @@
             // 
             txtFName.Location = new Point(140, 71);
             txtFName.Name = "txtFName";
-            txtFName.Size = new Size(163, 29);
+            txtFName.Size = new Size(163, 26);
             txtFName.TabIndex = 16;
             txtFName.Tag = "First Name";
             // 
@@ -207,9 +216,9 @@
             // 
             txtSupplier.Location = new Point(140, 29);
             txtSupplier.Name = "txtSupplier";
-            txtSupplier.Size = new Size(449, 29);
+            txtSupplier.Size = new Size(449, 26);
             txtSupplier.TabIndex = 15;
-            txtSupplier.Tag = "Supplier ID";
+            txtSupplier.Tag = "Supplier Name";
             // 
             // label14
             // 
@@ -217,7 +226,7 @@
             label14.Location = new Point(351, 309);
             label14.Margin = new Padding(4, 0, 4, 0);
             label14.Name = "label14";
-            label14.Size = new Size(68, 21);
+            label14.Size = new Size(82, 21);
             label14.TabIndex = 14;
             label14.Text = "Website:";
             // 
@@ -227,7 +236,7 @@
             label12.Location = new Point(384, 269);
             label12.Margin = new Padding(4, 0, 4, 0);
             label12.Name = "label12";
-            label12.Size = new Size(35, 21);
+            label12.Size = new Size(46, 21);
             label12.TabIndex = 11;
             label12.Text = "Fax:";
             // 
@@ -237,7 +246,7 @@
             label11.Location = new Point(59, 232);
             label11.Margin = new Padding(4, 0, 4, 0);
             label11.Name = "label11";
-            label11.Size = new Size(57, 21);
+            label11.Size = new Size(64, 21);
             label11.TabIndex = 10;
             label11.Text = "Phone:";
             // 
@@ -247,7 +256,7 @@
             label10.Location = new Point(-1, 32);
             label10.Margin = new Padding(4, 0, 4, 0);
             label10.Name = "label10";
-            label10.Size = new Size(117, 21);
+            label10.Size = new Size(136, 21);
             label10.TabIndex = 9;
             label10.Text = "Supplier Name:";
             // 
@@ -257,7 +266,7 @@
             label9.Location = new Point(350, 228);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
-            label9.Size = new Size(69, 21);
+            label9.Size = new Size(82, 21);
             label9.TabIndex = 8;
             label9.Text = "Country:";
             // 
@@ -267,7 +276,7 @@
             label8.Location = new Point(22, 191);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
-            label8.Size = new Size(94, 21);
+            label8.Size = new Size(118, 21);
             label8.TabIndex = 7;
             label8.Text = "Postal Code:";
             // 
@@ -277,7 +286,7 @@
             label7.Location = new Point(346, 188);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
-            label7.Size = new Size(73, 21);
+            label7.Size = new Size(91, 21);
             label7.TabIndex = 6;
             label7.Text = "Province:";
             // 
@@ -287,7 +296,7 @@
             label5.Location = new Point(379, 148);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(40, 21);
+            label5.Size = new Size(55, 21);
             label5.TabIndex = 4;
             label5.Text = "City:";
             // 
@@ -297,7 +306,7 @@
             label4.Location = new Point(47, 148);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(69, 21);
+            label4.Size = new Size(82, 21);
             label4.TabIndex = 3;
             label4.Text = "Address:";
             // 
@@ -307,7 +316,7 @@
             label2.Location = new Point(332, 74);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(87, 21);
+            label2.Size = new Size(100, 21);
             label2.TabIndex = 1;
             label2.Text = "Last Name:";
             // 
@@ -317,7 +326,7 @@
             label1.Location = new Point(27, 74);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
-            label1.Size = new Size(89, 21);
+            label1.Size = new Size(109, 21);
             label1.TabIndex = 0;
             label1.Text = "First Name:";
             // 
@@ -341,15 +350,6 @@
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
             // 
-            // label13
-            // 
-            label13.AutoSize = true;
-            label13.Location = new Point(0, 109);
-            label13.Name = "label13";
-            label13.Size = new Size(126, 21);
-            label13.TabIndex = 30;
-            label13.Text = "Company Name:";
-            // 
             // frmAddModifySupplier
             // 
             AcceptButton = btnAccept;
@@ -360,7 +360,7 @@
             Controls.Add(btnCancel);
             Controls.Add(btnAccept);
             Controls.Add(groupBox1);
-            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmAddModifySupplier";
             Text = "frmAddModifySupplier";

@@ -41,7 +41,7 @@
             label2.AutoSize = true;
             label2.Location = new Point(50, 56);
             label2.Name = "label2";
-            label2.Size = new Size(67, 21);
+            label2.Size = new Size(82, 21);
             label2.TabIndex = 1;
             label2.Text = "Product:";
             // 
@@ -50,7 +50,7 @@
             label3.AutoSize = true;
             label3.Location = new Point(46, 92);
             label3.Name = "label3";
-            label3.Size = new Size(71, 21);
+            label3.Size = new Size(91, 21);
             label3.TabIndex = 2;
             label3.Text = "Supplier:";
             // 
@@ -102,7 +102,7 @@
             Controls.Add(cboProductID);
             Controls.Add(label3);
             Controls.Add(label2);
-            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmAddModifyProductSupplier";
             Text = "frmAddModifyProductSupplier";

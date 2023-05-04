@@ -130,7 +130,7 @@ namespace TravelExpertsInternal
         private void btnAccept_Click(object sender, EventArgs e)
         {
             bool valid = true;
-           
+
             // for both Add and Modify
 
             if (valid)
@@ -140,8 +140,10 @@ namespace TravelExpertsInternal
                     currentProductsSupplier = new ProductsSupplier();
                 }
                 // fill in data of product supplier object with new values
-                currentProductsSupplier.ProductId = Convert.ToInt32(cboProductID);
-                currentProductsSupplier.SupplierId = Convert.ToInt32(cboSupplierID);
+                currentProductsSupplier.ProductId = (int)cboProductID.SelectedValue;
+                currentProductsSupplier.SupplierId = (int)cboSupplierID.SelectedValue;
+
+
 
                 DialogResult = DialogResult.OK;
             }

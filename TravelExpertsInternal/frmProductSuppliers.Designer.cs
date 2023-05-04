@@ -75,7 +75,7 @@
             Controls.Add(btnCancel);
             Controls.Add(btnAdd);
             Controls.Add(dgvProductSuppliers);
-            Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmProductSuppliers";
             Text = "frmProductSuppliers";

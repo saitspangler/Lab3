@@ -37,18 +37,18 @@
             // dgvProducts
             // 
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Location = new Point(12, 12);
+            dgvProducts.Location = new Point(12, 13);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowTemplate.Height = 25;
-            dgvProducts.Size = new Size(776, 351);
+            dgvProducts.Size = new Size(776, 374);
             dgvProducts.TabIndex = 0;
             dgvProducts.CellClick += dgvProducts_CellClick;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(12, 389);
+            btnAdd.Location = new Point(12, 415);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(123, 38);
+            btnAdd.Size = new Size(123, 41);
             btnAdd.TabIndex = 1;
             btnAdd.Text = "&Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -56,25 +56,24 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(664, 389);
+            btnBack.Location = new Point(664, 415);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(124, 38);
+            btnBack.Size = new Size(124, 41);
             btnBack.TabIndex = 2;
             btnBack.Text = "&Back";
             btnBack.UseVisualStyleBackColor = true;
             btnBack.Click += btnBack_Click;
-
             // 
             // frmProducts
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(7F, 16F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnBack;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 480);
             Controls.Add(btnBack);
-
             Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
+            Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point);
             Name = "frmProducts";
             Text = "frmProducts";
             Load += frmProducts_Load;

@@ -1,10 +1,10 @@
 namespace TravelExpertsInternal
 
 
-    /*
-    * author of this form : Hector Villouta
+/*
+* author of this form : Hector Villouta
 
-    */
+*/
 {
     public partial class Start : Form
     {
@@ -36,7 +36,7 @@ namespace TravelExpertsInternal
         {
             frmProductSuppliers fourthForm = new frmProductSuppliers();
             fourthForm.Show();
-        }   
+        }
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {

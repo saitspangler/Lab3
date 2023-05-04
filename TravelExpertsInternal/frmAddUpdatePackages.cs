@@ -14,11 +14,18 @@ namespace TravelExpertsInternal
 {
     /*
     * 
-    * 
+    *
+    * The purpose of this application is to let the user maintain Travel Packages.
+    * Created on May 1, 2023
+    * Author: Peter Spangler
+    */
+
+    /*
     * Addition: added field validation for add/update workflows removed hard coding
     * Added on May 3, 2023
     * By: Peter Thiel
     */
+    
     public partial class frmAddUpdatePackages : Form
     {
         // public because start form needs to see it
@@ -127,6 +134,7 @@ namespace TravelExpertsInternal
             }
            
             DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(MIN_TRIP_LENGTH)) > 0 ? MINSTART_DATE : MINSTART_DATE.AddDays(MIN_TRIP_LENGTH);
+
             
             // Create a new instance of the TravelExpertsContext class
             using (var db = new TravelExpertsContext())

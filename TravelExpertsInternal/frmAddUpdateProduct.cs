@@ -58,10 +58,12 @@ namespace TravelExpertsInternal
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            // for both add and modify
+
+            // for add and modify
             if (Validator.IsPresent(txtProdName))
             {
-                if (isAdd) // need to create the object
+                if (isAdd) // validate code
+
                 {
                     currentProduct = new Product();
                 }
@@ -69,6 +71,7 @@ namespace TravelExpertsInternal
                 currentProduct.ProdName = txtProdName.Text;
 
                 DialogResult = DialogResult.OK;
+
             }
         }
     }

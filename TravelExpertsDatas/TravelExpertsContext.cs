@@ -60,6 +60,7 @@ public partial class TravelExpertsContext : DbContext
 
         => optionsBuilder.UseSqlServer("Server=SAIT229383;Database=TravelExperts;Trusted_Connection=True;Encrypt=False"); // PeterT
         //=> optionsBuilder.UseSqlServer("Server=SAIT229274;Database=TravelExperts;Trusted_Connection=True;Encrypt=False"); // PeterS
+
         //=> optionsBuilder.UseSqlServer("Server=localhost\\sqlexpress;Database=TravelExperts;Trusted_Connection=True;Encrypt=False")
         //=> optionsBuilder.UseSqlServer("Server=SAIT229235;Database=TravelExperts;Trusted_Connection=True;Encrypt=False"); // AFH
 
