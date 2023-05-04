@@ -43,7 +43,7 @@
             dgvProductSuppliers.RowTemplate.Height = 25;
             dgvProductSuppliers.Size = new Size(934, 226);
             dgvProductSuppliers.TabIndex = 0;
-            dgvProductSuppliers.CellClick += dgvProductSuppliers_CellClick;
+            
             // 
             // btnAdd
             // 

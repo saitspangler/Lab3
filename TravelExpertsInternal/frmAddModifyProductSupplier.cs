@@ -24,28 +24,20 @@ namespace TravelExpertsInternal
         /* Provided code for 'DisplayProductsSupplier()' so that comboboxes show ProdNames and SupNames 
          * instead of ProductIds and SupplierIds.
          * Changed frmAddModifyProductSupplier design.
+         * Took away modify capability.
          *Author: Allen F. Horton
          */
 
         // form level variables
         // public data for main form to set
-        public bool isAdd; // true if Add false if Modify
+      
         public ProductsSupplier? currentProductsSupplier = null; // selected supplier when Modify or null when Add
 
         public frmAddModifyProductSupplier()
         {
             InitializeComponent();
 
-            //// populated data for combo boxes
-            //List<Product> products = ProductManager.GetAllProducts();
-            //List<Supplier> suppliers = SupplierManager.GetAllSuppliers();
-            //// linking to combo boxes
-            //cboProductID.DataSource = products;
-            //cboProductID.DisplayMember = "ProductId";
-            //cboProductID.ValueMember = "ProdName";
-            //cboSupplierID.DataSource = suppliers;
-            //cboSupplierID.DisplayMember = "SupplierId";
-            //cboSupplierID.ValueMember = "SupName";
+            
 
             // alternate method to populate combo boxes
             List<int> productIDs = ProductManager.GetAllProductIDs();
@@ -56,60 +48,17 @@ namespace TravelExpertsInternal
 
         private void frmAddModifyProductSupplier_Load(object sender, EventArgs e)
         {
-            // differentiates between Add and Modify
-            if (isAdd) // an add operation
-            {
+           
+            
                 this.Text = "Add Products Supplier";
                 DisplayProductsSupplier();
-            }
-            else // modify
-            {
-                this.Text = "Modify Products Supplier";
-                DisplayProductsSupplier();
-
-            }
+            
+            
         }
         // display product supplier info if modify or add 
         private void DisplayProductsSupplier()
         {
-            if (currentProductsSupplier != null)
-            {
-
-                using (var context = new TravelExpertsContext())
-                {
-                    var productSupplier = context.ProductsSuppliers
-                                                 .FirstOrDefault(ps => ps.ProductSupplierId == currentProductsSupplier.ProductSupplierId);
-
-                    if (productSupplier != null)
-                    {
-                        // get the supplier name
-                        var supplierName = context.Suppliers
-                                                   .Where(s => s.SupplierId == productSupplier.SupplierId)
-                                                   .Select(s => s.SupName)
-                                                   .FirstOrDefault();
-
-                        // set the supplier combobox
-                        var supplierItem = new { SupplierId = productSupplier.SupplierId, SupName = supplierName };
-                        cboSupplierID.DataSource = new List<object> { supplierItem };
-                        cboSupplierID.DisplayMember = "SupName";
-                        cboSupplierID.ValueMember = "SupplierId";
-
-                        // get the product name
-                        var productName = context.Products
-                                                  .Where(p => p.ProductId == productSupplier.ProductId)
-                                                  .Select(p => p.ProdName)
-                                                  .FirstOrDefault();
-
-                        // set the product combobox
-                        var productItem = new { ProductId = productSupplier.ProductId, ProdName = productName };
-                        cboProductID.DataSource = new List<object> { productItem };
-                        cboProductID.DisplayMember = "ProdName";
-                        cboProductID.ValueMember = "ProductId";
-                    }
-                }
-            }
-            else if (isAdd) // handle scenario where ProductSupplier is being added
-            {
+            
                 using (var context = new TravelExpertsContext())
                 {
                     var suppliers = context.Suppliers.Select(s => new { s.SupplierId, s.SupName }).ToList();
@@ -122,7 +71,7 @@ namespace TravelExpertsInternal
                     cboProductID.DisplayMember = "ProdName";
                     cboProductID.ValueMember = "ProductId";
                 }
-            }
+           
 
         }
 
@@ -135,10 +84,9 @@ namespace TravelExpertsInternal
 
             if (valid)
             {
-                if (isAdd) // need to create the object
-                {
-                    currentProductsSupplier = new ProductsSupplier();
-                }
+                
+                currentProductsSupplier = new ProductsSupplier();
+                
                 // fill in data of product supplier object with new values
                 currentProductsSupplier.ProductId = (int)cboProductID.SelectedValue;
                 currentProductsSupplier.SupplierId = (int)cboSupplierID.SelectedValue;
