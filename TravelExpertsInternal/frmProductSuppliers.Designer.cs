@@ -36,6 +36,8 @@
             // 
             // dgvProductSuppliers
             // 
+            dgvProductSuppliers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+            dgvProductSuppliers.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvProductSuppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProductSuppliers.Location = new Point(15, 80);
             dgvProductSuppliers.Margin = new Padding(4);
