@@ -37,18 +37,20 @@
             // dgvProducts
             // 
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvProducts.Location = new Point(12, 13);
+            dgvProducts.Location = new Point(15, 16);
+            dgvProducts.Margin = new Padding(4, 4, 4, 4);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowTemplate.Height = 25;
-            dgvProducts.Size = new Size(776, 374);
+            dgvProducts.Size = new Size(998, 468);
             dgvProducts.TabIndex = 0;
             dgvProducts.CellClick += dgvProducts_CellClick;
             // 
             // btnAdd
             // 
-            btnAdd.Location = new Point(12, 415);
+            btnAdd.Location = new Point(15, 519);
+            btnAdd.Margin = new Padding(4, 4, 4, 4);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(123, 41);
+            btnAdd.Size = new Size(158, 51);
             btnAdd.TabIndex = 1;
             btnAdd.Text = "&Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@
             // 
             // btnBack
             // 
-            btnBack.Location = new Point(664, 415);
+            btnBack.Location = new Point(854, 519);
+            btnBack.Margin = new Padding(4, 4, 4, 4);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(124, 41);
+            btnBack.Size = new Size(159, 51);
             btnBack.TabIndex = 2;
             btnBack.Text = "&Back";
             btnBack.UseVisualStyleBackColor = true;
@@ -66,14 +69,15 @@
             // 
             // frmProducts
             // 
-            AutoScaleDimensions = new SizeF(7F, 16F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             CancelButton = btnBack;
-            ClientSize = new Size(800, 480);
+            ClientSize = new Size(1029, 600);
             Controls.Add(btnBack);
             Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
-            Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Cascadia Mono", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "frmProducts";
             Text = "frmProducts";
             Load += frmProducts_Load;

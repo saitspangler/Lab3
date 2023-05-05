@@ -55,7 +55,7 @@
             // btnSavePackage
             // 
             btnSavePackage.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnSavePackage.Location = new Point(959, 601);
+            btnSavePackage.Location = new Point(959, 487);
             btnSavePackage.Margin = new Padding(4);
             btnSavePackage.Name = "btnSavePackage";
             btnSavePackage.Size = new Size(179, 105);
@@ -68,7 +68,7 @@
             // 
             cbSuppliers.Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point);
             cbSuppliers.FormattingEnabled = true;
-            cbSuppliers.Location = new Point(459, 347);
+            cbSuppliers.Location = new Point(454, 275);
             cbSuppliers.Margin = new Padding(4);
             cbSuppliers.Name = "cbSuppliers";
             cbSuppliers.Size = new Size(277, 24);
@@ -80,7 +80,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(511, 318);
+            label1.Location = new Point(514, 237);
             label1.Margin = new Padding(4, 0, 4, 0);
             label1.Name = "label1";
             label1.Size = new Size(145, 21);
@@ -91,17 +91,17 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(104, 318);
+            label2.Location = new Point(89, 237);
             label2.Margin = new Padding(4, 0, 4, 0);
             label2.Name = "label2";
-            label2.Size = new Size(145, 21);
+            label2.Size = new Size(226, 21);
             label2.TabIndex = 5;
-            label2.Text = "Current Package";
+            label2.Text = "Current Package Products";
             // 
             // btnAddToPackage
             // 
             btnAddToPackage.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnAddToPackage.Location = new Point(511, 379);
+            btnAddToPackage.Location = new Point(511, 309);
             btnAddToPackage.Margin = new Padding(4);
             btnAddToPackage.Name = "btnAddToPackage";
             btnAddToPackage.Size = new Size(179, 58);
@@ -114,7 +114,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(901, 309);
+            label3.Location = new Point(901, 237);
             label3.Margin = new Padding(4, 0, 4, 0);
             label3.Name = "label3";
             label3.Size = new Size(118, 21);
@@ -126,7 +126,7 @@
             lbAddProductList.Font = new Font("Cascadia Mono", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
             lbAddProductList.FormattingEnabled = true;
             lbAddProductList.ItemHeight = 20;
-            lbAddProductList.Location = new Point(800, 347);
+            lbAddProductList.Location = new Point(783, 263);
             lbAddProductList.Margin = new Padding(4);
             lbAddProductList.Name = "lbAddProductList";
             lbAddProductList.Size = new Size(355, 184);
@@ -137,27 +137,27 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(89, 24);
+            label4.Location = new Point(89, 25);
             label4.Margin = new Padding(4, 0, 4, 0);
             label4.Name = "label4";
-            label4.Size = new Size(46, 21);
+            label4.Size = new Size(118, 21);
             label4.TabIndex = 9;
-            label4.Text = "Name";
+            label4.Text = "Package Name";
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(89, 92);
+            label5.Location = new Point(89, 87);
             label5.Margin = new Padding(4, 0, 4, 0);
             label5.Name = "label5";
-            label5.Size = new Size(109, 21);
+            label5.Size = new Size(181, 21);
             label5.TabIndex = 10;
-            label5.Text = "Description";
+            label5.Text = "Package Description";
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(720, 49);
+            label6.Location = new Point(559, 25);
             label6.Margin = new Padding(4, 0, 4, 0);
             label6.Name = "label6";
             label6.Size = new Size(100, 21);
@@ -167,7 +167,7 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Location = new Point(959, 49);
+            label7.Location = new Point(856, 25);
             label7.Margin = new Padding(4, 0, 4, 0);
             label7.Name = "label7";
             label7.Size = new Size(163, 21);
@@ -177,7 +177,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Location = new Point(559, 179);
+            label8.Location = new Point(559, 119);
             label8.Margin = new Padding(4, 0, 4, 0);
             label8.Name = "label8";
             label8.Size = new Size(100, 21);
@@ -187,7 +187,7 @@
             // label9
             // 
             label9.AutoSize = true;
-            label9.Location = new Point(976, 179);
+            label9.Location = new Point(937, 119);
             label9.Margin = new Padding(4, 0, 4, 0);
             label9.Name = "label9";
             label9.Size = new Size(82, 21);
@@ -196,7 +196,7 @@
             // 
             // dtpEndDate
             // 
-            dtpEndDate.Location = new Point(850, 221);
+            dtpEndDate.Location = new Point(850, 143);
             dtpEndDate.Name = "dtpEndDate";
             dtpEndDate.Size = new Size(305, 26);
             dtpEndDate.TabIndex = 15;
@@ -204,7 +204,7 @@
             // 
             // dtpStartDate
             // 
-            dtpStartDate.Location = new Point(476, 221);
+            dtpStartDate.Location = new Point(472, 143);
             dtpStartDate.Name = "dtpStartDate";
             dtpStartDate.Size = new Size(313, 26);
             dtpStartDate.TabIndex = 16;
@@ -220,7 +220,7 @@
             // 
             // txtPackagePrice
             // 
-            txtPackagePrice.Location = new Point(686, 87);
+            txtPackagePrice.Location = new Point(529, 49);
             txtPackagePrice.Name = "txtPackagePrice";
             txtPackagePrice.Size = new Size(172, 26);
             txtPackagePrice.TabIndex = 18;
@@ -228,7 +228,7 @@
             // 
             // txtPackageAgencyCommission
             // 
-            txtPackageAgencyCommission.Location = new Point(976, 87);
+            txtPackageAgencyCommission.Location = new Point(873, 49);
             txtPackageAgencyCommission.Name = "txtPackageAgencyCommission";
             txtPackageAgencyCommission.Size = new Size(146, 26);
             txtPackageAgencyCommission.TabIndex = 19;
@@ -239,7 +239,7 @@
             txtPackageDescription.Location = new Point(38, 116);
             txtPackageDescription.Multiline = true;
             txtPackageDescription.Name = "txtPackageDescription";
-            txtPackageDescription.Size = new Size(348, 165);
+            txtPackageDescription.Size = new Size(348, 99);
             txtPackageDescription.TabIndex = 20;
             txtPackageDescription.Tag = "Description";
             // 
@@ -247,7 +247,7 @@
             // 
             lbPackageProductList.FormattingEnabled = true;
             lbPackageProductList.ItemHeight = 21;
-            lbPackageProductList.Location = new Point(38, 347);
+            lbPackageProductList.Location = new Point(38, 275);
             lbPackageProductList.Name = "lbPackageProductList";
             lbPackageProductList.Size = new Size(328, 172);
             lbPackageProductList.TabIndex = 21;
@@ -256,7 +256,7 @@
             // btnCancelAdd
             // 
             btnCancelAdd.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCancelAdd.Location = new Point(38, 635);
+            btnCancelAdd.Location = new Point(38, 487);
             btnCancelAdd.Margin = new Padding(4);
             btnCancelAdd.Name = "btnCancelAdd";
             btnCancelAdd.Size = new Size(179, 105);
@@ -268,7 +268,7 @@
             // btnRemoveFromPackage
             // 
             btnRemoveFromPackage.Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            btnRemoveFromPackage.Location = new Point(511, 445);
+            btnRemoveFromPackage.Location = new Point(511, 389);
             btnRemoveFromPackage.Margin = new Padding(4);
             btnRemoveFromPackage.Name = "btnRemoveFromPackage";
             btnRemoveFromPackage.Size = new Size(179, 58);
@@ -281,7 +281,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1228, 805);
+            ClientSize = new Size(1228, 615);
             Controls.Add(btnRemoveFromPackage);
             Controls.Add(btnCancelAdd);
             Controls.Add(lbPackageProductList);

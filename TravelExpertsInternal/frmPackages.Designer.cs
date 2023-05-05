@@ -39,7 +39,7 @@
             dgvPackages.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dgvPackages.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
             dgvPackages.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPackages.Location = new Point(15, 221);
+            dgvPackages.Location = new Point(15, 155);
             dgvPackages.Margin = new Padding(4);
             dgvPackages.Name = "dgvPackages";
             dgvPackages.RowTemplate.Height = 25;
@@ -61,7 +61,7 @@
             // 
             // btnBackHome
             // 
-            btnBackHome.Location = new Point(993, 48);
+            btnBackHome.Location = new Point(1108, 48);
             btnBackHome.Margin = new Padding(4);
             btnBackHome.Name = "btnBackHome";
             btnBackHome.Size = new Size(276, 80);
@@ -74,7 +74,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1480, 858);
+            ClientSize = new Size(1480, 741);
             Controls.Add(btnBackHome);
             Controls.Add(btnAddPackage);
             Controls.Add(dgvPackages);

@@ -115,7 +115,7 @@ namespace TravelExpertsInternal
                 MaxCommission = 0;
             }
 
-            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(MIN_TRIP_LENGTH)) > 0 
+            DateTime MinEndDate = DateTime.Compare(MINSTART_DATE, MINSTART_DATE.AddDays(MIN_TRIP_LENGTH)) > 0
                 ? MINSTART_DATE : MINSTART_DATE.AddDays(MIN_TRIP_LENGTH);
 
             // Create a new instance of the TravelExpertsContext class
@@ -139,7 +139,7 @@ namespace TravelExpertsInternal
 
                     // Update the Package object with the data from the controls on the form
                     package.PkgName = txtPackageName.Text;
-                    package.PkgDesc = txtPackageDescription.Text; 
+                    package.PkgDesc = txtPackageDescription.Text;
                     package.PkgStartDate = dtpStartDate.Value;
                     package.PkgEndDate = dtpEndDate.Value;
                     package.PkgBasePrice = decimal.Parse(txtPackagePrice.Text);

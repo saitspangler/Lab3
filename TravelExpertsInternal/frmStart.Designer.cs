@@ -39,12 +39,12 @@
             // lblWelcome
             // 
             lblWelcome.AutoSize = true;
-            lblWelcome.Location = new Point(392, 80);
+            lblWelcome.Location = new Point(354, 87);
             lblWelcome.Margin = new Padding(4, 0, 4, 0);
             lblWelcome.Name = "lblWelcome";
-            lblWelcome.Size = new Size(271, 21);
+            lblWelcome.Size = new Size(361, 21);
             lblWelcome.TabIndex = 0;
-            lblWelcome.Text = "Travel Experts Package Editor";
+            lblWelcome.Text = "Travel Experts Internal Database Editor";
             // 
             // btnAddPackages
             // 
@@ -58,11 +58,11 @@
             // 
             // btnProducts
             // 
-            btnProducts.Location = new Point(323, 177);
+            btnProducts.Location = new Point(312, 177);
             btnProducts.Name = "btnProducts";
             btnProducts.Size = new Size(203, 62);
             btnProducts.TabIndex = 2;
-            btnProducts.Text = "Products";
+            btnProducts.Text = "Add / Update Products";
             btnProducts.UseVisualStyleBackColor = true;
             btnProducts.Click += btnProducts_Click;
             // 
@@ -72,7 +72,7 @@
             btnProductSuppliers.Name = "btnProductSuppliers";
             btnProductSuppliers.Size = new Size(203, 62);
             btnProductSuppliers.TabIndex = 3;
-            btnProductSuppliers.Text = "Product Suppliers";
+            btnProductSuppliers.Text = "Add / Update Product Suppliers";
             btnProductSuppliers.UseVisualStyleBackColor = true;
             btnProductSuppliers.Click += btnProductSuppliers_Click;
             // 
@@ -82,7 +82,7 @@
             btnSuppliers.Name = "btnSuppliers";
             btnSuppliers.Size = new Size(203, 62);
             btnSuppliers.TabIndex = 4;
-            btnSuppliers.Text = "Suppliers";
+            btnSuppliers.Text = "Add / Update Suppliers";
             btnSuppliers.UseVisualStyleBackColor = true;
             btnSuppliers.Click += btnSuppliers_Click;
             // 
@@ -100,7 +100,7 @@
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1236, 630);
+            ClientSize = new Size(1091, 516);
             Controls.Add(btnSuppliers);
             Controls.Add(btnProductSuppliers);
             Controls.Add(btnProducts);

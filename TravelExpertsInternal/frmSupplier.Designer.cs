@@ -37,18 +37,20 @@
             // dgvSuppliers
             // 
             dgvSuppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvSuppliers.Location = new Point(12, 13);
+            dgvSuppliers.Location = new Point(15, 16);
+            dgvSuppliers.Margin = new Padding(4, 4, 4, 4);
             dgvSuppliers.Name = "dgvSuppliers";
             dgvSuppliers.RowTemplate.Height = 25;
-            dgvSuppliers.Size = new Size(554, 510);
+            dgvSuppliers.Size = new Size(712, 638);
             dgvSuppliers.TabIndex = 0;
             dgvSuppliers.CellContentClick += dgvSuppliers_CellContentClick;
             // 
             // btnAddSupplier
             // 
-            btnAddSupplier.Location = new Point(572, 13);
+            btnAddSupplier.Location = new Point(735, 16);
+            btnAddSupplier.Margin = new Padding(4, 4, 4, 4);
             btnAddSupplier.Name = "btnAddSupplier";
-            btnAddSupplier.Size = new Size(161, 62);
+            btnAddSupplier.Size = new Size(207, 78);
             btnAddSupplier.TabIndex = 1;
             btnAddSupplier.Text = "Add Supplier";
             btnAddSupplier.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@
             // 
             // btnExitSupplierPage
             // 
-            btnExitSupplierPage.Location = new Point(572, 461);
+            btnExitSupplierPage.Location = new Point(735, 576);
+            btnExitSupplierPage.Margin = new Padding(4, 4, 4, 4);
             btnExitSupplierPage.Name = "btnExitSupplierPage";
-            btnExitSupplierPage.Size = new Size(161, 62);
+            btnExitSupplierPage.Size = new Size(207, 78);
             btnExitSupplierPage.TabIndex = 2;
             btnExitSupplierPage.Text = "Back";
             btnExitSupplierPage.UseVisualStyleBackColor = true;
@@ -66,13 +69,14 @@
             // 
             // frmSupplier
             // 
-            AutoScaleDimensions = new SizeF(7F, 16F);
+            AutoScaleDimensions = new SizeF(9F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(890, 535);
+            ClientSize = new Size(1144, 669);
             Controls.Add(btnExitSupplierPage);
             Controls.Add(btnAddSupplier);
             Controls.Add(dgvSuppliers);
-            Font = new Font("Cascadia Mono", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Cascadia Mono", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            Margin = new Padding(4, 4, 4, 4);
             Name = "frmSupplier";
             Text = "frmSupplier";
             Load += frmSupplier_Load;
