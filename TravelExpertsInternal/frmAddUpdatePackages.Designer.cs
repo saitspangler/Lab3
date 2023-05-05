@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddUpdatePackages));
             btnSavePackage = new Button();
             cbSuppliers = new ComboBox();
             label1 = new Label();
@@ -305,6 +306,7 @@
             Controls.Add(cbSuppliers);
             Controls.Add(btnSavePackage);
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "frmAddUpdatePackages";
             Text = "Add Update Packages";

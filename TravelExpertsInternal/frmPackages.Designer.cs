@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPackages));
             dgvPackages = new DataGridView();
             btnAddPackage = new Button();
             btnBackHome = new Button();
@@ -79,6 +80,7 @@
             Controls.Add(btnAddPackage);
             Controls.Add(dgvPackages);
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "frmPackages";
             Text = "Packages";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddModifyProductSupplier));
             label2 = new Label();
             label3 = new Label();
             cboProductID = new ComboBox();
@@ -103,6 +104,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "frmAddModifyProductSupplier";
             Text = "Add Modify Product Supplier";

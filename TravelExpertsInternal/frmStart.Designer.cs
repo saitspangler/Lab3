@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Start));
             lblWelcome = new Label();
             btnAddPackages = new Button();
             btnProducts = new Button();
@@ -107,6 +108,7 @@
             Controls.Add(btnAddPackages);
             Controls.Add(lblWelcome);
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "Start";
             Text = "Start";

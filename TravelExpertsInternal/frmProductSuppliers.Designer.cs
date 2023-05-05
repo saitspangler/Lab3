@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmProductSuppliers));
             dgvProductSuppliers = new DataGridView();
             btnAdd = new Button();
             btnCancel = new Button();
@@ -77,6 +78,7 @@
             Controls.Add(btnAdd);
             Controls.Add(dgvProductSuppliers);
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "frmProductSuppliers";
             Text = "Product Suppliers";

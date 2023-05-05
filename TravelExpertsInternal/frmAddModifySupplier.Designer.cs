@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddModifySupplier));
             groupBox1 = new GroupBox();
             label13 = new Label();
             txtEmail = new TextBox();
@@ -361,6 +362,7 @@
             Controls.Add(btnAccept);
             Controls.Add(groupBox1);
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "frmAddModifySupplier";
             Text = "Add Modify Supplier";

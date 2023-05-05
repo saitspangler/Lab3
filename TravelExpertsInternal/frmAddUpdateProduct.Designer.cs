@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddUpdateProduct));
             lblAddUpdateProduct = new Label();
             label1 = new Label();
             txtProdName = new TextBox();
@@ -101,6 +102,7 @@
             Controls.Add(label1);
             Controls.Add(lblAddUpdateProduct);
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
             Name = "frmAddUpdateProduct";
             Text = "Add Update Product";
