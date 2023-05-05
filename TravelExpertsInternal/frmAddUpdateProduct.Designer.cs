@@ -103,7 +103,7 @@
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmAddUpdateProduct";
-            Text = "frmAddUpdateProduct";
+            Text = "Add Update Product";
             Load += frmAddUpdateProduct_Load;
             ResumeLayout(false);
             PerformLayout();

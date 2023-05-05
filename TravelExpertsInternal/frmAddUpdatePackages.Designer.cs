@@ -307,7 +307,7 @@
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmAddUpdatePackages";
-            Text = "frmAddUpdatePackages";
+            Text = "Add Update Packages";
             Load += frmAddUpdatePackages_Load;
             ResumeLayout(false);
             PerformLayout();

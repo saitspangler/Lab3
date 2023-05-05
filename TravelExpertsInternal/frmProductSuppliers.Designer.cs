@@ -45,7 +45,6 @@
             dgvProductSuppliers.RowTemplate.Height = 25;
             dgvProductSuppliers.Size = new Size(934, 226);
             dgvProductSuppliers.TabIndex = 0;
-            
             // 
             // btnAdd
             // 
@@ -80,7 +79,7 @@
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmProductSuppliers";
-            Text = "frmProductSuppliers";
+            Text = "Product Suppliers";
             Load += frmProductSuppliers_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProductSuppliers).EndInit();
             ResumeLayout(false);

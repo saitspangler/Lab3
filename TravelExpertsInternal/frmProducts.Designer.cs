@@ -38,7 +38,7 @@
             // 
             dgvProducts.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvProducts.Location = new Point(15, 16);
-            dgvProducts.Margin = new Padding(4, 4, 4, 4);
+            dgvProducts.Margin = new Padding(4);
             dgvProducts.Name = "dgvProducts";
             dgvProducts.RowTemplate.Height = 25;
             dgvProducts.Size = new Size(998, 468);
@@ -48,7 +48,7 @@
             // btnAdd
             // 
             btnAdd.Location = new Point(15, 519);
-            btnAdd.Margin = new Padding(4, 4, 4, 4);
+            btnAdd.Margin = new Padding(4);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(158, 51);
             btnAdd.TabIndex = 1;
@@ -59,7 +59,7 @@
             // btnBack
             // 
             btnBack.Location = new Point(854, 519);
-            btnBack.Margin = new Padding(4, 4, 4, 4);
+            btnBack.Margin = new Padding(4);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(159, 51);
             btnBack.TabIndex = 2;
@@ -77,9 +77,9 @@
             Controls.Add(btnAdd);
             Controls.Add(dgvProducts);
             Font = new Font("Cascadia Mono", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "frmProducts";
-            Text = "frmProducts";
+            Text = "Products";
             Load += frmProducts_Load;
             ((System.ComponentModel.ISupportInitialize)dgvProducts).EndInit();
             ResumeLayout(false);

@@ -81,7 +81,7 @@
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmPackages";
-            Text = "frmPackages";
+            Text = "Packages";
             Load += frmPackages_Load;
             ((System.ComponentModel.ISupportInitialize)dgvPackages).EndInit();
             ResumeLayout(false);

@@ -105,7 +105,7 @@
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmAddModifyProductSupplier";
-            Text = "frmAddModifyProductSupplier";
+            Text = "Add Modify Product Supplier";
             Load += frmAddModifyProductSupplier_Load;
             ResumeLayout(false);
             PerformLayout();

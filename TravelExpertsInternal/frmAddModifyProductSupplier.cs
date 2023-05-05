@@ -30,14 +30,14 @@ namespace TravelExpertsInternal
 
         // form level variables
         // public data for main form to set
-      
+
         public ProductsSupplier? currentProductsSupplier = null; // selected supplier when Modify or null when Add
 
         public frmAddModifyProductSupplier()
         {
             InitializeComponent();
 
-            
+
 
             // alternate method to populate combo boxes
             List<int> productIDs = ProductManager.GetAllProductIDs();
@@ -48,30 +48,30 @@ namespace TravelExpertsInternal
 
         private void frmAddModifyProductSupplier_Load(object sender, EventArgs e)
         {
-           
-            
-                this.Text = "Add Products Supplier";
-                DisplayProductsSupplier();
-            
-            
+
+
+            this.Text = "Add Products Supplier";
+            DisplayProductsSupplier();
+
+
         }
         // display product supplier info if modify or add 
         private void DisplayProductsSupplier()
         {
-            
-                using (var context = new TravelExpertsContext())
-                {
-                    var suppliers = context.Suppliers.Select(s => new { s.SupplierId, s.SupName }).ToList();
-                    cboSupplierID.DataSource = suppliers;
-                    cboSupplierID.DisplayMember = "SupName";
-                    cboSupplierID.ValueMember = "SupplierId";
 
-                    var products = context.Products.Select(p => new { p.ProductId, p.ProdName }).ToList();
-                    cboProductID.DataSource = products;
-                    cboProductID.DisplayMember = "ProdName";
-                    cboProductID.ValueMember = "ProductId";
-                }
-           
+            using (var context = new TravelExpertsContext())
+            {
+                var suppliers = context.Suppliers.Select(s => new { s.SupplierId, s.SupName }).ToList();
+                cboSupplierID.DataSource = suppliers;
+                cboSupplierID.DisplayMember = "SupName";
+                cboSupplierID.ValueMember = "SupplierId";
+
+                var products = context.Products.Select(p => new { p.ProductId, p.ProdName }).ToList();
+                cboProductID.DataSource = products;
+                cboProductID.DisplayMember = "ProdName";
+                cboProductID.ValueMember = "ProductId";
+            }
+
 
         }
 
@@ -84,9 +84,9 @@ namespace TravelExpertsInternal
 
             if (valid)
             {
-                
+
                 currentProductsSupplier = new ProductsSupplier();
-                
+
                 // fill in data of product supplier object with new values
                 currentProductsSupplier.ProductId = (int)cboProductID.SelectedValue;
                 currentProductsSupplier.SupplierId = (int)cboSupplierID.SelectedValue;

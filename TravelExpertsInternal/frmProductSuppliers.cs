@@ -26,7 +26,7 @@ namespace TravelExpertsInternal
      * Author: Allen F. Horton*/
     public partial class frmProductSuppliers : Form
     {
-    
+
 
         // private variables
         private ProductsSupplier? currentProductSupplier;
@@ -52,7 +52,7 @@ namespace TravelExpertsInternal
             dgvProductSuppliers.Columns.Add("Product", "Product");
             dgvProductSuppliers.Columns.Add("Supplier", "Supplier");
             // add modify column
-            
+
             dgvProductSuppliers.Columns[0].Width = 100;
             dgvProductSuppliers.Columns[1].Width = 200;
             // join with Product and Supplier tables and select ProdName and SupName instead of IDs
@@ -73,13 +73,13 @@ namespace TravelExpertsInternal
 
 
 
-        
-        
+
+
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
             frmAddModifyProductSupplier secondForm = new frmAddModifyProductSupplier(); // makes an object of the second form
-            
+
             secondForm.currentProductsSupplier = null;
             DialogResult = secondForm.ShowDialog();
             secondForm.Focus();

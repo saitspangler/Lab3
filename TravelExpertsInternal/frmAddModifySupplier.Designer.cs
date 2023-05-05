@@ -363,7 +363,7 @@
             Font = new Font("Cascadia Mono", 12F, FontStyle.Regular, GraphicsUnit.Point);
             Margin = new Padding(4);
             Name = "frmAddModifySupplier";
-            Text = "frmAddModifySupplier";
+            Text = "Add Modify Supplier";
             Load += frmAddModifySupplier_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

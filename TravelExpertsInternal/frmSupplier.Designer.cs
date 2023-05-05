@@ -38,7 +38,7 @@
             // 
             dgvSuppliers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvSuppliers.Location = new Point(15, 16);
-            dgvSuppliers.Margin = new Padding(4, 4, 4, 4);
+            dgvSuppliers.Margin = new Padding(4);
             dgvSuppliers.Name = "dgvSuppliers";
             dgvSuppliers.RowTemplate.Height = 25;
             dgvSuppliers.Size = new Size(712, 638);
@@ -48,7 +48,7 @@
             // btnAddSupplier
             // 
             btnAddSupplier.Location = new Point(735, 16);
-            btnAddSupplier.Margin = new Padding(4, 4, 4, 4);
+            btnAddSupplier.Margin = new Padding(4);
             btnAddSupplier.Name = "btnAddSupplier";
             btnAddSupplier.Size = new Size(207, 78);
             btnAddSupplier.TabIndex = 1;
@@ -59,7 +59,7 @@
             // btnExitSupplierPage
             // 
             btnExitSupplierPage.Location = new Point(735, 576);
-            btnExitSupplierPage.Margin = new Padding(4, 4, 4, 4);
+            btnExitSupplierPage.Margin = new Padding(4);
             btnExitSupplierPage.Name = "btnExitSupplierPage";
             btnExitSupplierPage.Size = new Size(207, 78);
             btnExitSupplierPage.TabIndex = 2;
@@ -76,9 +76,9 @@
             Controls.Add(btnAddSupplier);
             Controls.Add(dgvSuppliers);
             Font = new Font("Cascadia Mono", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            Margin = new Padding(4, 4, 4, 4);
+            Margin = new Padding(4);
             Name = "frmSupplier";
-            Text = "frmSupplier";
+            Text = "Suppliers";
             Load += frmSupplier_Load;
             ((System.ComponentModel.ISupportInitialize)dgvSuppliers).EndInit();
             ResumeLayout(false);
