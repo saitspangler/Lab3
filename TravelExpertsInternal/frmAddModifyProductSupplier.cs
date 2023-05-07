@@ -25,6 +25,7 @@ namespace TravelExpertsInternal
          * instead of ProductIds and SupplierIds.
          * Changed frmAddModifyProductSupplier design.
          * Took away modify capability.
+         * Made it check for duplicates in the database in order to prevent duplicating records.
          *Author: Allen F. Horton
          */
 
