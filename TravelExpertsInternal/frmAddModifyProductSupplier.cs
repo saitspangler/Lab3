@@ -80,18 +80,26 @@ namespace TravelExpertsInternal
         {
             bool valid = true;
 
-            // for both Add and Modify
+            // Check for duplicate ProductsSupplier record
+            using (var context = new TravelExpertsContext())
+            {
+                int productId = (int)cboProductID.SelectedValue;
+                int supplierId = (int)cboSupplierID.SelectedValue;
+
+                if (context.ProductsSuppliers.Any(ps => ps.ProductId == productId && ps.SupplierId == supplierId))
+                {
+                    MessageBox.Show("A record with the same Product ID and Supplier ID already exists in the database.", "Duplicate Record");
+                    valid = false;
+                }
+            }
 
             if (valid)
             {
-
                 currentProductsSupplier = new ProductsSupplier();
 
                 // fill in data of product supplier object with new values
                 currentProductsSupplier.ProductId = (int)cboProductID.SelectedValue;
                 currentProductsSupplier.SupplierId = (int)cboSupplierID.SelectedValue;
-
-
 
                 DialogResult = DialogResult.OK;
             }
