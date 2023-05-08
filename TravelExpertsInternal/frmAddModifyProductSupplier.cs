@@ -29,7 +29,6 @@ namespace TravelExpertsInternal
          *Author: Allen F. Horton
          */
 
-        // form level variables
         // public data for main form to set
 
         public ProductsSupplier? currentProductsSupplier = null; // selected supplier when Modify or null when Add
@@ -40,7 +39,7 @@ namespace TravelExpertsInternal
 
 
 
-            // alternate method to populate combo boxes
+            // method to populate combo boxes
             List<int> productIDs = ProductManager.GetAllProductIDs();
             cboProductID.DataSource = productIDs;
             List<int> supplierIDs = SupplierManager.GetAllSupplierIDs();
@@ -56,7 +55,7 @@ namespace TravelExpertsInternal
 
 
         }
-        // display product supplier info if modify or add 
+        // display product supplier info if add 
         private void DisplayProductsSupplier()
         {
 
