@@ -25,10 +25,10 @@ namespace TravelExpertsInternal
          * instead of ProductIds and SupplierIds.
          * Changed frmAddModifyProductSupplier design.
          * Took away modify capability.
+         * Made it check for duplicates in the database in order to prevent duplicating records.
          *Author: Allen F. Horton
          */
 
-        // form level variables
         // public data for main form to set
 
         public ProductsSupplier? currentProductsSupplier = null; // selected supplier when Modify or null when Add
@@ -39,7 +39,7 @@ namespace TravelExpertsInternal
 
 
 
-            // alternate method to populate combo boxes
+            // method to populate combo boxes
             List<int> productIDs = ProductManager.GetAllProductIDs();
             cboProductID.DataSource = productIDs;
             List<int> supplierIDs = SupplierManager.GetAllSupplierIDs();
@@ -55,7 +55,7 @@ namespace TravelExpertsInternal
 
 
         }
-        // display product supplier info if modify or add 
+        // display product supplier info if add 
         private void DisplayProductsSupplier()
         {
 
@@ -80,18 +80,26 @@ namespace TravelExpertsInternal
         {
             bool valid = true;
 
-            // for both Add and Modify
+            // Check for duplicate ProductsSupplier record
+            using (var context = new TravelExpertsContext())
+            {
+                int productId = (int)cboProductID.SelectedValue;
+                int supplierId = (int)cboSupplierID.SelectedValue;
+
+                if (context.ProductsSuppliers.Any(ps => ps.ProductId == productId && ps.SupplierId == supplierId))
+                {
+                    MessageBox.Show("A record with the same Product ID and Supplier ID already exists in the database.", "Duplicate Record");
+                    valid = false;
+                }
+            }
 
             if (valid)
             {
-
                 currentProductsSupplier = new ProductsSupplier();
 
                 // fill in data of product supplier object with new values
                 currentProductsSupplier.ProductId = (int)cboProductID.SelectedValue;
                 currentProductsSupplier.SupplierId = (int)cboSupplierID.SelectedValue;
-
-
 
                 DialogResult = DialogResult.OK;
             }
